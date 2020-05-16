@@ -1,2 +1,3 @@
-# coop-go
-Golang client SDK for Co-operative Bank APIs
+# Golang client SDK fo Co-operative Bank APIs
+
+This library is still under massive development and rapid prototyping.
