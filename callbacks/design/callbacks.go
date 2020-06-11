@@ -1,6 +1,7 @@
 package design
 
 import (
+	"github.com/wondenge/coop-go/design"
 	. "goa.design/goa/v3/dsl"
 	_ "goa.design/plugins/v3/docs"      // Generates documentation
 	_ "goa.design/plugins/v3/goakit"    // Enables goakit
@@ -136,8 +137,8 @@ var PesaLinkSendToAccountCallbackRequest = Type("PesaLinkSendToAccountCallbackRe
 		Description("Your callback URL that will receive transaction processing results")
 		Example("https://yourdomain.com/ft-callback")
 	})
-	Attribute("Source", SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(DestinationAccountTransactionRequest), func() {
+	Attribute("Source", design.SourceAccountTransactionRequest)
+	Attribute("Destinations", ArrayOf(design.DestinationAccountTransactionRequest), func() {
 		MinLength(1)
 	})
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
@@ -156,8 +157,8 @@ var SendToMpesaCallbackRequest = Type("SendToMpesaCallbackRequest", func() {
 		Description("Your callback URL that will receive transaction processing results")
 		Example("https://yourdomain.com/ft-callback")
 	})
-	Attribute("Source", SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(DestinationAccountTransactionRequest), func() {
+	Attribute("Source", design.SourceAccountTransactionRequest)
+	Attribute("Destinations", ArrayOf(design.DestinationAccountTransactionRequest), func() {
 		MinLength(1)
 	})
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
