@@ -156,64 +156,6 @@ var ProcessingResponse = ResultType("ProcessingResponse", func() {
 	})
 })
 
-var ErrorResponse = ResultType("ErrorResponse", func() {
-	Description("Error Response")
-	TypeName("ErrorResponse")
-	ContentType("application/json")
-
-	Attributes(func() {
-		Attribute("MessageReference", String, func() {
-			Description("Your unique transaction request message identifier")
-			MinLength(1)
-			MaxLength(27)
-			Example("40ca18c6765086089a1")
-		})
-		Attribute("MessageDateTime", String, func() {
-			Description("Acknowledgement message creation timestamp")
-			Format(FormatDateTime)
-			Example("2017-12-04T09:27:00")
-		})
-		Attribute("MessageCode", String, func() {
-			Description("Message Response Code")
-			Example("-2")
-		})
-		Attribute("MessageDescription", String, func() {
-			Description("Message Code description")
-			Example("INVALID/MISSING PARAMETER")
-		})
-		Required("MessageReference", "MessageDateTime", "MessageCode", "MessageDescription")
-	})
-	View("default", func() {
-		Attribute("MessageReference")
-		Attribute("MessageDateTime")
-		Attribute("MessageCode")
-		Attribute("MessageDescription")
-	})
-})
-
-var MissingCredentials = ResultType("MissingCredentials", func() {
-	Description("Missing Credentials")
-	TypeName("MissingCredentials")
-	ContentType("application/json")
-
-	Attributes(func() {
-		Attribute("Fault", func() {
-			Attribute("code", String, func() {
-				Example("900902")
-			})
-			Attribute("message", String, func() {
-				Example("Missing Credentials")
-			})
-			Attribute("description", String, func() {
-				Example("Required OAuth credentials not provided. Make sure your API invocation call has a header: \"Authorization: Bearer ACCESS_TOKEN\"")
-			})
-		})
-	})
-	View("default", func() {
-		Attribute("Fault")
-	})
-})
-
 var NotFound = ResultType("NotFound", func() {
 	Description("Not Found")
 	TypeName("NotFound")
