@@ -153,7 +153,7 @@ var AccountBalanceSuccessResponse = ResultType("AccountBalanceSuccessResponse", 
 // 2. Account Full Statement Enquiry API:
 // Enables you to enquire about your own Co-operative Bank accounts'
 // full statement for the specified account number, start date and end date"
-var AccountFullStatementRequest = Type("AccountFullStatementRequest", func() {
+var AccountFullStatementPayload = Type("AccountFullStatementPayload", func() {
 	Description("Account Full Statement Request")
 
 	Attribute("MessageReference", String, func() {
@@ -234,7 +234,7 @@ var AccountFullStatementSuccessResponse = ResultType("AccountFullStatementSucces
 
 // 3. AccountMiniStatement
 
-var AccountMiniStatementRequest = Type("AccountMiniStatementRequest", func() {
+var AccountMiniStatementPayload = Type("AccountMiniStatementPayload", func() {
 	Description("Account Mini Statement Request")
 
 	Attribute("MessageReference", String, func() {
@@ -309,7 +309,7 @@ var AccountMiniStatementSuccessResponse = ResultType("AccountMiniStatementSucces
 // Enables you to enquire about your own Co-operative Bank accounts'
 // latest transactions for the specified account number and number
 // of transactions to be returned
-var AccountTransactionsRequest = Type("AccountTransactionsRequest", func() {
+var AccountTransactionsPayload = Type("AccountTransactionsPayload", func() {
 	Description("Account Transactions Request")
 
 	Attribute("MessageReference", String, func() {
@@ -400,7 +400,7 @@ var AccountTransactionsSuccessResponse = ResultType("AccountTransactionsSuccessR
 // 5. AccountValidation
 // 5. Account Validation Enquiry API:
 // Enables you to validate a Co-operative Bank account number.
-var AccountValidationRequest = Type("AccountValidationRequest", func() {
+var AccountValidationPayload = Type("AccountValidationPayload", func() {
 	Description("Account Validation Request")
 
 	Attribute("MessageReference", String, func() {
@@ -456,7 +456,7 @@ var AccountValidationSuccessResponse = ResultType("AccountValidationSuccessRespo
 // 6. ExchangeRate
 // Exchange Rate Enquiry API will enable you to enquire about the
 // current SPOT exchange rate for the specified currencies
-var ExchangeRateRequest = Type("ExchangeRateRequest", func() {
+var ExchangeRatePayload = Type("ExchangeRatePayload", func() {
 	Description("Exchange Rate Request")
 
 	Attribute("MessageReference", String, func() {
@@ -551,7 +551,7 @@ var ExchangeRateSuccessResponse = ResultType("ExchangeRateSuccessResponse", func
 // Transaction Status Enquiry API will enable you to enquire about
 // the status of a previously requested transaction for the specified
 // transaction message reference.
-var FTTransactionStatusRequest = Type("FTTransactionStatusRequest", func() {
+var FTTransactionStatusPayload = Type("FTTransactionStatusPayload", func() {
 	Description("FT Transaction Status Request")
 
 	Attribute("MessageReference", String, func() {
