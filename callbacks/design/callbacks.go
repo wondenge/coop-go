@@ -1,165 +1,117 @@
 package design
 
 import (
-	"github.com/wondenge/coop-go/design"
 	. "goa.design/goa/v3/dsl"
 	_ "goa.design/plugins/v3/docs"      // Generates documentation
 	_ "goa.design/plugins/v3/goakit"    // Enables goakit
 	_ "goa.design/plugins/v3/zaplogger" // Enables ZapLogger Plugin
 )
 
-var SourceAccountCallbackRequest = Type("SourceAccountCallbackRequest", func() {
-	Description("Source Account Callback Request")
+var _ = Service("connect", func() {
 
-	Attribute("AccountNumber", String, func() {
-		Description("Posting account number")
-		MinLength(14)
-		MaxLength(14)
-		Example("36001873000")
-		Example("54321987654321")
+	HTTP(func() {
+		Path("/callbacks/coop-bank")
 	})
-	Attribute("Amount", UInt64, func() {
-		Description("Transaction Amount")
-		Minimum(0.01)
-		Maximum(999999.99)
-		Example(777)
-	})
-	Attribute("TransactionCurrency", String, func() {
-		Description("Posting account currency in ISO Currency Code")
-		Enum("USD", "KES", "EUR", "GBP", "AUD", "CHF", "CAD", "ZAR")
-		Example("KES")
-	})
-	Attribute("Narration", String, func() {
-		Description("Posting account transaction narration")
-		MinLength(1)
-		MaxLength(25)
-		Example("Supplier Payment")
-		Example("Electricity Payment")
-	})
-	Attribute("ResponseCode", String, func() {
-		Description("Posting leg response code")
-		Example("0")
-	})
-	Attribute("ResponseDescription", String, func() {
-		Description("Posting leg response description")
-		Example("Success")
-	})
-	Required("AccountNumber", "Amount", "TransactionCurrency", "Narration", "ResponseCode", "ResponseDescription")
-})
 
-var DestinationAccountCallbackRequest = Type("DestinationAccountCallbackRequest", func() {
-	Description("Destination Account Callback Request")
+	// StatusMultiStatus
+	// Status 207
+	// RFC 4918, 11.1
+	Error("partial_success", ErrorResult, "1 - PARTIAL SUCCESS")
+	Error("full_failure", ErrorResult, "2 - FULL FAILURE")
 
-	Attribute("ReferenceNumber", String, func() {
-		Description("Unique posting reference for the transaction leg")
-		MinLength(1)
-		MaxLength(30)
-		Example("40ca18c6765086089a1_1")
-	})
-	Attribute("AccountNumber", String, func() {
-		Description("Posting account number")
-		MinLength(14)
-		MaxLength(14)
-		Example("36001873000")
-		Example("54321987654321")
-	})
-	Attribute("Amount", UInt64, func() {
-		Description("Transaction Amount")
-		Minimum(0.01)
-		Maximum(999999.99)
-		Example(777)
-	})
-	Attribute("TransactionCurrency", String, func() {
-		Description("Posting account currency in ISO Currency Code")
-		Enum("USD", "KES", "EUR", "GBP", "AUD", "CHF", "CAD", "ZAR")
-		Example("KES")
-	})
-	Attribute("Narration", String, func() {
-		Description("Posting account transaction narration")
-		MinLength(1)
-		MaxLength(25)
-		Example("Electricity Payment")
-	})
-	Attribute("TransactionID", String, func() {
-		Description("Co-operative Bank's processed transaction number")
-		Example("1169716b65891lI6")
-	})
-	Attribute("ResponseCode", String, func() {
-		Description("Posting leg response code")
-		Example("0")
-	})
-	Attribute("ResponseDescription", String, func() {
-		Description("Posting leg response description")
-		Example("Success")
-	})
-	Required("ReferenceNumber", "AccountNumber", "Amount", "TransactionCurrency", "Narration", "ResponseCode", "ResponseDescription")
-})
+	// 7. Internal Funds Transfer Account to Account API will enable you to transfer
+	// funds from your own Co-operative Bank account to other Co-operative Bank account(s).
+	Method("IFTAccountToAccount", func() {
+		Description("IFTAccountToAccount Early Hints Callback Request")
+		Payload(IFTAccountToAccountCallbackRequest)
+		Result(String)
+		HTTP(func() {
+			POST("/FundsTransfer/Internal/A2A/2.0.0")
 
-var PesaLinkSendToPhoneCallbackRequest = Type("PesaLinkSendToPhoneCallbackRequest", func() {
-	Description("Pesalink send to phone callback request")
+			// Status 200
+			// RFC 7231, 6.3.1
+			Response(StatusOK)
 
-	Attribute("MessageReference", String, func() {
-		Description("Your unique transaction request message identifier")
-		MinLength(1)
-		MaxLength(27)
-		Example("40ca18c6765086089a1")
-	})
-	Attribute("MessageDateTime", String, func() {
-		Description("Acknowledgement message creation timestamp")
-		Format(FormatDateTime)
-		Example("2017-12-04T09:27:00")
-	})
-	Attribute("MessageCode", String, func() {
-		Description("Message Response Code")
-		Example("0")
-	})
-	Attribute("MessageDescription", String, func() {
-		Description("Message Code description")
-		Example("FULL SUCCESS")
-	})
-	Attribute("Source", SourceAccountCallbackRequest)
-	Attribute("Destinations", ArrayOf(DestinationAccountCallbackRequest), func() {
-		MinLength(1)
-	})
-	Required("MessageReference", "MessageDateTime", "MessageCode", "MessageDescription", "Source", "Destinations")
-})
+			// Status 207
+			// RFC 4918, 11.1
+			Response("partial_success", StatusMultiStatus)
 
-var PesaLinkSendToAccountCallbackRequest = Type("PesaLinkSendToAccountCallbackRequest", func() {
-	Description("Pesalink send to account callback request")
+			// Status 207
+			// RFC 4918, 11.1
+			Response("full_failure", StatusMultiStatus)
+		})
 
-	Attribute("MessageReference", String, func() {
-		Description("Your unique transaction request message identifier")
-		MinLength(1)
-		MaxLength(27)
-		Example("40ca18c6765086089a1")
 	})
-	Attribute("CallBackUrl", String, func() {
-		Description("Your callback URL that will receive transaction processing results")
-		Example("https://yourdomain.com/ft-callback")
-	})
-	Attribute("Source", design.SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(design.DestinationAccountTransactionRequest), func() {
-		MinLength(1)
-	})
-	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
-})
 
-var SendToMpesaCallbackRequest = Type("SendToMpesaCallbackRequest", func() {
-	Description("Send to Mpesa callback request")
+	// 9. PesaLink Send to Account Funds Transfer API will enable you to transfer funds
+	// from your own Co-operative Bank account to Bank account(s) in IPSL participating banks.
+	Method("PesaLinkSendToAccount", func() {
+		Description("PesaLinkSendToAccount Early Hints Callback Request")
+		Payload(PesaLinkSendToAccountCallbackRequest)
+		Result(String)
+		HTTP(func() {
+			POST("/FundsTransfer/External/A2A/PesaLink/1.0.0")
 
-	Attribute("MessageReference", String, func() {
-		Description("Your unique transaction request message identifier")
-		MinLength(1)
-		MaxLength(27)
-		Example("40ca18c6765086089a1")
+			// Status 200
+			// RFC 7231, 6.3.1
+			Response(StatusOK)
+
+			// Status 207
+			// RFC 4918, 11.1
+			Response("partial_success", StatusMultiStatus)
+
+			// Status 207
+			// RFC 4918, 11.1
+			Response("full_failure", StatusMultiStatus)
+		})
+
 	})
-	Attribute("CallBackUrl", String, func() {
-		Description("Your callback URL that will receive transaction processing results")
-		Example("https://yourdomain.com/ft-callback")
+
+	// 10. PesaLink Send to Phone Funds Transfer API will enable you to transfer funds
+	// from your own Co-operative Bank account to a Phone Number(s) linked to a Bank account
+	// in an IPSL participating bank.
+	Method("PesaLinkSendToPhone", func() {
+		Description("PesaLinkSendToPhone Early Hints Callback Request")
+		Payload(PesaLinkSendToPhoneCallbackRequest)
+		Result(String)
+		HTTP(func() {
+			POST("/FundsTransfer/External/A2M/PesaLink/1.0.0")
+
+			// Status 200
+			// RFC 7231, 6.3.1
+			Response(StatusOK)
+
+			// Status 207
+			// RFC 4918, 11.1
+			Response("partial_success", StatusMultiStatus)
+
+			// Status 207
+			// RFC 4918, 11.1
+			Response("full_failure", StatusMultiStatus)
+		})
+
 	})
-	Attribute("Source", design.SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(design.DestinationAccountTransactionRequest), func() {
-		MinLength(1)
+
+	// 11. Send to M-Pesa Funds Transfer API will enable you to transfer funds from your own
+	// Co-operative Bank account to an M-Pesa account recipient.
+	Method("SendToMPesa", func() {
+		Description("SendToMPesa Early Hints Callback Request")
+		Payload(SendToMpesaCallbackRequest)
+		Result(String)
+		HTTP(func() {
+			POST("/FundsTransfer/External/A2M/Mpesa/v1.0.0")
+
+			// Status 200
+			// RFC 7231, 6.3.1
+			Response(StatusOK)
+
+			// Status 207
+			// RFC 4918, 11.1
+			Response("partial_success", StatusMultiStatus)
+
+			// Status 207
+			// RFC 4918, 11.1
+			Response("full_failure", StatusMultiStatus)
+		})
 	})
-	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
 })

@@ -8,7 +8,7 @@ import (
 )
 
 var ProcessingResponse = ResultType("ProcessingResponse", func() {
-	Description("Processing Response")
+	Description("Processing In Progress Response")
 	TypeName("ProcessingResponse")
 	ContentType("application/json")
 
@@ -34,6 +34,7 @@ var ProcessingResponse = ResultType("ProcessingResponse", func() {
 		})
 		Required("MessageReference", "MessageDateTime", "MessageCode", "MessageDescription")
 	})
+
 	View("default", func() {
 		Attribute("MessageReference")
 		Attribute("MessageDateTime")

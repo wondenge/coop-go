@@ -1,7 +1,6 @@
 package design
 
 import (
-	"github.com/wondenge/coop-go/design"
 	. "goa.design/goa/v3/dsl"
 	_ "goa.design/plugins/v3/docs"      // Generates documentation
 	_ "goa.design/plugins/v3/goakit"    // Enables goakit
@@ -69,8 +68,8 @@ var SuccessResponse = ResultType("SuccessResponse", func() {
 			Description("Message Code description")
 			Example("FULL SUCCESS")
 		})
-		Attribute("Source", design.SourceAccount)
-		Attribute("Destinations", ArrayOf(design.DestinationAccount))
+		Attribute("Source", SourceAccount)
+		Attribute("Destinations", ArrayOf(DestinationAccount))
 		Required("MessageReference", "MessageDateTime", "MessageCode", "MessageDescription", "Source", "Destinations")
 	})
 	View("default", func() {
