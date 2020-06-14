@@ -12,7 +12,7 @@ Coo-operative Bank of Kenya offers simple and RESTful APIs that allow one to qui
 
 This Golang SDK provides an avenue to intergrate with the APIs directly inside your Go application to tap into the continuous innovation at the bank.
 
-# APIs
+# Features
 
 <p align="left">
 <img src="src/assets/img/AccountBalance.png" alt="AccountBalance API"  width="200" />
