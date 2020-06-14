@@ -1,7 +1,6 @@
 package design
 
 import (
-	design2 "github.com/wondenge/coop-go/responses/design"
 	. "goa.design/goa/v3/dsl"
 	_ "goa.design/plugins/v3/docs"      // Generates documentation
 	_ "goa.design/plugins/v3/goakit"    // Enables goakit
@@ -29,8 +28,8 @@ var IFTAccountToAccountTXNRequest = Type("IFTAccountToAccountTXNRequest", func()
 		Description("Your callback URL that will receive transaction processing results")
 		Example("https://yourdomain.com/ftresponse")
 	})
-	Attribute("Source", design2.SourceAccountTXNRequest)
-	Attribute("Destinations", ArrayOf(design2.DestinationAccountTXNRequest))
+	Attribute("Source", SourceAccountTXNRequest)
+	Attribute("Destinations", ArrayOf(DestinationAccountTXNRequest))
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
 })
 
@@ -49,8 +48,8 @@ var PesaLinkSendToAccountTransactionRequest = Type("PesaLinkSendToAccountTransac
 		Description("Your callback URL that will receive transaction processing results")
 		Example("https://yourdomain.com/ft-callback")
 	})
-	Attribute("Source", design2.SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(design2.DestinationAccountTransactionRequest), func() {
+	Attribute("Source", SourceAccountTransactionRequest)
+	Attribute("Destinations", ArrayOf(DestinationAccountTransactionRequest), func() {
 		MinLength(1)
 	})
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
@@ -70,8 +69,8 @@ var PesaLinkSendToPhoneTransactionRequest = Type("PesaLinkSendToPhoneTransaction
 		Description("Your callback URL that will receive transaction processing results")
 		Example("https://yourdomain.com/ft-callback")
 	})
-	Attribute("Source", design2.SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(design2.DestinationAccountTransactionRequest), func() {
+	Attribute("Source", SourceAccountTransactionRequest)
+	Attribute("Destinations", ArrayOf(DestinationAccountTransactionRequest), func() {
 		MinLength(1)
 	})
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
@@ -91,8 +90,8 @@ var SendToMpesaTransactionRequest = Type("SendToMpesaTransactionRequest", func()
 		Description("Your callback URL that will receive transaction processing results")
 		Example("https://yourdomain.com/ft-callback")
 	})
-	Attribute("Source", design2.SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(design2.DestinationAccountTransactionRequest), func() {
+	Attribute("Source", SourceAccountTransactionRequest)
+	Attribute("Destinations", ArrayOf(DestinationAccountTransactionRequest), func() {
 		MinLength(1)
 	})
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
