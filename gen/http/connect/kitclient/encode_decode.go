@@ -231,3 +231,21 @@ func DecodeTransactionStatusResponse(decoder func(*http.Response) goahttp.Decode
 		return dec(resp)
 	}
 }
+
+// EncodeTokenRequest returns a go-kit EncodeRequestFunc suitable for encoding
+// connect token requests.
+func EncodeTokenRequest(encoder func(*http.Request) goahttp.Encoder) kithttp.EncodeRequestFunc {
+	enc := client.EncodeTokenRequest(encoder)
+	return func(_ context.Context, r *http.Request, v interface{}) error {
+		return enc(r, v)
+	}
+}
+
+// DecodeTokenResponse returns a go-kit DecodeResponseFunc suitable for
+// decoding connect token responses.
+func DecodeTokenResponse(decoder func(*http.Response) goahttp.Decoder) kithttp.DecodeResponseFunc {
+	dec := client.DecodeTokenResponse(decoder, false)
+	return func(ctx context.Context, resp *http.Response) (interface{}, error) {
+		return dec(resp)
+	}
+}

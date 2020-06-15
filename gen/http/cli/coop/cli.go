@@ -25,7 +25,7 @@ import (
 //
 func UsageCommands() string {
 	return `health show
-connect (account-balance|account-full-statement|account-mini-statement|account-transactions|account-validation|exchange-rate|ift-account-to-account|ins-simulation|pesa-link-send-to-account|pesa-link-send-to-phone|send-to-m-pesa|transaction-status)
+connect (account-balance|account-full-statement|account-mini-statement|account-transactions|account-validation|exchange-rate|ift-account-to-account|ins-simulation|pesa-link-send-to-account|pesa-link-send-to-phone|send-to-m-pesa|transaction-status|token)
 `
 }
 
@@ -90,6 +90,10 @@ func ParseEndpoint(
 
 		connectTransactionStatusFlags    = flag.NewFlagSet("transaction-status", flag.ExitOnError)
 		connectTransactionStatusBodyFlag = connectTransactionStatusFlags.String("body", "REQUIRED", "")
+
+		connectTokenFlags        = flag.NewFlagSet("token", flag.ExitOnError)
+		connectTokenUsernameFlag = connectTokenFlags.String("username", "REQUIRED", "consumer-key for Username")
+		connectTokenPasswordFlag = connectTokenFlags.String("password", "REQUIRED", "consumer-secret for Password")
 	)
 	healthFlags.Usage = healthUsage
 	healthShowFlags.Usage = healthShowUsage
@@ -107,6 +111,7 @@ func ParseEndpoint(
 	connectPesaLinkSendToPhoneFlags.Usage = connectPesaLinkSendToPhoneUsage
 	connectSendToMPesaFlags.Usage = connectSendToMPesaUsage
 	connectTransactionStatusFlags.Usage = connectTransactionStatusUsage
+	connectTokenFlags.Usage = connectTokenUsage
 
 	if err := flag.CommandLine.Parse(os.Args[1:]); err != nil {
 		return nil, nil, err
@@ -187,6 +192,9 @@ func ParseEndpoint(
 			case "transaction-status":
 				epf = connectTransactionStatusFlags
 
+			case "token":
+				epf = connectTokenFlags
+
 			}
 
 		}
@@ -255,6 +263,9 @@ func ParseEndpoint(
 			case "transaction-status":
 				endpoint = c.TransactionStatus()
 				data, err = connectc.BuildTransactionStatusPayload(*connectTransactionStatusBodyFlag)
+			case "token":
+				endpoint = c.Token()
+				data, err = connectc.BuildTokenPayload(*connectTokenUsernameFlag, *connectTokenPasswordFlag)
 			}
 		}
 	}
@@ -307,6 +318,7 @@ COMMAND:
     pesa-link-send-to-phone: Post a PesaLink Funds Transfer Send to Phone Transaction
     send-to-m-pesa: Post a Send To M-Pesa Funds Transfer Transaction
     transaction-status: Post a Transaction Status Enquiry Request
+    token: Creates a valid JWT
 
 Additional help:
     %s connect COMMAND --help
@@ -584,5 +596,17 @@ Example:
     `+os.Args[0]+` connect transaction-status --body '{
       "MessageReference": "40ca18c6765086089a1"
    }'
+`, os.Args[0])
+}
+
+func connectTokenUsage() {
+	fmt.Fprintf(os.Stderr, `%s [flags] connect token -username STRING -password STRING
+
+Creates a valid JWT
+    -username STRING: consumer-key for Username
+    -password STRING: consumer-secret for Password
+
+Example:
+    `+os.Args[0]+` connect token --username "user" --password "password"
 `, os.Args[0])
 }

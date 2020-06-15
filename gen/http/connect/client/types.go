@@ -385,6 +385,13 @@ type TransactionStatusOKResponseBody struct {
 	Destinations       []*DestinationAccountResponseBody `form:"Destinations,omitempty" json:"Destinations,omitempty" xml:"Destinations,omitempty"`
 }
 
+// TokenResponseBody is the type of the "connect" service "token" endpoint HTTP
+// response body.
+type TokenResponseBody struct {
+	// JWT token
+	JWT *string `form:"jwt,omitempty" json:"jwt,omitempty" xml:"jwt,omitempty"`
+}
+
 // AccountBalanceBadRequestResponseBody is the type of the "connect" service
 // "AccountBalance" endpoint HTTP response body for the "bad_request" error.
 type AccountBalanceBadRequestResponseBody struct {
@@ -2783,6 +2790,24 @@ func NewTransactionStatusTimeout(body *TransactionStatusTimeoutResponseBody) *go
 	}
 
 	return v
+}
+
+// NewTokenCredsOK builds a "connect" service "token" endpoint result from a
+// HTTP "OK" response.
+func NewTokenCredsOK(body *TokenResponseBody) *connect.Creds {
+	v := &connect.Creds{
+		JWT: *body.JWT,
+	}
+
+	return v
+}
+
+// ValidateTokenResponseBody runs the validations defined on TokenResponseBody
+func ValidateTokenResponseBody(body *TokenResponseBody) (err error) {
+	if body.JWT == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("jwt", "body"))
+	}
+	return
 }
 
 // ValidateAccountBalanceBadRequestResponseBody runs the validations defined on

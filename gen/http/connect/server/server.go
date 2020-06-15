@@ -32,6 +32,7 @@ type Server struct {
 	PesaLinkSendToPhone   http.Handler
 	SendToMPesa           http.Handler
 	TransactionStatus     http.Handler
+	Token                 http.Handler
 }
 
 // ErrorNamer is an interface implemented by generated error structs that
@@ -79,6 +80,7 @@ func New(
 			{"PesaLinkSendToPhone", "POST", "/FundsTransfer/External/A2M/PesaLink/1.0.0"},
 			{"SendToMPesa", "POST", "/FundsTransfer/External/A2M/Mpesa/v1.0.0"},
 			{"TransactionStatus", "POST", "/Enquiry/TransactionStatus/2.0.0"},
+			{"Token", "POST", "/token"},
 		},
 		AccountBalance:        NewAccountBalanceHandler(e.AccountBalance, mux, decoder, encoder, errhandler, formatter),
 		AccountFullStatement:  NewAccountFullStatementHandler(e.AccountFullStatement, mux, decoder, encoder, errhandler, formatter),
@@ -92,6 +94,7 @@ func New(
 		PesaLinkSendToPhone:   NewPesaLinkSendToPhoneHandler(e.PesaLinkSendToPhone, mux, decoder, encoder, errhandler, formatter),
 		SendToMPesa:           NewSendToMPesaHandler(e.SendToMPesa, mux, decoder, encoder, errhandler, formatter),
 		TransactionStatus:     NewTransactionStatusHandler(e.TransactionStatus, mux, decoder, encoder, errhandler, formatter),
+		Token:                 NewTokenHandler(e.Token, mux, decoder, encoder, errhandler, formatter),
 	}
 }
 
@@ -112,6 +115,7 @@ func (s *Server) Use(m func(http.Handler) http.Handler) {
 	s.PesaLinkSendToPhone = m(s.PesaLinkSendToPhone)
 	s.SendToMPesa = m(s.SendToMPesa)
 	s.TransactionStatus = m(s.TransactionStatus)
+	s.Token = m(s.Token)
 }
 
 // Mount configures the mux to serve the connect endpoints.
@@ -128,6 +132,7 @@ func Mount(mux goahttp.Muxer, h *Server) {
 	MountPesaLinkSendToPhoneHandler(mux, h.PesaLinkSendToPhone)
 	MountSendToMPesaHandler(mux, h.SendToMPesa)
 	MountTransactionStatusHandler(mux, h.TransactionStatus)
+	MountTokenHandler(mux, h.Token)
 }
 
 // MountAccountBalanceHandler configures the mux to serve the "connect" service
@@ -721,6 +726,57 @@ func NewTransactionStatusHandler(
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx := context.WithValue(r.Context(), goahttp.AcceptTypeKey, r.Header.Get("Accept"))
 		ctx = context.WithValue(ctx, goa.MethodKey, "TransactionStatus")
+		ctx = context.WithValue(ctx, goa.ServiceKey, "connect")
+		payload, err := decodeRequest(r)
+		if err != nil {
+			if err := encodeError(ctx, w, err); err != nil {
+				errhandler(ctx, w, err)
+			}
+			return
+		}
+		res, err := endpoint(ctx, payload)
+		if err != nil {
+			if err := encodeError(ctx, w, err); err != nil {
+				errhandler(ctx, w, err)
+			}
+			return
+		}
+		if err := encodeResponse(ctx, w, res); err != nil {
+			errhandler(ctx, w, err)
+		}
+	})
+}
+
+// MountTokenHandler configures the mux to serve the "connect" service "token"
+// endpoint.
+func MountTokenHandler(mux goahttp.Muxer, h http.Handler) {
+	f, ok := h.(http.HandlerFunc)
+	if !ok {
+		f = func(w http.ResponseWriter, r *http.Request) {
+			h.ServeHTTP(w, r)
+		}
+	}
+	mux.Handle("POST", "/token", f)
+}
+
+// NewTokenHandler creates a HTTP handler which loads the HTTP request and
+// calls the "connect" service "token" endpoint.
+func NewTokenHandler(
+	endpoint endpoint.Endpoint,
+	mux goahttp.Muxer,
+	decoder func(*http.Request) goahttp.Decoder,
+	encoder func(context.Context, http.ResponseWriter) goahttp.Encoder,
+	errhandler func(context.Context, http.ResponseWriter, error),
+	formatter func(err error) goahttp.Statuser,
+) http.Handler {
+	var (
+		decodeRequest  = DecodeTokenRequest(mux, decoder)
+		encodeResponse = EncodeTokenResponse(encoder)
+		encodeError    = goahttp.ErrorEncoder(encoder, formatter)
+	)
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := context.WithValue(r.Context(), goahttp.AcceptTypeKey, r.Header.Get("Accept"))
+		ctx = context.WithValue(ctx, goa.MethodKey, "token")
 		ctx = context.WithValue(ctx, goa.ServiceKey, "connect")
 		payload, err := decodeRequest(r)
 		if err != nil {

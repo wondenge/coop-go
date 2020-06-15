@@ -11,6 +11,7 @@ import (
 	"context"
 
 	"github.com/go-kit/kit/endpoint"
+	"goa.design/goa/v3/security"
 )
 
 // Endpoints wraps the "connect" service endpoints.
@@ -27,10 +28,13 @@ type Endpoints struct {
 	PesaLinkSendToPhone   endpoint.Endpoint
 	SendToMPesa           endpoint.Endpoint
 	TransactionStatus     endpoint.Endpoint
+	Token                 endpoint.Endpoint
 }
 
 // NewEndpoints wraps the methods of the "connect" service with endpoints.
 func NewEndpoints(s Service) *Endpoints {
+	// Casting service to Auther interface
+	a := s.(Auther)
 	return &Endpoints{
 		AccountBalance:        NewAccountBalanceEndpoint(s),
 		AccountFullStatement:  NewAccountFullStatementEndpoint(s),
@@ -44,6 +48,7 @@ func NewEndpoints(s Service) *Endpoints {
 		PesaLinkSendToPhone:   NewPesaLinkSendToPhoneEndpoint(s),
 		SendToMPesa:           NewSendToMPesaEndpoint(s),
 		TransactionStatus:     NewTransactionStatusEndpoint(s),
+		Token:                 NewTokenEndpoint(s, a.BasicAuth),
 	}
 }
 
@@ -61,6 +66,7 @@ func (e *Endpoints) Use(m func(endpoint.Endpoint) endpoint.Endpoint) {
 	e.PesaLinkSendToPhone = m(e.PesaLinkSendToPhone)
 	e.SendToMPesa = m(e.SendToMPesa)
 	e.TransactionStatus = m(e.TransactionStatus)
+	e.Token = m(e.Token)
 }
 
 // NewAccountBalanceEndpoint returns an endpoint function that calls the method
@@ -228,5 +234,24 @@ func NewTransactionStatusEndpoint(s Service) endpoint.Endpoint {
 		}
 		vres := NewViewedSuccessResponse(res, "default")
 		return vres, nil
+	}
+}
+
+// NewTokenEndpoint returns an endpoint function that calls the method "token"
+// of service "connect".
+func NewTokenEndpoint(s Service, authBasicFn security.AuthBasicFunc) endpoint.Endpoint {
+	return func(ctx context.Context, req interface{}) (interface{}, error) {
+		p := req.(*TokenPayload)
+		var err error
+		sc := security.BasicScheme{
+			Name:           "basic",
+			Scopes:         []string{"api:read"},
+			RequiredScopes: []string{},
+		}
+		ctx, err = authBasicFn(ctx, p.Username, p.Password, &sc)
+		if err != nil {
+			return nil, err
+		}
+		return s.Token(ctx, p)
 	}
 }

@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-kit/kit/log"
 	connect "github.com/wondenge/coop-go/gen/connect"
+	"goa.design/goa/v3/security"
 )
 
 // connect service example implementation.
@@ -17,6 +18,26 @@ type connectsrvc struct {
 // NewConnect returns the connect service implementation.
 func NewConnect(logger log.Logger) connect.Service {
 	return &connectsrvc{logger}
+}
+
+// BasicAuth implements the authorization logic for service "connect" for the
+// "basic" security scheme.
+func (s *connectsrvc) BasicAuth(ctx context.Context, user, pass string, scheme *security.BasicScheme) (context.Context, error) {
+	//
+	// TBD: add authorization logic.
+	//
+	// In case of authorization failure this function should return
+	// one of the generated error structs, e.g.:
+	//
+	//    return ctx, myservice.MakeUnauthorizedError("invalid token")
+	//
+	// Alternatively this function may return an instance of
+	// goa.ServiceError with a Name field value that matches one of
+	// the design error names, e.g:
+	//
+	//    return ctx, goa.PermanentError("unauthorized", "invalid token")
+	//
+	return ctx, fmt.Errorf("not implemented")
 }
 
 // Post an Account Balance Enquiry Request
@@ -101,5 +122,12 @@ func (s *connectsrvc) SendToMPesa(ctx context.Context, p *connect.SendToMpesaTra
 func (s *connectsrvc) TransactionStatus(ctx context.Context, p *connect.FTTransactionStatusPayload) (res *connect.SuccessResponse, err error) {
 	res = &connect.SuccessResponse{}
 	s.logger.Log("info", fmt.Sprintf("connect.TransactionStatus"))
+	return
+}
+
+// Creates a valid JWT
+func (s *connectsrvc) Token(ctx context.Context, p *connect.TokenPayload) (res *connect.Creds, err error) {
+	res = &connect.Creds{}
+	s.logger.Log("info", fmt.Sprintf("connect.token"))
 	return
 }

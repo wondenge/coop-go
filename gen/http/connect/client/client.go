@@ -65,6 +65,9 @@ type Client struct {
 	// TransactionStatus endpoint.
 	TransactionStatusDoer goahttp.Doer
 
+	// Token Doer is the HTTP client used to make requests to the token endpoint.
+	TokenDoer goahttp.Doer
+
 	// RestoreResponseBody controls whether the response bodies are reset after
 	// decoding so they can be read again.
 	RestoreResponseBody bool
@@ -97,6 +100,7 @@ func NewClient(
 		PesaLinkSendToPhoneDoer:   doer,
 		SendToMPesaDoer:           doer,
 		TransactionStatusDoer:     doer,
+		TokenDoer:                 doer,
 		RestoreResponseBody:       restoreBody,
 		scheme:                    scheme,
 		host:                      host,
@@ -388,6 +392,30 @@ func (c *Client) TransactionStatus() endpoint.Endpoint {
 		resp, err := c.TransactionStatusDoer.Do(req)
 		if err != nil {
 			return nil, goahttp.ErrRequestError("connect", "TransactionStatus", err)
+		}
+		return decodeResponse(resp)
+	}
+}
+
+// Token returns an endpoint that makes HTTP requests to the connect service
+// token server.
+func (c *Client) Token() endpoint.Endpoint {
+	var (
+		encodeRequest  = EncodeTokenRequest(c.encoder)
+		decodeResponse = DecodeTokenResponse(c.decoder, c.RestoreResponseBody)
+	)
+	return func(ctx context.Context, v interface{}) (interface{}, error) {
+		req, err := c.BuildTokenRequest(ctx, v)
+		if err != nil {
+			return nil, err
+		}
+		err = encodeRequest(req, v)
+		if err != nil {
+			return nil, err
+		}
+		resp, err := c.TokenDoer.Do(req)
+		if err != nil {
+			return nil, goahttp.ErrRequestError("connect", "token", err)
 		}
 		return decodeResponse(resp)
 	}

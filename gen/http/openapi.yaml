@@ -660,6 +660,30 @@ paths:
       schemes:
       - http
       - https
+  /token:
+    post:
+      tags:
+      - connect
+      summary: token connect
+      description: Creates a valid JWT
+      operationId: connect#token
+      parameters:
+      - name: Authorization
+        in: header
+        description: Basic Auth security using Basic scheme (https://tools.ietf.org/html/rfc7617)
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            $ref: '#/definitions/ConnectTokenResponseBody'
+            required:
+            - jwt
+      schemes:
+      - http
+      security:
+      - basic_header_Authorization: []
 definitions:
   AccountTransactionResponseBody:
     title: AccountTransactionResponseBody
@@ -4007,6 +4031,18 @@ definitions:
         code: "900902"
         description: Required OAuth credentials not provided.
         message: Missing Credentials
+  ConnectTokenResponseBody:
+    title: ConnectTokenResponseBody
+    type: object
+    properties:
+      jwt:
+        type: string
+        description: JWT token
+        example: a833ce4a-5903-3c5c-a9e9-7ae042e3080b
+    example:
+      jwt: a833ce4a-5903-3c5c-a9e9-7ae042e3080b
+    required:
+    - jwt
   ConnectTransactionStatusBadRequestResponseBody:
     title: 'Mediatype identifier: errorresponse; view=default'
     type: object
@@ -4845,6 +4881,14 @@ definitions:
     - Amount
     - TransactionCurrency
     - Narration
+securityDefinitions:
+  basic_header_Authorization:
+    type: basic
+    description: |-
+      Basic authentication used to authenticate security principal during token
+
+      **Security Scopes**:
+        * `api:read`: Read-only access
 externalDocs:
   description: Library Usage
   url: https://github.com/wondenge/coop-go/blob/master/README.md

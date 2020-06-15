@@ -27,10 +27,11 @@ type Client struct {
 	PesaLinkSendToPhoneEndpoint   endpoint.Endpoint
 	SendToMPesaEndpoint           endpoint.Endpoint
 	TransactionStatusEndpoint     endpoint.Endpoint
+	TokenEndpoint                 endpoint.Endpoint
 }
 
 // NewClient initializes a "connect" service client given the endpoints.
-func NewClient(accountBalance, accountFullStatement, accountMiniStatement, accountTransactions, accountValidation, exchangeRate, iFTAccountToAccount, iNSSimulation, pesaLinkSendToAccount, pesaLinkSendToPhone, sendToMPesa, transactionStatus endpoint.Endpoint) *Client {
+func NewClient(accountBalance, accountFullStatement, accountMiniStatement, accountTransactions, accountValidation, exchangeRate, iFTAccountToAccount, iNSSimulation, pesaLinkSendToAccount, pesaLinkSendToPhone, sendToMPesa, transactionStatus, token endpoint.Endpoint) *Client {
 	return &Client{
 		AccountBalanceEndpoint:        accountBalance,
 		AccountFullStatementEndpoint:  accountFullStatement,
@@ -44,6 +45,7 @@ func NewClient(accountBalance, accountFullStatement, accountMiniStatement, accou
 		PesaLinkSendToPhoneEndpoint:   pesaLinkSendToPhone,
 		SendToMPesaEndpoint:           sendToMPesa,
 		TransactionStatusEndpoint:     transactionStatus,
+		TokenEndpoint:                 token,
 	}
 }
 
@@ -262,4 +264,14 @@ func (c *Client) TransactionStatus(ctx context.Context, p *FTTransactionStatusPa
 		return
 	}
 	return ires.(*SuccessResponse), nil
+}
+
+// Token calls the "token" endpoint of the "connect" service.
+func (c *Client) Token(ctx context.Context, p *TokenPayload) (res *Creds, err error) {
+	var ires interface{}
+	ires, err = c.TokenEndpoint(ctx, p)
+	if err != nil {
+		return
+	}
+	return ires.(*Creds), nil
 }

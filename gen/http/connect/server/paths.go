@@ -66,3 +66,8 @@ func SendToMPesaConnectPath() string {
 func TransactionStatusConnectPath() string {
 	return "/Enquiry/TransactionStatus/2.0.0"
 }
+
+// TokenConnectPath returns the URL path to the connect service token HTTP endpoint.
+func TokenConnectPath() string {
+	return "/token"
+}

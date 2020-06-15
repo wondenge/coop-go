@@ -518,3 +518,21 @@ func BuildTransactionStatusPayload(connectTransactionStatusBody string) (*connec
 
 	return v, nil
 }
+
+// BuildTokenPayload builds the payload for the connect token endpoint from CLI
+// flags.
+func BuildTokenPayload(connectTokenUsername string, connectTokenPassword string) (*connect.TokenPayload, error) {
+	var username string
+	{
+		username = connectTokenUsername
+	}
+	var password string
+	{
+		password = connectTokenPassword
+	}
+	v := &connect.TokenPayload{}
+	v.Username = username
+	v.Password = password
+
+	return v, nil
+}

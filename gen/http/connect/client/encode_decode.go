@@ -1856,6 +1856,74 @@ func DecodeTransactionStatusResponse(decoder func(*http.Response) goahttp.Decode
 	}
 }
 
+// BuildTokenRequest instantiates a HTTP request object with method and path
+// set to call the "connect" service "token" endpoint
+func (c *Client) BuildTokenRequest(ctx context.Context, v interface{}) (*http.Request, error) {
+	u := &url.URL{Scheme: c.scheme, Host: c.host, Path: TokenConnectPath()}
+	req, err := http.NewRequest("POST", u.String(), nil)
+	if err != nil {
+		return nil, goahttp.ErrInvalidURL("connect", "token", u.String(), err)
+	}
+	if ctx != nil {
+		req = req.WithContext(ctx)
+	}
+
+	return req, nil
+}
+
+// EncodeTokenRequest returns an encoder for requests sent to the connect token
+// server.
+func EncodeTokenRequest(encoder func(*http.Request) goahttp.Encoder) func(*http.Request, interface{}) error {
+	return func(req *http.Request, v interface{}) error {
+		p, ok := v.(*connect.TokenPayload)
+		if !ok {
+			return goahttp.ErrInvalidType("connect", "token", "*connect.TokenPayload", v)
+		}
+		req.SetBasicAuth(p.Username, p.Password)
+		return nil
+	}
+}
+
+// DecodeTokenResponse returns a decoder for responses returned by the connect
+// token endpoint. restoreBody controls whether the response body should be
+// restored after having been read.
+func DecodeTokenResponse(decoder func(*http.Response) goahttp.Decoder, restoreBody bool) func(*http.Response) (interface{}, error) {
+	return func(resp *http.Response) (interface{}, error) {
+		if restoreBody {
+			b, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				return nil, err
+			}
+			resp.Body = ioutil.NopCloser(bytes.NewBuffer(b))
+			defer func() {
+				resp.Body = ioutil.NopCloser(bytes.NewBuffer(b))
+			}()
+		} else {
+			defer resp.Body.Close()
+		}
+		switch resp.StatusCode {
+		case http.StatusOK:
+			var (
+				body TokenResponseBody
+				err  error
+			)
+			err = decoder(resp).Decode(&body)
+			if err != nil {
+				return nil, goahttp.ErrDecodingError("connect", "token", err)
+			}
+			err = ValidateTokenResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "token", err)
+			}
+			res := NewTokenCredsOK(&body)
+			return res, nil
+		default:
+			body, _ := ioutil.ReadAll(resp.Body)
+			return nil, goahttp.ErrInvalidResponse("connect", "token", resp.StatusCode, string(body))
+		}
+	}
+}
+
 // unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault
 // builds a value of type *connect.MissingCredentialFault from a value of type
 // *MissingCredentialFaultResponseBody.

@@ -12,6 +12,7 @@ import (
 
 	connectviews "github.com/wondenge/coop-go/gen/connect/views"
 	goa "goa.design/goa/v3/pkg"
+	"goa.design/goa/v3/security"
 )
 
 // Service is the connect service interface.
@@ -41,6 +42,14 @@ type Service interface {
 	SendToMPesa(context.Context, *SendToMpesaTransactionRequest) (res *SuccessAcknowledgement, err error)
 	// Post a Transaction Status Enquiry Request
 	TransactionStatus(context.Context, *FTTransactionStatusPayload) (res *SuccessResponse, err error)
+	// Creates a valid JWT
+	Token(context.Context, *TokenPayload) (res *Creds, err error)
+}
+
+// Auther defines the authorization functions to be implemented by the service.
+type Auther interface {
+	// BasicAuth implements the authorization logic for the Basic security scheme.
+	BasicAuth(ctx context.Context, user, pass string, schema *security.BasicScheme) (context.Context, error)
 }
 
 // ServiceName is the name of the service as defined in the design. This is the
@@ -51,7 +60,7 @@ const ServiceName = "connect"
 // MethodNames lists the service method names as defined in the design. These
 // are the same values that are set in the endpoint request contexts under the
 // MethodKey key.
-var MethodNames = [12]string{"AccountBalance", "AccountFullStatement", "AccountMiniStatement", "AccountTransactions", "AccountValidation", "ExchangeRate", "IFTAccountToAccount", "INSSimulation", "PesaLinkSendToAccount", "PesaLinkSendToPhone", "SendToMPesa", "TransactionStatus"}
+var MethodNames = [13]string{"AccountBalance", "AccountFullStatement", "AccountMiniStatement", "AccountTransactions", "AccountValidation", "ExchangeRate", "IFTAccountToAccount", "INSSimulation", "PesaLinkSendToAccount", "PesaLinkSendToPhone", "SendToMPesa", "TransactionStatus", "token"}
 
 // AccountBalancePayload is the payload type of the connect service
 // AccountBalance method.
@@ -369,6 +378,20 @@ type SuccessResponse struct {
 	MessageDescription string
 	Source             *SourceAccount
 	Destinations       []*DestinationAccount
+}
+
+// Credentials used to authenticate to retrieve JWT token
+type TokenPayload struct {
+	// consumer-key for Username
+	Username string
+	// consumer-secret for Password
+	Password string
+}
+
+// Creds is the result type of the connect service token method.
+type Creds struct {
+	// JWT token
+	JWT string
 }
 
 // Account Transaction

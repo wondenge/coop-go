@@ -316,3 +316,19 @@ func EncodeTransactionStatusError(encoder func(context.Context, http.ResponseWri
 		enc(ctx, w, err)
 	}
 }
+
+// EncodeTokenResponse returns a go-kit EncodeResponseFunc suitable for
+// encoding connect token responses.
+func EncodeTokenResponse(encoder func(context.Context, http.ResponseWriter) goahttp.Encoder) kithttp.EncodeResponseFunc {
+	return server.EncodeTokenResponse(encoder)
+}
+
+// DecodeTokenRequest returns a go-kit DecodeRequestFunc suitable for decoding
+// connect token requests.
+func DecodeTokenRequest(mux goahttp.Muxer, decoder func(*http.Request) goahttp.Decoder) kithttp.DecodeRequestFunc {
+	dec := server.DecodeTokenRequest(mux, decoder)
+	return func(ctx context.Context, r *http.Request) (interface{}, error) {
+		r = r.WithContext(ctx)
+		return dec(r)
+	}
+}

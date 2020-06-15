@@ -385,6 +385,13 @@ type TransactionStatusOKResponseBody struct {
 	Destinations       []*DestinationAccountResponseBody `form:"Destinations" json:"Destinations" xml:"Destinations"`
 }
 
+// TokenResponseBody is the type of the "connect" service "token" endpoint HTTP
+// response body.
+type TokenResponseBody struct {
+	// JWT token
+	JWT string `form:"jwt" json:"jwt" xml:"jwt"`
+}
+
 // AccountBalanceBadRequestResponseBody is the type of the "connect" service
 // "AccountBalance" endpoint HTTP response body for the "bad_request" error.
 type AccountBalanceBadRequestResponseBody struct {
@@ -1706,6 +1713,15 @@ func NewTransactionStatusOKResponseBody(res *connectviews.SuccessResponseView) *
 	return body
 }
 
+// NewTokenResponseBody builds the HTTP response body from the result of the
+// "token" endpoint of the "connect" service.
+func NewTokenResponseBody(res *connect.Creds) *TokenResponseBody {
+	body := &TokenResponseBody{
+		JWT: res.JWT,
+	}
+	return body
+}
+
 // NewAccountBalanceBadRequestResponseBody builds the HTTP response body from
 // the result of the "AccountBalance" endpoint of the "connect" service.
 func NewAccountBalanceBadRequestResponseBody(res *connect.ErrorResponse) *AccountBalanceBadRequestResponseBody {
@@ -2715,6 +2731,13 @@ func NewTransactionStatusFTTransactionStatusPayload(body *TransactionStatusReque
 	v := &connect.FTTransactionStatusPayload{
 		MessageReference: *body.MessageReference,
 	}
+
+	return v
+}
+
+// NewTokenPayload builds a connect service token endpoint payload.
+func NewTokenPayload() *connect.TokenPayload {
+	v := &connect.TokenPayload{}
 
 	return v
 }

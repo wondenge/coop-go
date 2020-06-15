@@ -1446,6 +1446,34 @@ func EncodeTransactionStatusError(encoder func(context.Context, http.ResponseWri
 	}
 }
 
+// EncodeTokenResponse returns an encoder for responses returned by the connect
+// token endpoint.
+func EncodeTokenResponse(encoder func(context.Context, http.ResponseWriter) goahttp.Encoder) func(context.Context, http.ResponseWriter, interface{}) error {
+	return func(ctx context.Context, w http.ResponseWriter, v interface{}) error {
+		res := v.(*connect.Creds)
+		enc := encoder(ctx, w)
+		body := NewTokenResponseBody(res)
+		w.WriteHeader(http.StatusOK)
+		return enc.Encode(body)
+	}
+}
+
+// DecodeTokenRequest returns a decoder for requests sent to the connect token
+// endpoint.
+func DecodeTokenRequest(mux goahttp.Muxer, decoder func(*http.Request) goahttp.Decoder) func(*http.Request) (interface{}, error) {
+	return func(r *http.Request) (interface{}, error) {
+		payload := NewTokenPayload()
+		user, pass, ok := r.BasicAuth()
+		if !ok {
+			return nil, goa.MissingFieldError("Authorization", "header")
+		}
+		payload.Username = user
+		payload.Password = pass
+
+		return payload, nil
+	}
+}
+
 // marshalConnectMissingCredentialFaultToMissingCredentialFaultResponseBody
 // builds a value of type *MissingCredentialFaultResponseBody from a value of
 // type *connect.MissingCredentialFault.
