@@ -55,7 +55,7 @@ func EncodeAccountBalanceRequest(encoder func(*http.Request) goahttp.Encoder) fu
 // body should be restored after having been read.
 // DecodeAccountBalanceResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -187,7 +187,7 @@ func EncodeAccountFullStatementRequest(encoder func(*http.Request) goahttp.Encod
 // the response body should be restored after having been read.
 // DecodeAccountFullStatementResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
@@ -334,7 +334,7 @@ func EncodeAccountMiniStatementRequest(encoder func(*http.Request) goahttp.Encod
 // the response body should be restored after having been read.
 // DecodeAccountMiniStatementResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
@@ -481,7 +481,7 @@ func EncodeAccountTransactionsRequest(encoder func(*http.Request) goahttp.Encode
 // the response body should be restored after having been read.
 // DecodeAccountTransactionsResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -612,7 +612,7 @@ func EncodeAccountValidationRequest(encoder func(*http.Request) goahttp.Encoder)
 // response body should be restored after having been read.
 // DecodeAccountValidationResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
@@ -758,7 +758,7 @@ func EncodeExchangeRateRequest(encoder func(*http.Request) goahttp.Encoder) func
 // body should be restored after having been read.
 // DecodeExchangeRateResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
@@ -907,7 +907,7 @@ func EncodeIFTAccountToAccountRequest(encoder func(*http.Request) goahttp.Encode
 //	- "bad_request" (type *connect.AcknowledgementError400): http.StatusBadRequest
 //	- "forbidden" (type *connect.AcknowledgementError403): http.StatusForbidden
 //	- "conflict" (type *connect.AcknowledgementError409): http.StatusConflict
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
@@ -1219,7 +1219,7 @@ func EncodePesaLinkSendToAccountRequest(encoder func(*http.Request) goahttp.Enco
 //	- "bad_request" (type *connect.AcknowledgementError400): http.StatusBadRequest
 //	- "forbidden" (type *connect.AcknowledgementError403): http.StatusForbidden
 //	- "conflict" (type *connect.AcknowledgementError409): http.StatusConflict
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
@@ -1396,7 +1396,7 @@ func EncodePesaLinkSendToPhoneRequest(encoder func(*http.Request) goahttp.Encode
 //	- "bad_request" (type *connect.AcknowledgementError400): http.StatusBadRequest
 //	- "forbidden" (type *connect.AcknowledgementError403): http.StatusForbidden
 //	- "conflict" (type *connect.AcknowledgementError409): http.StatusConflict
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
@@ -1572,7 +1572,7 @@ func EncodeSendToMPesaRequest(encoder func(*http.Request) goahttp.Encoder) func(
 //	- "bad_request" (type *connect.AcknowledgementError400): http.StatusBadRequest
 //	- "forbidden" (type *connect.AcknowledgementError403): http.StatusForbidden
 //	- "conflict" (type *connect.AcknowledgementError409): http.StatusConflict
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
 //	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
@@ -1746,8 +1746,8 @@ func EncodeTransactionStatusRequest(encoder func(*http.Request) goahttp.Encoder)
 // response body should be restored after having been read.
 // DecodeTransactionStatusResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
-//	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.Notfounderrorresponse): http.StatusNotFound
+//	- "unauthorized" (type *connect.MissingCredentials): http.StatusUnauthorized
+//	- "not_found" (type *connect.NotFoundErrorResponse): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -1854,6 +1854,22 @@ func DecodeTransactionStatusResponse(decoder func(*http.Response) goahttp.Decode
 			return nil, goahttp.ErrInvalidResponse("connect", "TransactionStatus", resp.StatusCode, string(body))
 		}
 	}
+}
+
+// unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault
+// builds a value of type *connect.MissingCredentialFault from a value of type
+// *MissingCredentialFaultResponseBody.
+func unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(v *MissingCredentialFaultResponseBody) *connect.MissingCredentialFault {
+	if v == nil {
+		return nil
+	}
+	res := &connect.MissingCredentialFault{
+		Code:        v.Code,
+		Message:     v.Message,
+		Description: v.Description,
+	}
+
+	return res
 }
 
 // unmarshalAccountTransactionResponseBodyToConnectviewsAccountTransactionView

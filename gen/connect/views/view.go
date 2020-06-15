@@ -287,7 +287,7 @@ type SourceAccountView struct {
 	// Posting account number
 	AccountNumber *string
 	// Transaction Amount
-	Amount              *uint64
+	Amount              *float64
 	TransactionCurrency *string
 	// Posting account transaction narration
 	Narration *string
@@ -310,7 +310,7 @@ type DestinationAccountView struct {
 	// Posting account bank code
 	BankCode *string
 	// Transaction Amount
-	Amount *uint64
+	Amount *float64
 	// Posting account currency in ISO Currency Code
 	TransactionCurrency *string
 	// Posting account transaction narration

@@ -38,7 +38,7 @@ var DestinationAccount = Type("DestinationAccount", func() {
 		Description("Posting account bank code")
 		Example("011")
 	})
-	Attribute("Amount", UInt64, func() {
+	Attribute("Amount", Float64, func() {
 		Description("Transaction Amount")
 	})
 	Attribute("TransactionCurrency", String, func() {
@@ -90,7 +90,7 @@ var DestinationAccountTransactionRequest = Type("DestinationAccountTransactionRe
 		MaxLength(13)
 		Example("07xxxxxxxx")
 	})
-	Attribute("Amount", UInt64, func() {
+	Attribute("Amount", Float64, func() {
 		Description("Transaction Amount")
 		Minimum(0.01)
 		Maximum(999999.99)
@@ -128,7 +128,7 @@ var DestinationAccountTXNRequest = Type("DestinationAccountTXNRequest", func() {
 		Example("36001873000")
 		Example("54321987654321")
 	})
-	Attribute("Amount", UInt64, func() {
+	Attribute("Amount", Float64, func() {
 		Description("Transaction Amount")
 		Minimum(0.01)
 		Maximum(999999.99)

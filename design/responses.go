@@ -163,49 +163,36 @@ var MultiStatusResponse = ResultType("MultiStatusResponse", func() {
 
 var MissingCredentials = ResultType("MissingCredentials", func() {
 	Description("Missing Credentials")
-
-	Attribute("Fault", func() {
-		Attribute("code", String, func() {
-			Example("900902")
-		})
-		Attribute("message", String, func() {
-			Example("Missing Credentials")
-		})
-		Attribute("description", String, func() {
-
-			// Make sure your API invocation call has a
-			// header: "Authorization: Bearer ACCESS_TOKEN"
-			Example("Required OAuth credentials not provided.")
-		})
-	})
-})
-
-var NotFound = ResultType("NotFound", func() {
-	Description("Not Found")
-	TypeName("NotFound")
+	TypeName("MissingCredentials")
 	ContentType("application/json")
 
 	Attributes(func() {
-		Attribute("timestamp", String, func() {
-			Example("2019-03-28T12:42:55.260+0000")
-		})
-		Attribute("status", String, func() {
-			Example("404")
-		})
-		Attribute("error", String, func() {
-			Example("Not Found")
-		})
-		Attribute("message", String, func() {
-			Example("No Message Available")
-		})
-		Attribute("path", String, func() {
-			Example("/*")
-		})
+		Attribute("Fault", MissingCredentialFault)
+	})
+	View("default", func() {
+		Attribute("Fault")
+	})
+})
+
+var MissingCredentialFault = Type("MissingCredentialFault", func() {
+	Attribute("code", String, func() {
+		Example("900902")
+	})
+	Attribute("message", String, func() {
+		Example("Missing Credentials")
+	})
+	Attribute("description", String, func() {
+
+		// Make sure your API invocation call has a
+		// header: "Authorization: Bearer ACCESS_TOKEN"
+		Example("Required OAuth credentials not provided.")
 	})
 })
 
 var NotFoundErrorResponse = ResultType("NotFoundErrorResponse", func() {
 	Description("Not Found Error Response")
+	TypeName("NotFoundErrorResponse")
+	ContentType("application/json")
 
 	Attributes(func() {
 		Attribute("MessageReference", String, func() {

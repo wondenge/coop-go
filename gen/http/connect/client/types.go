@@ -401,11 +401,7 @@ type AccountBalanceBadRequestResponseBody struct {
 // AccountBalanceUnauthorizedResponseBody is the type of the "connect" service
 // "AccountBalance" endpoint HTTP response body for the "unauthorized" error.
 type AccountBalanceUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // AccountBalanceNotAllowedResponseBody is the type of the "connect" service
@@ -462,11 +458,7 @@ type AccountFullStatementBadRequestResponseBody struct {
 // service "AccountFullStatement" endpoint HTTP response body for the
 // "unauthorized" error.
 type AccountFullStatementUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // AccountFullStatementNotFoundResponseBody is the type of the "connect"
@@ -543,11 +535,7 @@ type AccountMiniStatementBadRequestResponseBody struct {
 // service "AccountMiniStatement" endpoint HTTP response body for the
 // "unauthorized" error.
 type AccountMiniStatementUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // AccountMiniStatementNotFoundResponseBody is the type of the "connect"
@@ -624,11 +612,7 @@ type AccountTransactionsBadRequestResponseBody struct {
 // service "AccountTransactions" endpoint HTTP response body for the
 // "unauthorized" error.
 type AccountTransactionsUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // AccountTransactionsNotAllowedResponseBody is the type of the "connect"
@@ -685,11 +669,7 @@ type AccountValidationBadRequestResponseBody struct {
 // service "AccountValidation" endpoint HTTP response body for the
 // "unauthorized" error.
 type AccountValidationUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // AccountValidationNotFoundResponseBody is the type of the "connect" service
@@ -762,11 +742,7 @@ type ExchangeRateBadRequestResponseBody struct {
 // ExchangeRateUnauthorizedResponseBody is the type of the "connect" service
 // "ExchangeRate" endpoint HTTP response body for the "unauthorized" error.
 type ExchangeRateUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // ExchangeRateNotFoundResponseBody is the type of the "connect" service
@@ -868,11 +844,7 @@ type IFTAccountToAccountConflictResponseBody struct {
 // service "IFTAccountToAccount" endpoint HTTP response body for the
 // "unauthorized" error.
 type IFTAccountToAccountUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // IFTAccountToAccountNotFoundResponseBody is the type of the "connect" service
@@ -1043,11 +1015,7 @@ type PesaLinkSendToAccountConflictResponseBody struct {
 // service "PesaLinkSendToAccount" endpoint HTTP response body for the
 // "unauthorized" error.
 type PesaLinkSendToAccountUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // PesaLinkSendToAccountNotFoundResponseBody is the type of the "connect"
@@ -1152,11 +1120,7 @@ type PesaLinkSendToPhoneConflictResponseBody struct {
 // service "PesaLinkSendToPhone" endpoint HTTP response body for the
 // "unauthorized" error.
 type PesaLinkSendToPhoneUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // PesaLinkSendToPhoneNotFoundResponseBody is the type of the "connect" service
@@ -1256,11 +1220,7 @@ type SendToMPesaConflictResponseBody struct {
 // SendToMPesaUnauthorizedResponseBody is the type of the "connect" service
 // "SendToMPesa" endpoint HTTP response body for the "unauthorized" error.
 type SendToMPesaUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // SendToMPesaNotFoundResponseBody is the type of the "connect" service
@@ -1334,11 +1294,7 @@ type TransactionStatusBadRequestResponseBody struct {
 // service "TransactionStatus" endpoint HTTP response body for the
 // "unauthorized" error.
 type TransactionStatusUnauthorizedResponseBody struct {
-	Fault *struct {
-		Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
-		Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-		Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
-	} `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
+	Fault *MissingCredentialFaultResponseBody `form:"Fault,omitempty" json:"Fault,omitempty" xml:"Fault,omitempty"`
 }
 
 // TransactionStatusNotFoundResponseBody is the type of the "connect" service
@@ -1390,6 +1346,14 @@ type TransactionStatusTimeoutResponseBody struct {
 	Fault *bool `form:"fault,omitempty" json:"fault,omitempty" xml:"fault,omitempty"`
 }
 
+// MissingCredentialFaultResponseBody is used to define fields on response body
+// types.
+type MissingCredentialFaultResponseBody struct {
+	Code        *string `form:"code,omitempty" json:"code,omitempty" xml:"code,omitempty"`
+	Message     *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
+	Description *string `form:"description,omitempty" json:"description,omitempty" xml:"description,omitempty"`
+}
+
 // AccountTransactionResponseBody is used to define fields on response body
 // types.
 type AccountTransactionResponseBody struct {
@@ -1427,7 +1391,7 @@ type SourceAccountTXNRequestRequestBody struct {
 	// Posting account number
 	AccountNumber string `form:"AccountNumber" json:"AccountNumber" xml:"AccountNumber"`
 	// Transaction Amount
-	Amount uint64 `form:"Amount" json:"Amount" xml:"Amount"`
+	Amount float64 `form:"Amount" json:"Amount" xml:"Amount"`
 	// Posting account currency in ISO Currency Code
 	TransactionCurrency string `form:"TransactionCurrency" json:"TransactionCurrency" xml:"TransactionCurrency"`
 	// Posting account transaction narration
@@ -1448,7 +1412,7 @@ type DestinationAccountTXNRequestRequestBody struct {
 	// Posting account number
 	AccountNumber string `form:"AccountNumber" json:"AccountNumber" xml:"AccountNumber"`
 	// Transaction Amount
-	Amount uint64 `form:"Amount" json:"Amount" xml:"Amount"`
+	Amount float64 `form:"Amount" json:"Amount" xml:"Amount"`
 	// Posting account currency in ISO Currency Code
 	TransactionCurrency string `form:"TransactionCurrency" json:"TransactionCurrency" xml:"TransactionCurrency"`
 	// Posting account transaction narration
@@ -1494,7 +1458,7 @@ type DestinationAccountTransactionRequestRequestBody struct {
 	// Recipient phone number linked to a bank account in an IPSL participating bank
 	MobileNumber string `form:"MobileNumber" json:"MobileNumber" xml:"MobileNumber"`
 	// Transaction Amount
-	Amount uint64 `form:"Amount" json:"Amount" xml:"Amount"`
+	Amount float64 `form:"Amount" json:"Amount" xml:"Amount"`
 	// Posting account transaction narration
 	Narration string `form:"Narration" json:"Narration" xml:"Narration"`
 }
@@ -1504,8 +1468,8 @@ type SourceAccountResponseBody struct {
 	// Posting account number
 	AccountNumber *string `form:"AccountNumber,omitempty" json:"AccountNumber,omitempty" xml:"AccountNumber,omitempty"`
 	// Transaction Amount
-	Amount              *uint64 `form:"Amount,omitempty" json:"Amount,omitempty" xml:"Amount,omitempty"`
-	TransactionCurrency *string `form:"TransactionCurrency,omitempty" json:"TransactionCurrency,omitempty" xml:"TransactionCurrency,omitempty"`
+	Amount              *float64 `form:"Amount,omitempty" json:"Amount,omitempty" xml:"Amount,omitempty"`
+	TransactionCurrency *string  `form:"TransactionCurrency,omitempty" json:"TransactionCurrency,omitempty" xml:"TransactionCurrency,omitempty"`
 	// Posting account transaction narration
 	Narration *string `form:"Narration,omitempty" json:"Narration,omitempty" xml:"Narration,omitempty"`
 	// Posting leg response code
@@ -1528,7 +1492,7 @@ type DestinationAccountResponseBody struct {
 	// Posting account bank code
 	BankCode *string `form:"BankCode,omitempty" json:"BankCode,omitempty" xml:"BankCode,omitempty"`
 	// Transaction Amount
-	Amount *uint64 `form:"Amount,omitempty" json:"Amount,omitempty" xml:"Amount,omitempty"`
+	Amount *float64 `form:"Amount,omitempty" json:"Amount,omitempty" xml:"Amount,omitempty"`
 	// Posting account currency in ISO Currency Code
 	TransactionCurrency *string `form:"TransactionCurrency,omitempty" json:"TransactionCurrency,omitempty" xml:"TransactionCurrency,omitempty"`
 	// Posting account transaction narration
@@ -1766,18 +1730,10 @@ func NewAccountBalanceBadRequest(body *AccountBalanceBadRequestResponseBody) *co
 
 // NewAccountBalanceUnauthorized builds a connect service AccountBalance
 // endpoint unauthorized error.
-func NewAccountBalanceUnauthorized(body *AccountBalanceUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewAccountBalanceUnauthorized(body *AccountBalanceUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -1849,18 +1805,10 @@ func NewAccountFullStatementBadRequest(body *AccountFullStatementBadRequestRespo
 
 // NewAccountFullStatementUnauthorized builds a connect service
 // AccountFullStatement endpoint unauthorized error.
-func NewAccountFullStatementUnauthorized(body *AccountFullStatementUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewAccountFullStatementUnauthorized(body *AccountFullStatementUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -1947,18 +1895,10 @@ func NewAccountMiniStatementBadRequest(body *AccountMiniStatementBadRequestRespo
 
 // NewAccountMiniStatementUnauthorized builds a connect service
 // AccountMiniStatement endpoint unauthorized error.
-func NewAccountMiniStatementUnauthorized(body *AccountMiniStatementUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewAccountMiniStatementUnauthorized(body *AccountMiniStatementUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -2048,18 +1988,10 @@ func NewAccountTransactionsBadRequest(body *AccountTransactionsBadRequestRespons
 
 // NewAccountTransactionsUnauthorized builds a connect service
 // AccountTransactions endpoint unauthorized error.
-func NewAccountTransactionsUnauthorized(body *AccountTransactionsUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewAccountTransactionsUnauthorized(body *AccountTransactionsUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -2123,18 +2055,10 @@ func NewAccountValidationBadRequest(body *AccountValidationBadRequestResponseBod
 
 // NewAccountValidationUnauthorized builds a connect service AccountValidation
 // endpoint unauthorized error.
-func NewAccountValidationUnauthorized(body *AccountValidationUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewAccountValidationUnauthorized(body *AccountValidationUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -2219,18 +2143,10 @@ func NewExchangeRateBadRequest(body *ExchangeRateBadRequestResponseBody) *connec
 
 // NewExchangeRateUnauthorized builds a connect service ExchangeRate endpoint
 // unauthorized error.
-func NewExchangeRateUnauthorized(body *ExchangeRateUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewExchangeRateUnauthorized(body *ExchangeRateUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -2335,18 +2251,10 @@ func NewIFTAccountToAccountConflict(body *IFTAccountToAccountConflictResponseBod
 
 // NewIFTAccountToAccountUnauthorized builds a connect service
 // IFTAccountToAccount endpoint unauthorized error.
-func NewIFTAccountToAccountUnauthorized(body *IFTAccountToAccountUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewIFTAccountToAccountUnauthorized(body *IFTAccountToAccountUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -2522,18 +2430,10 @@ func NewPesaLinkSendToAccountConflict(body *PesaLinkSendToAccountConflictRespons
 
 // NewPesaLinkSendToAccountUnauthorized builds a connect service
 // PesaLinkSendToAccount endpoint unauthorized error.
-func NewPesaLinkSendToAccountUnauthorized(body *PesaLinkSendToAccountUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewPesaLinkSendToAccountUnauthorized(body *PesaLinkSendToAccountUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -2638,18 +2538,10 @@ func NewPesaLinkSendToPhoneConflict(body *PesaLinkSendToPhoneConflictResponseBod
 
 // NewPesaLinkSendToPhoneUnauthorized builds a connect service
 // PesaLinkSendToPhone endpoint unauthorized error.
-func NewPesaLinkSendToPhoneUnauthorized(body *PesaLinkSendToPhoneUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewPesaLinkSendToPhoneUnauthorized(body *PesaLinkSendToPhoneUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -2754,18 +2646,10 @@ func NewSendToMPesaConflict(body *SendToMPesaConflictResponseBody) *connect.Ackn
 
 // NewSendToMPesaUnauthorized builds a connect service SendToMPesa endpoint
 // unauthorized error.
-func NewSendToMPesaUnauthorized(body *SendToMPesaUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewSendToMPesaUnauthorized(body *SendToMPesaUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -2849,18 +2733,10 @@ func NewTransactionStatusBadRequest(body *TransactionStatusBadRequestResponseBod
 
 // NewTransactionStatusUnauthorized builds a connect service TransactionStatus
 // endpoint unauthorized error.
-func NewTransactionStatusUnauthorized(body *TransactionStatusUnauthorizedResponseBody) *connect.Missingcredentials {
-	v := &connect.Missingcredentials{}
+func NewTransactionStatusUnauthorized(body *TransactionStatusUnauthorizedResponseBody) *connect.MissingCredentials {
+	v := &connect.MissingCredentials{}
 	if body.Fault != nil {
-		v.Fault = &struct {
-			Code        *string
-			Message     *string
-			Description *string
-		}{
-			Code:        body.Fault.Code,
-			Message:     body.Fault.Message,
-			Description: body.Fault.Description,
-		}
+		v.Fault = unmarshalMissingCredentialFaultResponseBodyToConnectMissingCredentialFault(body.Fault)
 	}
 
 	return v
@@ -2868,8 +2744,8 @@ func NewTransactionStatusUnauthorized(body *TransactionStatusUnauthorizedRespons
 
 // NewTransactionStatusNotFound builds a connect service TransactionStatus
 // endpoint not_found error.
-func NewTransactionStatusNotFound(body *TransactionStatusNotFoundResponseBody) *connect.Notfounderrorresponse {
-	v := &connect.Notfounderrorresponse{
+func NewTransactionStatusNotFound(body *TransactionStatusNotFoundResponseBody) *connect.NotFoundErrorResponse {
+	v := &connect.NotFoundErrorResponse{
 		MessageReference:   *body.MessageReference,
 		MessageDateTime:    *body.MessageDateTime,
 		MessageCode:        *body.MessageCode,

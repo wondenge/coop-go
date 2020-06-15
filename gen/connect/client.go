@@ -50,7 +50,7 @@ func NewClient(accountBalance, accountFullStatement, accountMiniStatement, accou
 // AccountBalance calls the "AccountBalance" endpoint of the "connect" service.
 // AccountBalance may return the following errors:
 //	- "bad_request" (type *ErrorResponse): Bad Request Error Response-Synchronous: -2=INVALID/MISSING PARAMETER, -8=ACCOUNT AUTHORIZATION FAILURE, -11=MESSAGE REFERENCE LONGER THAN ALLOWED LENGTH
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
 //	- "timeout" (type *goa.ServiceError): Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT
 //	- error: internal error
@@ -67,7 +67,7 @@ func (c *Client) AccountBalance(ctx context.Context, p *AccountBalancePayload) (
 // "connect" service.
 // AccountFullStatement may return the following errors:
 //	- "bad_request" (type *ErrorResponse): Bad Request Error Response-Synchronous: -2=INVALID/MISSING PARAMETER, -6=Date Fornat, -8=ACCOUNT AUTHORIZATION FAILURE, -11=MESSAGE REFERENCE LONGER THAN ALLOWED LENGTH
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
 //	- "not_found" (type *goa.ServiceError): Not Found Error Response-Synchronous
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
 //	- "timeout" (type *goa.ServiceError): Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT
@@ -85,7 +85,7 @@ func (c *Client) AccountFullStatement(ctx context.Context, p *AccountFullStateme
 // "connect" service.
 // AccountMiniStatement may return the following errors:
 //	- "bad_request" (type *ErrorResponse): Bad Request Error Response-Synchronous: -2=INVALID/MISSING PARAMETER, -6=Date Fornat, -8=ACCOUNT AUTHORIZATION FAILURE, -11=MESSAGE REFERENCE LONGER THAN ALLOWED LENGTH
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
 //	- "not_found" (type *goa.ServiceError): Not Found Error Response-Synchronous
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
 //	- "timeout" (type *goa.ServiceError): Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT
@@ -103,7 +103,7 @@ func (c *Client) AccountMiniStatement(ctx context.Context, p *AccountMiniStateme
 // "connect" service.
 // AccountTransactions may return the following errors:
 //	- "bad_request" (type *ErrorResponse): Bad Request Error Response-Synchronous: -2=INVALID/MISSING PARAMETER, -6=NO OF TRANSACTIONS IS LESS/GREATER THAN LIMIT ALLOWED, -8=ACCOUNT AUTHORIZATION FAILURE, -11=MESSAGE REFERENCE LONGER THAN ALLOWED LENGTH
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
 //	- "timeout" (type *goa.ServiceError): Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT
 //	- error: internal error
@@ -120,7 +120,7 @@ func (c *Client) AccountTransactions(ctx context.Context, p *AccountTransactions
 // service.
 // AccountValidation may return the following errors:
 //	- "bad_request" (type *ErrorResponse): Bad Request Error Response-Synchronous: -2=INVALID/MISSING PARAMETER, -11=MESSAGE REFERENCE LONGER THAN ALLOWED LENGTH, -15=INVALID ACCOUNT NUMBER
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
 //	- "not_found" (type *goa.ServiceError): Not Found Error Response-Synchronous
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
 //	- "timeout" (type *goa.ServiceError): Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT
@@ -137,7 +137,7 @@ func (c *Client) AccountValidation(ctx context.Context, p *AccountValidationPayl
 // ExchangeRate calls the "ExchangeRate" endpoint of the "connect" service.
 // ExchangeRate may return the following errors:
 //	- "bad_request" (type *ErrorResponse): Bad Request Error Response-Synchronous: -2=INVALID/MISSING PARAMETER, -11=MESSAGE REFERENCE LONGER THAN ALLOWED LENGTH
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials
 //	- "not_found" (type *goa.ServiceError): Not Found Error Response-Synchronous: -4=Record Not Found
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
 //	- "timeout" (type *goa.ServiceError): Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT
@@ -155,7 +155,7 @@ func (c *Client) ExchangeRate(ctx context.Context, p *ExchangeRatePayload) (res 
 // "connect" service.
 // IFTAccountToAccount may return the following errors:
 //	- "bad_request" (type *AcknowledgementError400): Bad Request Error Response-Synchronous: <br>-2 - INVALID/MISSING PARAMETER, <br>-3 - THE AMOUNT DEBITED OR CREDITED MUST BE GREATER THAT 0/POSITIVE INTEGER, <br>-5 - DEBIT AND CREDIT(S) AMOUNTS NOT BALANCING, <br>-6 - TRANSACTION AMOUNT LESS/GREATER THAN MINIMUM/MAXIMUM LIMIT ALLOWED, <br>-11 - MESSAGE REFERENCE/REFERENCE NUMBER LONGER THAN ALLOWED LENGTH, <br>-12 - DUPLICATE REFERENCE/IDENTICAL REFERENCE AND MESSAGEREFERENCE
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials, <br>-8 - DEBIT ACCOUNT AUTHORIZATION FAILURE
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials, <br>-8 - DEBIT ACCOUNT AUTHORIZATION FAILURE
 //	- "forbidden" (type *AcknowledgementError403): Forbidden Error Response-Synchronous: <br>-9 - CURRENCY INVALID/NOT ALLOWED, <br>-16 - DAILY LIMIT EXHAUSTED
 //	- "not_found" (type *goa.ServiceError): Not Found Error Response-Synchronous: <br>Wrong API Resource URI
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
@@ -191,7 +191,7 @@ func (c *Client) INSSimulation(ctx context.Context, p *INSTransactionSimulationR
 // "connect" service.
 // PesaLinkSendToAccount may return the following errors:
 //	- "bad_request" (type *AcknowledgementError400): Bad Request Error Response-Synchronous: <br>-2 - INVALID/MISSING PARAMETER, <br>-3 - THE AMOUNT DEBITED OR CREDITED MUST BE GREATER THAT 0/POSITIVE INTEGER, <br>-5 - DEBIT AND CREDIT(S) AMOUNTS NOT BALANCING, <br>-6 - TRANSACTION AMOUNT LESS/GREATER THAN MINIMUM/MAXIMUM LIMIT ALLOWED, <br>-11 - MESSAGE REFERENCE/REFERENCE NUMBER LONGER THAN ALLOWED LENGTH, <br>-12 - DUPLICATE REFERENCE/IDENTICAL REFERENCE AND MESSAGEREFERENCE
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials, <br>-8 - DEBIT ACCOUNT AUTHORIZATION FAILURE
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials, <br>-8 - DEBIT ACCOUNT AUTHORIZATION FAILURE
 //	- "forbidden" (type *AcknowledgementError403): Forbidden Error Response-Synchronous: <br>-9 - CURRENCY INVALID/NOT ALLOWED, <br>-10 - BANK CODE INVALID/NOT PESALINK MEMBER BANK, <br>-16 - DAILY LIMIT EXHAUSTED
 //	- "not_found" (type *goa.ServiceError): Not Found Error Response-Synchronous: <br>Wrong API Resource URI
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
@@ -211,7 +211,7 @@ func (c *Client) PesaLinkSendToAccount(ctx context.Context, p *PesaLinkSendToAcc
 // "connect" service.
 // PesaLinkSendToPhone may return the following errors:
 //	- "bad_request" (type *AcknowledgementError400): Bad Request Error Response-Synchronous: <br>-2 - INVALID/MISSING PARAMETER, <br>-3 - THE AMOUNT DEBITED OR CREDITED MUST BE GREATER THAT 0/POSITIVE INTEGER, <br>-5 - DEBIT AND CREDIT(S) AMOUNTS NOT BALANCING, <br>-6 - TRANSACTION AMOUNT LESS/GREATER THAN MINIMUM/MAXIMUM LIMIT ALLOWED, <br>-11 - MESSAGE REFERENCE/REFERENCE NUMBER LONGER THAN ALLOWED LENGTH, <br>-12 - DUPLICATE REFERENCE/IDENTICAL REFERENCE AND MESSAGEREFERENCE, <br>-20 - INVALID PHONE NUMBER
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials, <br>-8 - DEBIT ACCOUNT AUTHORIZATION FAILURE
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials, <br>-8 - DEBIT ACCOUNT AUTHORIZATION FAILURE
 //	- "forbidden" (type *AcknowledgementError403): Forbidden Error Response-Synchronous: <br>-9 - CURRENCY INVALID/NOT ALLOWED, <br>-10 - BANK CODE INVALID/NOT PESALINK MEMBER BANK, <br>-16 - DAILY LIMIT EXHAUSTED
 //	- "not_found" (type *goa.ServiceError): Not Found Error Response-Synchronous: <br>Wrong API Resource URI
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
@@ -230,7 +230,7 @@ func (c *Client) PesaLinkSendToPhone(ctx context.Context, p *PesaLinkSendToPhone
 // SendToMPesa calls the "SendToMPesa" endpoint of the "connect" service.
 // SendToMPesa may return the following errors:
 //	- "bad_request" (type *AcknowledgementError400): Bad Request Error Response-Synchronous: <br>-2: INVALID/MISSING PARAMETER, <br>-3: THE AMOUNT DEBITED OR CREDITED MUST BE GREATER THAT 0/POSITIVE INTEGER, <br>-5: DEBIT AND CREDIT(S) AMOUNTS NOT BALANCING, <br>-6: TRANSACTION AMOUNT LESS/GREATER THAN MINIMUM/MAXIMUM LIMIT ALLOWED, <br>-11: MESSAGE REFERENCE/REFERENCE NUMBER LONGER THAN ALLOWED LENGTH, <br>-12: DUPLICATE REFERENCE/IDENTICAL REFERENCE AND MESSAGEREFERENCE, <br>-19: INVALID M-PESA NUMBER
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: <br>900901: Invalid credentials, <br>900902: Missing credentials, <br>-8: DEBIT ACCOUNT AUTHORIZATION FAILURE
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: <br>900901: Invalid credentials, <br>900902: Missing credentials, <br>-8: DEBIT ACCOUNT AUTHORIZATION FAILURE
 //	- "forbidden" (type *AcknowledgementError403): Forbidden Error Response-Synchronous: <br>-9: CURRENCY INVALID/NOT ALLOWED, <br>-16: DAILY LIMIT EXHAUSTED
 //	- "not_found" (type *goa.ServiceError): Not Found Error Response-Synchronous: <br>Wrong API Resource URI
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
@@ -250,8 +250,8 @@ func (c *Client) SendToMPesa(ctx context.Context, p *SendToMpesaTransactionReque
 // service.
 // TransactionStatus may return the following errors:
 //	- "bad_request" (type *ErrorResponse): Bad Request Error Response-Synchronous: <br>-2 - INVALID/MISSING PARAMETER, <br>-11 - MESSAGE REFERENCE LONGER THAN ALLOWED LENGTH
-//	- "unauthorized" (type *Missingcredentials): Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials
-//	- "not_found" (type *Notfounderrorresponse): Not Found Error Response-Synchronous: <br>-13 - MESSAGE REFERENCE DOES NOT EXIST, <br>Wrong API Resource URI
+//	- "unauthorized" (type *MissingCredentials): Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials
+//	- "not_found" (type *NotFoundErrorResponse): Not Found Error Response-Synchronous: <br>-13 - MESSAGE REFERENCE DOES NOT EXIST, <br>Wrong API Resource URI
 //	- "not_allowed" (type *goa.ServiceError): Method Not Allowed Error Response-Synchronous
 //	- "timeout" (type *goa.ServiceError): Request Timeout Error Response-Synchronous: <br>-4 - REQUEST TIMED OUT
 //	- error: internal error

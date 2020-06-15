@@ -406,7 +406,7 @@ type SourceAccountTXNRequest struct {
 	// Posting account number
 	AccountNumber string
 	// Transaction Amount
-	Amount uint64
+	Amount float64
 	// Posting account currency in ISO Currency Code
 	TransactionCurrency string
 	// Posting account transaction narration
@@ -425,7 +425,7 @@ type DestinationAccountTXNRequest struct {
 	// Posting account number
 	AccountNumber string
 	// Transaction Amount
-	Amount uint64
+	Amount float64
 	// Posting account currency in ISO Currency Code
 	TransactionCurrency string
 	// Posting account transaction narration
@@ -468,7 +468,7 @@ type DestinationAccountTransactionRequest struct {
 	// Recipient phone number linked to a bank account in an IPSL participating bank
 	MobileNumber string
 	// Transaction Amount
-	Amount uint64
+	Amount float64
 	// Posting account transaction narration
 	Narration string
 }
@@ -478,7 +478,7 @@ type SourceAccount struct {
 	// Posting account number
 	AccountNumber string
 	// Transaction Amount
-	Amount              uint64
+	Amount              float64
 	TransactionCurrency string
 	// Posting account transaction narration
 	Narration string
@@ -501,7 +501,7 @@ type DestinationAccount struct {
 	// Posting account bank code
 	BankCode *string
 	// Transaction Amount
-	Amount uint64
+	Amount float64
 	// Posting account currency in ISO Currency Code
 	TransactionCurrency string
 	// Posting account transaction narration
@@ -527,12 +527,14 @@ type ErrorResponse struct {
 }
 
 // Missing Credentials
-type Missingcredentials struct {
-	Fault *struct {
-		Code        *string
-		Message     *string
-		Description *string
-	}
+type MissingCredentials struct {
+	Fault *MissingCredentialFault
+}
+
+type MissingCredentialFault struct {
+	Code        *string
+	Message     *string
+	Description *string
 }
 
 // Bad Request Error Response
@@ -584,7 +586,7 @@ type ErrorAcknowledgement struct {
 }
 
 // Not Found Error Response
-type Notfounderrorresponse struct {
+type NotFoundErrorResponse struct {
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Acknowledgement message creation timestamp
@@ -606,13 +608,23 @@ func (e *ErrorResponse) ErrorName() string {
 }
 
 // Error returns an error description.
-func (e *Missingcredentials) Error() string {
+func (e *MissingCredentials) Error() string {
 	return "Missing Credentials"
 }
 
-// ErrorName returns "Missingcredentials".
-func (e *Missingcredentials) ErrorName() string {
+// ErrorName returns "MissingCredentials".
+func (e *MissingCredentials) ErrorName() string {
 	return "unauthorized"
+}
+
+// Error returns an error description.
+func (e *MissingCredentialFault) Error() string {
+	return ""
+}
+
+// ErrorName returns "MissingCredentialFault".
+func (e *MissingCredentialFault) ErrorName() string {
+	return "MissingCredentialFault"
 }
 
 // Error returns an error description.
@@ -656,12 +668,12 @@ func (e *ErrorAcknowledgement) ErrorName() string {
 }
 
 // Error returns an error description.
-func (e *Notfounderrorresponse) Error() string {
+func (e *NotFoundErrorResponse) Error() string {
 	return "Not Found Error Response"
 }
 
-// ErrorName returns "Notfounderrorresponse".
-func (e *Notfounderrorresponse) ErrorName() string {
+// ErrorName returns "NotFoundErrorResponse".
+func (e *NotFoundErrorResponse) ErrorName() string {
 	return "not_found"
 }
 

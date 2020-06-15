@@ -1024,21 +1024,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials (default view)'
     example:
       Fault:
@@ -1315,21 +1301,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials (default view)'
     example:
       Fault:
@@ -1631,21 +1603,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials (default view)'
     example:
       Fault:
@@ -1916,21 +1874,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials (default view)'
     example:
       Fault:
@@ -2161,21 +2105,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials (default view)'
     example:
       Fault:
@@ -2481,21 +2411,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials (default view)'
     example:
       Fault:
@@ -2810,21 +2726,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials, <br>-8 - DEBIT ACCOUNT AUTHORIZATION FAILURE (default view)'
     example:
       Fault:
@@ -3460,21 +3362,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials, <br>-8 - DEBIT ACCOUNT AUTHORIZATION FAILURE (default view)'
     example:
       Fault:
@@ -3793,21 +3681,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials, <br>-8 - DEBIT ACCOUNT AUTHORIZATION FAILURE (default view)'
     example:
       Fault:
@@ -4126,21 +4000,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: <br>900901: Invalid credentials, <br>900902: Missing credentials, <br>-8: DEBIT ACCOUNT AUTHORIZATION FAILURE (default view)'
     example:
       Fault:
@@ -4271,7 +4131,7 @@ definitions:
           $ref: '#/definitions/DestinationAccountResponseBody'
         example:
         - AccountNumber: "12345678912345"
-          Amount: 15529828596685934031
+          Amount: 0.6837473902854402
           BankCode: "011"
           MobileNumber: 5gx
           Narration: Supplier Payment
@@ -4282,7 +4142,7 @@ definitions:
           TransactionCurrency: KES
           TransactionID: 1169716b65891lI6
         - AccountNumber: "12345678912345"
-          Amount: 15529828596685934031
+          Amount: 0.6837473902854402
           BankCode: "011"
           MobileNumber: 5gx
           Narration: Supplier Payment
@@ -4293,7 +4153,7 @@ definitions:
           TransactionCurrency: KES
           TransactionID: 1169716b65891lI6
         - AccountNumber: "12345678912345"
-          Amount: 15529828596685934031
+          Amount: 0.6837473902854402
           BankCode: "011"
           MobileNumber: 5gx
           Narration: Supplier Payment
@@ -4304,7 +4164,7 @@ definitions:
           TransactionCurrency: KES
           TransactionID: 1169716b65891lI6
         - AccountNumber: "12345678912345"
-          Amount: 15529828596685934031
+          Amount: 0.6837473902854402
           BankCode: "011"
           MobileNumber: 5gx
           Narration: Supplier Payment
@@ -4339,7 +4199,7 @@ definitions:
     example:
       Destinations:
       - AccountNumber: "12345678912345"
-        Amount: 15529828596685934031
+        Amount: 0.6837473902854402
         BankCode: "011"
         MobileNumber: 5gx
         Narration: Supplier Payment
@@ -4350,7 +4210,7 @@ definitions:
         TransactionCurrency: KES
         TransactionID: 1169716b65891lI6
       - AccountNumber: "12345678912345"
-        Amount: 15529828596685934031
+        Amount: 0.6837473902854402
         BankCode: "011"
         MobileNumber: 5gx
         Narration: Supplier Payment
@@ -4440,21 +4300,7 @@ definitions:
     type: object
     properties:
       Fault:
-        type: object
-        properties:
-          code:
-            type: string
-            example: "900902"
-          description:
-            type: string
-            example: Required OAuth credentials not provided.
-          message:
-            type: string
-            example: Missing Credentials
-        example:
-          code: "900902"
-          description: Required OAuth credentials not provided.
-          message: Missing Credentials
+        $ref: '#/definitions/MissingCredentialFaultResponseBody'
     description: 'Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials (default view)'
     example:
       Fault:
@@ -4493,10 +4339,10 @@ definitions:
         minLength: 14
         maxLength: 14
       Amount:
-        type: integer
+        type: number
         description: Transaction Amount
-        example: 5474167968835788135
-        format: int64
+        example: 0.5935104804362322
+        format: double
       BankCode:
         type: string
         description: Posting account bank code
@@ -4559,7 +4405,7 @@ definitions:
     description: Destination Account
     example:
       AccountNumber: "12345678912345"
-      Amount: 968188419919665431
+      Amount: 0.10497119882522091
       BankCode: "011"
       MobileNumber: v37
       Narration: Supplier Payment
@@ -4586,7 +4432,7 @@ definitions:
         minLength: 14
         maxLength: 14
       Amount:
-        type: integer
+        type: number
         description: Transaction Amount
         example: 777
         minimum: 0.01
@@ -4634,7 +4480,7 @@ definitions:
     type: object
     properties:
       Amount:
-        type: integer
+        type: number
         description: Transaction Amount
         example: 777
         minimum: 0.01
@@ -4725,6 +4571,23 @@ definitions:
         MobileNumber: 07xxxxxxxx
         Narration: Stationary Payment
         ReferenceNumber: 40ca18c6765086089a1_1
+  MissingCredentialFaultResponseBody:
+    title: MissingCredentialFaultResponseBody
+    type: object
+    properties:
+      code:
+        type: string
+        example: "900902"
+      description:
+        type: string
+        example: Required OAuth credentials not provided.
+      message:
+        type: string
+        example: Missing Credentials
+    example:
+      code: "900902"
+      description: Required OAuth credentials not provided.
+      message: Missing Credentials
   MultiStatusResponseResponseBody:
     title: 'Mediatype identifier: multistatusresponse; view=default'
     type: object
@@ -4735,7 +4598,7 @@ definitions:
           $ref: '#/definitions/DestinationAccountResponseBody'
         example:
         - AccountNumber: "12345678912345"
-          Amount: 15529828596685934031
+          Amount: 0.6837473902854402
           BankCode: "011"
           MobileNumber: 5gx
           Narration: Supplier Payment
@@ -4746,7 +4609,7 @@ definitions:
           TransactionCurrency: KES
           TransactionID: 1169716b65891lI6
         - AccountNumber: "12345678912345"
-          Amount: 15529828596685934031
+          Amount: 0.6837473902854402
           BankCode: "011"
           MobileNumber: 5gx
           Narration: Supplier Payment
@@ -4757,7 +4620,7 @@ definitions:
           TransactionCurrency: KES
           TransactionID: 1169716b65891lI6
         - AccountNumber: "12345678912345"
-          Amount: 15529828596685934031
+          Amount: 0.6837473902854402
           BankCode: "011"
           MobileNumber: 5gx
           Narration: Supplier Payment
@@ -4768,7 +4631,7 @@ definitions:
           TransactionCurrency: KES
           TransactionID: 1169716b65891lI6
         - AccountNumber: "12345678912345"
-          Amount: 15529828596685934031
+          Amount: 0.6837473902854402
           BankCode: "011"
           MobileNumber: 5gx
           Narration: Supplier Payment
@@ -4803,7 +4666,7 @@ definitions:
     example:
       Destinations:
       - AccountNumber: "12345678912345"
-        Amount: 15529828596685934031
+        Amount: 0.6837473902854402
         BankCode: "011"
         MobileNumber: 5gx
         Narration: Supplier Payment
@@ -4814,7 +4677,7 @@ definitions:
         TransactionCurrency: KES
         TransactionID: 1169716b65891lI6
       - AccountNumber: "12345678912345"
-        Amount: 15529828596685934031
+        Amount: 0.6837473902854402
         BankCode: "011"
         MobileNumber: 5gx
         Narration: Supplier Payment
@@ -4853,10 +4716,10 @@ definitions:
         minLength: 14
         maxLength: 14
       Amount:
-        type: integer
+        type: number
         description: Transaction Amount
         example: 0
-        format: int64
+        format: double
       Narration:
         type: string
         description: Posting account transaction narration
@@ -4896,7 +4759,7 @@ definitions:
         minLength: 14
         maxLength: 14
       Amount:
-        type: integer
+        type: number
         description: Transaction Amount
         example: 777
         minimum: 0.01

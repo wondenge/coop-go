@@ -17,7 +17,7 @@ var SourceAccount = Type("SourceAccount", func() {
 		MaxLength(14)
 		Example("12345678912345")
 	})
-	Attribute("Amount", UInt64, func() {
+	Attribute("Amount", Float64, func() {
 		Description("Transaction Amount")
 		Example(0)
 	})
@@ -79,7 +79,7 @@ var SourceAccountTXNRequest = Type("SourceAccountTXNRequest", func() {
 		MaxLength(14)
 		Example("36001873000")
 	})
-	Attribute("Amount", UInt64, func() {
+	Attribute("Amount", Float64, func() {
 		Description("Transaction Amount")
 		Minimum(0.01)
 		Maximum(999999.99)

@@ -79,7 +79,7 @@ func EncodeAccountBalanceError(encoder func(context.Context, http.ResponseWriter
 			w.WriteHeader(http.StatusBadRequest)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -181,7 +181,7 @@ func EncodeAccountFullStatementError(encoder func(context.Context, http.Response
 			w.WriteHeader(http.StatusBadRequest)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -295,7 +295,7 @@ func EncodeAccountMiniStatementError(encoder func(context.Context, http.Response
 			w.WriteHeader(http.StatusBadRequest)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -409,7 +409,7 @@ func EncodeAccountTransactionsError(encoder func(context.Context, http.ResponseW
 			w.WriteHeader(http.StatusBadRequest)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -511,7 +511,7 @@ func EncodeAccountValidationError(encoder func(context.Context, http.ResponseWri
 			w.WriteHeader(http.StatusBadRequest)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -625,7 +625,7 @@ func EncodeExchangeRateError(encoder func(context.Context, http.ResponseWriter) 
 			w.WriteHeader(http.StatusBadRequest)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -763,7 +763,7 @@ func EncodeIFTAccountToAccountError(encoder func(context.Context, http.ResponseW
 			w.WriteHeader(http.StatusConflict)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1003,7 +1003,7 @@ func EncodePesaLinkSendToAccountError(encoder func(context.Context, http.Respons
 			w.WriteHeader(http.StatusConflict)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1141,7 +1141,7 @@ func EncodePesaLinkSendToPhoneError(encoder func(context.Context, http.ResponseW
 			w.WriteHeader(http.StatusConflict)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1279,7 +1279,7 @@ func EncodeSendToMPesaError(encoder func(context.Context, http.ResponseWriter) g
 			w.WriteHeader(http.StatusConflict)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1393,7 +1393,7 @@ func EncodeTransactionStatusError(encoder func(context.Context, http.ResponseWri
 			w.WriteHeader(http.StatusBadRequest)
 			return enc.Encode(body)
 		case "unauthorized":
-			res := v.(*connect.Missingcredentials)
+			res := v.(*connect.MissingCredentials)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1405,7 +1405,7 @@ func EncodeTransactionStatusError(encoder func(context.Context, http.ResponseWri
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.Notfounderrorresponse)
+			res := v.(*connect.NotFoundErrorResponse)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1444,6 +1444,22 @@ func EncodeTransactionStatusError(encoder func(context.Context, http.ResponseWri
 			return encodeError(ctx, w, v)
 		}
 	}
+}
+
+// marshalConnectMissingCredentialFaultToMissingCredentialFaultResponseBody
+// builds a value of type *MissingCredentialFaultResponseBody from a value of
+// type *connect.MissingCredentialFault.
+func marshalConnectMissingCredentialFaultToMissingCredentialFaultResponseBody(v *connect.MissingCredentialFault) *MissingCredentialFaultResponseBody {
+	if v == nil {
+		return nil
+	}
+	res := &MissingCredentialFaultResponseBody{
+		Code:        v.Code,
+		Message:     v.Message,
+		Description: v.Description,
+	}
+
+	return res
 }
 
 // marshalConnectviewsAccountTransactionViewToAccountTransactionResponseBody
