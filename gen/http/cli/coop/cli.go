@@ -417,20 +417,6 @@ Example:
                "Narration": "Supplier Payment",
                "ReferenceNumber": "40ca18c6765086089a1_1",
                "TransactionCurrency": "KES"
-            },
-            {
-               "AccountNumber": "54321987654321",
-               "Amount": 777,
-               "Narration": "Supplier Payment",
-               "ReferenceNumber": "40ca18c6765086089a1_1",
-               "TransactionCurrency": "KES"
-            },
-            {
-               "AccountNumber": "54321987654321",
-               "Amount": 777,
-               "Narration": "Supplier Payment",
-               "ReferenceNumber": "40ca18c6765086089a1_1",
-               "TransactionCurrency": "KES"
             }
          ]
       },
@@ -455,11 +441,11 @@ Example:
     `+os.Args[0]+` connect ins-simulation --body '{
       "AccountNumber": "54321987654321",
       "Amount": 120777.45,
-      "Currency": "KES",
+      "Currency": "USD",
       "CustMemo": {
          "CustMemoLine1": "728210595 ABD01",
-         "CustMemoLine2": "Doloremque exercitationem officia voluptatem voluptas.",
-         "CustMemoLine3": "Sunt natus libero voluptatem facilis."
+         "CustMemoLine2": "Expedita fuga.",
+         "CustMemoLine3": "Temporibus delectus eius."
       },
       "EntryDate": "20190301",
       "EventType": "DEBIT",
@@ -467,9 +453,9 @@ Example:
       "MessageDateTime": "2017-12-04T09:27:00",
       "MessageReference": "40ca18c6765086089a1",
       "Narration": "Supplier Payments",
-      "NotificationCode": "Dolores in officia et itaque et ut.",
+      "NotificationCode": "Quaerat delectus aut dolore minus est.",
       "PaymentRef": "SFI427E9136D7D3F21C2C89",
-      "ServiceName": "Quae aperiam.",
+      "ServiceName": "Voluptatem voluptas culpa sunt natus libero voluptatem.",
       "TransactionDate": "20190301165420",
       "TransactionId": "1169716b65891lI6",
       "ValueDate": "20190301"
@@ -488,12 +474,6 @@ Example:
       "CallBackUrl": "https://yourdomain.com/ft-callback",
       "Destinations": {
          "DestinationAccountTransactionRequest": [
-            {
-               "Amount": 777,
-               "MobileNumber": "07xxxxxxxx",
-               "Narration": "Stationary Payment",
-               "ReferenceNumber": "40ca18c6765086089a1_1"
-            },
             {
                "Amount": 777,
                "MobileNumber": "07xxxxxxxx",
@@ -542,12 +522,6 @@ Example:
                "MobileNumber": "07xxxxxxxx",
                "Narration": "Stationary Payment",
                "ReferenceNumber": "40ca18c6765086089a1_1"
-            },
-            {
-               "Amount": 777,
-               "MobileNumber": "07xxxxxxxx",
-               "Narration": "Stationary Payment",
-               "ReferenceNumber": "40ca18c6765086089a1_1"
             }
          ]
       },
@@ -574,12 +548,6 @@ Example:
       "CallBackUrl": "https://yourdomain.com/ft-callback",
       "Destinations": {
          "DestinationAccountTransactionRequest": [
-            {
-               "Amount": 777,
-               "MobileNumber": "07xxxxxxxx",
-               "Narration": "Stationary Payment",
-               "ReferenceNumber": "40ca18c6765086089a1_1"
-            },
             {
                "Amount": 777,
                "MobileNumber": "07xxxxxxxx",

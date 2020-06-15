@@ -76,7 +76,7 @@ var _ = Service("connect", func() {
 		Error("unauthorized", MissingCredentials, "Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials")
 
 		// 404
-		Error("not_found", NotFound, "Not Found Error Response-Synchronous")
+		Error("not_found", ErrorResult, "Not Found Error Response-Synchronous")
 
 		// 405
 		Error("not_allowed", ErrorResult, "Method Not Allowed Error Response-Synchronous")
@@ -130,7 +130,7 @@ var _ = Service("connect", func() {
 		Error("unauthorized", MissingCredentials, "Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials")
 
 		// 404
-		Error("not_found", NotFound, "Not Found Error Response-Synchronous")
+		Error("not_found", ErrorResult, "Not Found Error Response-Synchronous")
 
 		// 405
 		Error("not_allowed", ErrorResult, "Method Not Allowed Error Response-Synchronous")
@@ -232,7 +232,7 @@ var _ = Service("connect", func() {
 		Error("unauthorized", MissingCredentials, "Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials")
 
 		// 404
-		Error("not_found", NotFound, "Not Found Error Response-Synchronous")
+		Error("not_found", ErrorResult, "Not Found Error Response-Synchronous")
 
 		// 405
 		Error("not_allowed", ErrorResult, "Method Not Allowed Error Response-Synchronous")
@@ -285,7 +285,7 @@ var _ = Service("connect", func() {
 		Error("unauthorized", MissingCredentials, "Unauthorized Error Response-Synchronous: 900901=Invalid credentials, 900902=Missing credentials")
 
 		// 404
-		Error("not_found", NotFound, "Not Found Error Response-Synchronous: -4=Record Not Found")
+		Error("not_found", ErrorResult, "Not Found Error Response-Synchronous: -4=Record Not Found")
 
 		// 405
 		Error("not_allowed", ErrorResult, "Method Not Allowed Error Response-Synchronous")
@@ -343,7 +343,7 @@ var _ = Service("connect", func() {
 		Error("forbidden", AcknowledgementError403, "Forbidden Error Response-Synchronous: <br>-9 - CURRENCY INVALID/NOT ALLOWED, <br>-16 - DAILY LIMIT EXHAUSTED")
 
 		// 404
-		Error("not_found", NotFound, "Not Found Error Response-Synchronous: <br>Wrong API Resource URI")
+		Error("not_found", ErrorResult, "Not Found Error Response-Synchronous: <br>Wrong API Resource URI")
 
 		// 405
 		Error("not_allowed", ErrorResult, "Method Not Allowed Error Response-Synchronous")
@@ -460,7 +460,7 @@ var _ = Service("connect", func() {
 		Error("forbidden", AcknowledgementError403, "Forbidden Error Response-Synchronous: <br>-9 - CURRENCY INVALID/NOT ALLOWED, <br>-10 - BANK CODE INVALID/NOT PESALINK MEMBER BANK, <br>-16 - DAILY LIMIT EXHAUSTED")
 
 		// 404
-		Error("not_found", NotFound, "Not Found Error Response-Synchronous: <br>Wrong API Resource URI")
+		Error("not_found", ErrorResult, "Not Found Error Response-Synchronous: <br>Wrong API Resource URI")
 
 		// 405
 		Error("not_allowed", ErrorResult, "Method Not Allowed Error Response-Synchronous")
@@ -529,7 +529,7 @@ var _ = Service("connect", func() {
 		Error("forbidden", AcknowledgementError403, "Forbidden Error Response-Synchronous: <br>-9 - CURRENCY INVALID/NOT ALLOWED, <br>-10 - BANK CODE INVALID/NOT PESALINK MEMBER BANK, <br>-16 - DAILY LIMIT EXHAUSTED")
 
 		// 404
-		Error("not_found", NotFound, "Not Found Error Response-Synchronous: <br>Wrong API Resource URI")
+		Error("not_found", ErrorResult, "Not Found Error Response-Synchronous: <br>Wrong API Resource URI")
 
 		// 405
 		Error("not_allowed", ErrorResult, "Method Not Allowed Error Response-Synchronous")
@@ -597,7 +597,7 @@ var _ = Service("connect", func() {
 		Error("forbidden", AcknowledgementError403, "Forbidden Error Response-Synchronous: <br>-9: CURRENCY INVALID/NOT ALLOWED, <br>-16: DAILY LIMIT EXHAUSTED")
 
 		// 404
-		Error("not_found", NotFound, "Not Found Error Response-Synchronous: <br>Wrong API Resource URI")
+		Error("not_found", ErrorResult, "Not Found Error Response-Synchronous: <br>Wrong API Resource URI")
 
 		// 405
 		Error("not_allowed", ErrorResult, "Method Not Allowed Error Response-Synchronous")
@@ -663,7 +663,7 @@ var _ = Service("connect", func() {
 		Error("unauthorized", MissingCredentials, "Unauthorized Error Response-Synchronous: <br>900901 - Invalid credentials, <br>900902 - Missing credentials")
 
 		// 404
-		Error("not_found", NotFound, "Not Found Error Response-Synchronous: <br>-13 - MESSAGE REFERENCE DOES NOT EXIST, <br>Wrong API Resource URI")
+		Error("not_found", NotFoundErrorResponse, "Not Found Error Response-Synchronous: <br>-13 - MESSAGE REFERENCE DOES NOT EXIST, <br>Wrong API Resource URI")
 
 		// 405
 		Error("not_allowed", ErrorResult, "Method Not Allowed Error Response-Synchronous")

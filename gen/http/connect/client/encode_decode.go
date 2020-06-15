@@ -188,7 +188,7 @@ func EncodeAccountFullStatementRequest(encoder func(*http.Request) goahttp.Encod
 // DecodeAccountFullStatementResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
 //	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.NotFound): http.StatusNotFound
+//	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -256,6 +256,10 @@ func DecodeAccountFullStatementResponse(decoder func(*http.Response) goahttp.Dec
 			err = decoder(resp).Decode(&body)
 			if err != nil {
 				return nil, goahttp.ErrDecodingError("connect", "AccountFullStatement", err)
+			}
+			err = ValidateAccountFullStatementNotFoundResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "AccountFullStatement", err)
 			}
 			return nil, NewAccountFullStatementNotFound(&body)
 		case http.StatusMethodNotAllowed:
@@ -331,7 +335,7 @@ func EncodeAccountMiniStatementRequest(encoder func(*http.Request) goahttp.Encod
 // DecodeAccountMiniStatementResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
 //	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.NotFound): http.StatusNotFound
+//	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -399,6 +403,10 @@ func DecodeAccountMiniStatementResponse(decoder func(*http.Response) goahttp.Dec
 			err = decoder(resp).Decode(&body)
 			if err != nil {
 				return nil, goahttp.ErrDecodingError("connect", "AccountMiniStatement", err)
+			}
+			err = ValidateAccountMiniStatementNotFoundResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "AccountMiniStatement", err)
 			}
 			return nil, NewAccountMiniStatementNotFound(&body)
 		case http.StatusMethodNotAllowed:
@@ -605,7 +613,7 @@ func EncodeAccountValidationRequest(encoder func(*http.Request) goahttp.Encoder)
 // DecodeAccountValidationResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
 //	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.NotFound): http.StatusNotFound
+//	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -673,6 +681,10 @@ func DecodeAccountValidationResponse(decoder func(*http.Response) goahttp.Decode
 			err = decoder(resp).Decode(&body)
 			if err != nil {
 				return nil, goahttp.ErrDecodingError("connect", "AccountValidation", err)
+			}
+			err = ValidateAccountValidationNotFoundResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "AccountValidation", err)
 			}
 			return nil, NewAccountValidationNotFound(&body)
 		case http.StatusMethodNotAllowed:
@@ -747,7 +759,7 @@ func EncodeExchangeRateRequest(encoder func(*http.Request) goahttp.Encoder) func
 // DecodeExchangeRateResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
 //	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.NotFound): http.StatusNotFound
+//	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -815,6 +827,10 @@ func DecodeExchangeRateResponse(decoder func(*http.Response) goahttp.Decoder, re
 			err = decoder(resp).Decode(&body)
 			if err != nil {
 				return nil, goahttp.ErrDecodingError("connect", "ExchangeRate", err)
+			}
+			err = ValidateExchangeRateNotFoundResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "ExchangeRate", err)
 			}
 			return nil, NewExchangeRateNotFound(&body)
 		case http.StatusMethodNotAllowed:
@@ -892,7 +908,7 @@ func EncodeIFTAccountToAccountRequest(encoder func(*http.Request) goahttp.Encode
 //	- "forbidden" (type *connect.AcknowledgementError403): http.StatusForbidden
 //	- "conflict" (type *connect.AcknowledgementError409): http.StatusConflict
 //	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.NotFound): http.StatusNotFound
+//	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -988,6 +1004,10 @@ func DecodeIFTAccountToAccountResponse(decoder func(*http.Response) goahttp.Deco
 			err = decoder(resp).Decode(&body)
 			if err != nil {
 				return nil, goahttp.ErrDecodingError("connect", "IFTAccountToAccount", err)
+			}
+			err = ValidateIFTAccountToAccountNotFoundResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "IFTAccountToAccount", err)
 			}
 			return nil, NewIFTAccountToAccountNotFound(&body)
 		case http.StatusMethodNotAllowed:
@@ -1200,7 +1220,7 @@ func EncodePesaLinkSendToAccountRequest(encoder func(*http.Request) goahttp.Enco
 //	- "forbidden" (type *connect.AcknowledgementError403): http.StatusForbidden
 //	- "conflict" (type *connect.AcknowledgementError409): http.StatusConflict
 //	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.NotFound): http.StatusNotFound
+//	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -1297,6 +1317,10 @@ func DecodePesaLinkSendToAccountResponse(decoder func(*http.Response) goahttp.De
 			if err != nil {
 				return nil, goahttp.ErrDecodingError("connect", "PesaLinkSendToAccount", err)
 			}
+			err = ValidatePesaLinkSendToAccountNotFoundResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "PesaLinkSendToAccount", err)
+			}
 			return nil, NewPesaLinkSendToAccountNotFound(&body)
 		case http.StatusMethodNotAllowed:
 			var (
@@ -1373,7 +1397,7 @@ func EncodePesaLinkSendToPhoneRequest(encoder func(*http.Request) goahttp.Encode
 //	- "forbidden" (type *connect.AcknowledgementError403): http.StatusForbidden
 //	- "conflict" (type *connect.AcknowledgementError409): http.StatusConflict
 //	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.NotFound): http.StatusNotFound
+//	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -1470,6 +1494,10 @@ func DecodePesaLinkSendToPhoneResponse(decoder func(*http.Response) goahttp.Deco
 			if err != nil {
 				return nil, goahttp.ErrDecodingError("connect", "PesaLinkSendToPhone", err)
 			}
+			err = ValidatePesaLinkSendToPhoneNotFoundResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "PesaLinkSendToPhone", err)
+			}
 			return nil, NewPesaLinkSendToPhoneNotFound(&body)
 		case http.StatusMethodNotAllowed:
 			var (
@@ -1545,7 +1573,7 @@ func EncodeSendToMPesaRequest(encoder func(*http.Request) goahttp.Encoder) func(
 //	- "forbidden" (type *connect.AcknowledgementError403): http.StatusForbidden
 //	- "conflict" (type *connect.AcknowledgementError409): http.StatusConflict
 //	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.NotFound): http.StatusNotFound
+//	- "not_found" (type *goa.ServiceError): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -1642,6 +1670,10 @@ func DecodeSendToMPesaResponse(decoder func(*http.Response) goahttp.Decoder, res
 			if err != nil {
 				return nil, goahttp.ErrDecodingError("connect", "SendToMPesa", err)
 			}
+			err = ValidateSendToMPesaNotFoundResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "SendToMPesa", err)
+			}
 			return nil, NewSendToMPesaNotFound(&body)
 		case http.StatusMethodNotAllowed:
 			var (
@@ -1715,7 +1747,7 @@ func EncodeTransactionStatusRequest(encoder func(*http.Request) goahttp.Encoder)
 // DecodeTransactionStatusResponse may return the following errors:
 //	- "bad_request" (type *connect.ErrorResponse): http.StatusBadRequest
 //	- "unauthorized" (type *connect.Missingcredentials): http.StatusUnauthorized
-//	- "not_found" (type *connect.NotFound): http.StatusNotFound
+//	- "not_found" (type *connect.Notfounderrorresponse): http.StatusNotFound
 //	- "not_allowed" (type *goa.ServiceError): http.StatusMethodNotAllowed
 //	- "timeout" (type *goa.ServiceError): http.StatusRequestTimeout
 //	- error: internal error
@@ -1783,6 +1815,10 @@ func DecodeTransactionStatusResponse(decoder func(*http.Response) goahttp.Decode
 			err = decoder(resp).Decode(&body)
 			if err != nil {
 				return nil, goahttp.ErrDecodingError("connect", "TransactionStatus", err)
+			}
+			err = ValidateTransactionStatusNotFoundResponseBody(&body)
+			if err != nil {
+				return nil, goahttp.ErrValidationError("connect", "TransactionStatus", err)
 			}
 			return nil, NewTransactionStatusNotFound(&body)
 		case http.StatusMethodNotAllowed:

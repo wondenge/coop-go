@@ -473,11 +473,19 @@ type AccountFullStatementUnauthorizedResponseBody struct {
 // service "AccountFullStatement" endpoint HTTP response body for the
 // "not_found" error.
 type AccountFullStatementNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name *string `form:"name,omitempty" json:"name,omitempty" xml:"name,omitempty"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID *string `form:"id,omitempty" json:"id,omitempty" xml:"id,omitempty"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
+	// Is the error temporary?
+	Temporary *bool `form:"temporary,omitempty" json:"temporary,omitempty" xml:"temporary,omitempty"`
+	// Is the error a timeout?
+	Timeout *bool `form:"timeout,omitempty" json:"timeout,omitempty" xml:"timeout,omitempty"`
+	// Is the error a server-side fault?
+	Fault *bool `form:"fault,omitempty" json:"fault,omitempty" xml:"fault,omitempty"`
 }
 
 // AccountFullStatementNotAllowedResponseBody is the type of the "connect"
@@ -546,11 +554,19 @@ type AccountMiniStatementUnauthorizedResponseBody struct {
 // service "AccountMiniStatement" endpoint HTTP response body for the
 // "not_found" error.
 type AccountMiniStatementNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name *string `form:"name,omitempty" json:"name,omitempty" xml:"name,omitempty"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID *string `form:"id,omitempty" json:"id,omitempty" xml:"id,omitempty"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
+	// Is the error temporary?
+	Temporary *bool `form:"temporary,omitempty" json:"temporary,omitempty" xml:"temporary,omitempty"`
+	// Is the error a timeout?
+	Timeout *bool `form:"timeout,omitempty" json:"timeout,omitempty" xml:"timeout,omitempty"`
+	// Is the error a server-side fault?
+	Fault *bool `form:"fault,omitempty" json:"fault,omitempty" xml:"fault,omitempty"`
 }
 
 // AccountMiniStatementNotAllowedResponseBody is the type of the "connect"
@@ -679,11 +695,19 @@ type AccountValidationUnauthorizedResponseBody struct {
 // AccountValidationNotFoundResponseBody is the type of the "connect" service
 // "AccountValidation" endpoint HTTP response body for the "not_found" error.
 type AccountValidationNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name *string `form:"name,omitempty" json:"name,omitempty" xml:"name,omitempty"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID *string `form:"id,omitempty" json:"id,omitempty" xml:"id,omitempty"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
+	// Is the error temporary?
+	Temporary *bool `form:"temporary,omitempty" json:"temporary,omitempty" xml:"temporary,omitempty"`
+	// Is the error a timeout?
+	Timeout *bool `form:"timeout,omitempty" json:"timeout,omitempty" xml:"timeout,omitempty"`
+	// Is the error a server-side fault?
+	Fault *bool `form:"fault,omitempty" json:"fault,omitempty" xml:"fault,omitempty"`
 }
 
 // AccountValidationNotAllowedResponseBody is the type of the "connect" service
@@ -748,11 +772,19 @@ type ExchangeRateUnauthorizedResponseBody struct {
 // ExchangeRateNotFoundResponseBody is the type of the "connect" service
 // "ExchangeRate" endpoint HTTP response body for the "not_found" error.
 type ExchangeRateNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name *string `form:"name,omitempty" json:"name,omitempty" xml:"name,omitempty"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID *string `form:"id,omitempty" json:"id,omitempty" xml:"id,omitempty"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
+	// Is the error temporary?
+	Temporary *bool `form:"temporary,omitempty" json:"temporary,omitempty" xml:"temporary,omitempty"`
+	// Is the error a timeout?
+	Timeout *bool `form:"timeout,omitempty" json:"timeout,omitempty" xml:"timeout,omitempty"`
+	// Is the error a server-side fault?
+	Fault *bool `form:"fault,omitempty" json:"fault,omitempty" xml:"fault,omitempty"`
 }
 
 // ExchangeRateNotAllowedResponseBody is the type of the "connect" service
@@ -846,11 +878,19 @@ type IFTAccountToAccountUnauthorizedResponseBody struct {
 // IFTAccountToAccountNotFoundResponseBody is the type of the "connect" service
 // "IFTAccountToAccount" endpoint HTTP response body for the "not_found" error.
 type IFTAccountToAccountNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name *string `form:"name,omitempty" json:"name,omitempty" xml:"name,omitempty"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID *string `form:"id,omitempty" json:"id,omitempty" xml:"id,omitempty"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
+	// Is the error temporary?
+	Temporary *bool `form:"temporary,omitempty" json:"temporary,omitempty" xml:"temporary,omitempty"`
+	// Is the error a timeout?
+	Timeout *bool `form:"timeout,omitempty" json:"timeout,omitempty" xml:"timeout,omitempty"`
+	// Is the error a server-side fault?
+	Fault *bool `form:"fault,omitempty" json:"fault,omitempty" xml:"fault,omitempty"`
 }
 
 // IFTAccountToAccountNotAllowedResponseBody is the type of the "connect"
@@ -1014,11 +1054,19 @@ type PesaLinkSendToAccountUnauthorizedResponseBody struct {
 // service "PesaLinkSendToAccount" endpoint HTTP response body for the
 // "not_found" error.
 type PesaLinkSendToAccountNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name *string `form:"name,omitempty" json:"name,omitempty" xml:"name,omitempty"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID *string `form:"id,omitempty" json:"id,omitempty" xml:"id,omitempty"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
+	// Is the error temporary?
+	Temporary *bool `form:"temporary,omitempty" json:"temporary,omitempty" xml:"temporary,omitempty"`
+	// Is the error a timeout?
+	Timeout *bool `form:"timeout,omitempty" json:"timeout,omitempty" xml:"timeout,omitempty"`
+	// Is the error a server-side fault?
+	Fault *bool `form:"fault,omitempty" json:"fault,omitempty" xml:"fault,omitempty"`
 }
 
 // PesaLinkSendToAccountNotAllowedResponseBody is the type of the "connect"
@@ -1114,11 +1162,19 @@ type PesaLinkSendToPhoneUnauthorizedResponseBody struct {
 // PesaLinkSendToPhoneNotFoundResponseBody is the type of the "connect" service
 // "PesaLinkSendToPhone" endpoint HTTP response body for the "not_found" error.
 type PesaLinkSendToPhoneNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name *string `form:"name,omitempty" json:"name,omitempty" xml:"name,omitempty"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID *string `form:"id,omitempty" json:"id,omitempty" xml:"id,omitempty"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
+	// Is the error temporary?
+	Temporary *bool `form:"temporary,omitempty" json:"temporary,omitempty" xml:"temporary,omitempty"`
+	// Is the error a timeout?
+	Timeout *bool `form:"timeout,omitempty" json:"timeout,omitempty" xml:"timeout,omitempty"`
+	// Is the error a server-side fault?
+	Fault *bool `form:"fault,omitempty" json:"fault,omitempty" xml:"fault,omitempty"`
 }
 
 // PesaLinkSendToPhoneNotAllowedResponseBody is the type of the "connect"
@@ -1210,11 +1266,19 @@ type SendToMPesaUnauthorizedResponseBody struct {
 // SendToMPesaNotFoundResponseBody is the type of the "connect" service
 // "SendToMPesa" endpoint HTTP response body for the "not_found" error.
 type SendToMPesaNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name *string `form:"name,omitempty" json:"name,omitempty" xml:"name,omitempty"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID *string `form:"id,omitempty" json:"id,omitempty" xml:"id,omitempty"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
+	// Is the error temporary?
+	Temporary *bool `form:"temporary,omitempty" json:"temporary,omitempty" xml:"temporary,omitempty"`
+	// Is the error a timeout?
+	Timeout *bool `form:"timeout,omitempty" json:"timeout,omitempty" xml:"timeout,omitempty"`
+	// Is the error a server-side fault?
+	Fault *bool `form:"fault,omitempty" json:"fault,omitempty" xml:"fault,omitempty"`
 }
 
 // SendToMPesaNotAllowedResponseBody is the type of the "connect" service
@@ -1280,11 +1344,14 @@ type TransactionStatusUnauthorizedResponseBody struct {
 // TransactionStatusNotFoundResponseBody is the type of the "connect" service
 // "TransactionStatus" endpoint HTTP response body for the "not_found" error.
 type TransactionStatusNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Your unique transaction request message identifier
+	MessageReference *string `form:"MessageReference,omitempty" json:"MessageReference,omitempty" xml:"MessageReference,omitempty"`
+	// Acknowledgement message creation timestamp
+	MessageDateTime *string `form:"MessageDateTime,omitempty" json:"MessageDateTime,omitempty" xml:"MessageDateTime,omitempty"`
+	// Transaction request message code
+	MessageCode *string `form:"MessageCode,omitempty" json:"MessageCode,omitempty" xml:"MessageCode,omitempty"`
+	// Transaction request message code description
+	MessageDescription *string `form:"MessageDescription,omitempty" json:"MessageDescription,omitempty" xml:"MessageDescription,omitempty"`
 }
 
 // TransactionStatusNotAllowedResponseBody is the type of the "connect" service
@@ -1801,13 +1868,14 @@ func NewAccountFullStatementUnauthorized(body *AccountFullStatementUnauthorizedR
 
 // NewAccountFullStatementNotFound builds a connect service
 // AccountFullStatement endpoint not_found error.
-func NewAccountFullStatementNotFound(body *AccountFullStatementNotFoundResponseBody) *connect.NotFound {
-	v := &connect.NotFound{
-		Timestamp: body.Timestamp,
-		Status:    body.Status,
-		Error:     body.Error,
-		Message:   body.Message,
-		Path:      body.Path,
+func NewAccountFullStatementNotFound(body *AccountFullStatementNotFoundResponseBody) *goa.ServiceError {
+	v := &goa.ServiceError{
+		Name:      *body.Name,
+		ID:        *body.ID,
+		Message:   *body.Message,
+		Temporary: *body.Temporary,
+		Timeout:   *body.Timeout,
+		Fault:     *body.Fault,
 	}
 
 	return v
@@ -1898,13 +1966,14 @@ func NewAccountMiniStatementUnauthorized(body *AccountMiniStatementUnauthorizedR
 
 // NewAccountMiniStatementNotFound builds a connect service
 // AccountMiniStatement endpoint not_found error.
-func NewAccountMiniStatementNotFound(body *AccountMiniStatementNotFoundResponseBody) *connect.NotFound {
-	v := &connect.NotFound{
-		Timestamp: body.Timestamp,
-		Status:    body.Status,
-		Error:     body.Error,
-		Message:   body.Message,
-		Path:      body.Path,
+func NewAccountMiniStatementNotFound(body *AccountMiniStatementNotFoundResponseBody) *goa.ServiceError {
+	v := &goa.ServiceError{
+		Name:      *body.Name,
+		ID:        *body.ID,
+		Message:   *body.Message,
+		Temporary: *body.Temporary,
+		Timeout:   *body.Timeout,
+		Fault:     *body.Fault,
 	}
 
 	return v
@@ -2073,13 +2142,14 @@ func NewAccountValidationUnauthorized(body *AccountValidationUnauthorizedRespons
 
 // NewAccountValidationNotFound builds a connect service AccountValidation
 // endpoint not_found error.
-func NewAccountValidationNotFound(body *AccountValidationNotFoundResponseBody) *connect.NotFound {
-	v := &connect.NotFound{
-		Timestamp: body.Timestamp,
-		Status:    body.Status,
-		Error:     body.Error,
-		Message:   body.Message,
-		Path:      body.Path,
+func NewAccountValidationNotFound(body *AccountValidationNotFoundResponseBody) *goa.ServiceError {
+	v := &goa.ServiceError{
+		Name:      *body.Name,
+		ID:        *body.ID,
+		Message:   *body.Message,
+		Temporary: *body.Temporary,
+		Timeout:   *body.Timeout,
+		Fault:     *body.Fault,
 	}
 
 	return v
@@ -2168,13 +2238,14 @@ func NewExchangeRateUnauthorized(body *ExchangeRateUnauthorizedResponseBody) *co
 
 // NewExchangeRateNotFound builds a connect service ExchangeRate endpoint
 // not_found error.
-func NewExchangeRateNotFound(body *ExchangeRateNotFoundResponseBody) *connect.NotFound {
-	v := &connect.NotFound{
-		Timestamp: body.Timestamp,
-		Status:    body.Status,
-		Error:     body.Error,
-		Message:   body.Message,
-		Path:      body.Path,
+func NewExchangeRateNotFound(body *ExchangeRateNotFoundResponseBody) *goa.ServiceError {
+	v := &goa.ServiceError{
+		Name:      *body.Name,
+		ID:        *body.ID,
+		Message:   *body.Message,
+		Temporary: *body.Temporary,
+		Timeout:   *body.Timeout,
+		Fault:     *body.Fault,
 	}
 
 	return v
@@ -2283,13 +2354,14 @@ func NewIFTAccountToAccountUnauthorized(body *IFTAccountToAccountUnauthorizedRes
 
 // NewIFTAccountToAccountNotFound builds a connect service IFTAccountToAccount
 // endpoint not_found error.
-func NewIFTAccountToAccountNotFound(body *IFTAccountToAccountNotFoundResponseBody) *connect.NotFound {
-	v := &connect.NotFound{
-		Timestamp: body.Timestamp,
-		Status:    body.Status,
-		Error:     body.Error,
-		Message:   body.Message,
-		Path:      body.Path,
+func NewIFTAccountToAccountNotFound(body *IFTAccountToAccountNotFoundResponseBody) *goa.ServiceError {
+	v := &goa.ServiceError{
+		Name:      *body.Name,
+		ID:        *body.ID,
+		Message:   *body.Message,
+		Temporary: *body.Temporary,
+		Timeout:   *body.Timeout,
+		Fault:     *body.Fault,
 	}
 
 	return v
@@ -2469,13 +2541,14 @@ func NewPesaLinkSendToAccountUnauthorized(body *PesaLinkSendToAccountUnauthorize
 
 // NewPesaLinkSendToAccountNotFound builds a connect service
 // PesaLinkSendToAccount endpoint not_found error.
-func NewPesaLinkSendToAccountNotFound(body *PesaLinkSendToAccountNotFoundResponseBody) *connect.NotFound {
-	v := &connect.NotFound{
-		Timestamp: body.Timestamp,
-		Status:    body.Status,
-		Error:     body.Error,
-		Message:   body.Message,
-		Path:      body.Path,
+func NewPesaLinkSendToAccountNotFound(body *PesaLinkSendToAccountNotFoundResponseBody) *goa.ServiceError {
+	v := &goa.ServiceError{
+		Name:      *body.Name,
+		ID:        *body.ID,
+		Message:   *body.Message,
+		Temporary: *body.Temporary,
+		Timeout:   *body.Timeout,
+		Fault:     *body.Fault,
 	}
 
 	return v
@@ -2584,13 +2657,14 @@ func NewPesaLinkSendToPhoneUnauthorized(body *PesaLinkSendToPhoneUnauthorizedRes
 
 // NewPesaLinkSendToPhoneNotFound builds a connect service PesaLinkSendToPhone
 // endpoint not_found error.
-func NewPesaLinkSendToPhoneNotFound(body *PesaLinkSendToPhoneNotFoundResponseBody) *connect.NotFound {
-	v := &connect.NotFound{
-		Timestamp: body.Timestamp,
-		Status:    body.Status,
-		Error:     body.Error,
-		Message:   body.Message,
-		Path:      body.Path,
+func NewPesaLinkSendToPhoneNotFound(body *PesaLinkSendToPhoneNotFoundResponseBody) *goa.ServiceError {
+	v := &goa.ServiceError{
+		Name:      *body.Name,
+		ID:        *body.ID,
+		Message:   *body.Message,
+		Temporary: *body.Temporary,
+		Timeout:   *body.Timeout,
+		Fault:     *body.Fault,
 	}
 
 	return v
@@ -2699,13 +2773,14 @@ func NewSendToMPesaUnauthorized(body *SendToMPesaUnauthorizedResponseBody) *conn
 
 // NewSendToMPesaNotFound builds a connect service SendToMPesa endpoint
 // not_found error.
-func NewSendToMPesaNotFound(body *SendToMPesaNotFoundResponseBody) *connect.NotFound {
-	v := &connect.NotFound{
-		Timestamp: body.Timestamp,
-		Status:    body.Status,
-		Error:     body.Error,
-		Message:   body.Message,
-		Path:      body.Path,
+func NewSendToMPesaNotFound(body *SendToMPesaNotFoundResponseBody) *goa.ServiceError {
+	v := &goa.ServiceError{
+		Name:      *body.Name,
+		ID:        *body.ID,
+		Message:   *body.Message,
+		Temporary: *body.Temporary,
+		Timeout:   *body.Timeout,
+		Fault:     *body.Fault,
 	}
 
 	return v
@@ -2793,13 +2868,12 @@ func NewTransactionStatusUnauthorized(body *TransactionStatusUnauthorizedRespons
 
 // NewTransactionStatusNotFound builds a connect service TransactionStatus
 // endpoint not_found error.
-func NewTransactionStatusNotFound(body *TransactionStatusNotFoundResponseBody) *connect.NotFound {
-	v := &connect.NotFound{
-		Timestamp: body.Timestamp,
-		Status:    body.Status,
-		Error:     body.Error,
-		Message:   body.Message,
-		Path:      body.Path,
+func NewTransactionStatusNotFound(body *TransactionStatusNotFoundResponseBody) *connect.Notfounderrorresponse {
+	v := &connect.Notfounderrorresponse{
+		MessageReference:   *body.MessageReference,
+		MessageDateTime:    *body.MessageDateTime,
+		MessageCode:        *body.MessageCode,
+		MessageDescription: *body.MessageDescription,
 	}
 
 	return v
@@ -2945,6 +3019,30 @@ func ValidateAccountFullStatementBadRequestResponseBody(body *AccountFullStateme
 	return
 }
 
+// ValidateAccountFullStatementNotFoundResponseBody runs the validations
+// defined on AccountFullStatement_not_found_Response_Body
+func ValidateAccountFullStatementNotFoundResponseBody(body *AccountFullStatementNotFoundResponseBody) (err error) {
+	if body.Name == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("name", "body"))
+	}
+	if body.ID == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("id", "body"))
+	}
+	if body.Message == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("message", "body"))
+	}
+	if body.Temporary == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("temporary", "body"))
+	}
+	if body.Timeout == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("timeout", "body"))
+	}
+	if body.Fault == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("fault", "body"))
+	}
+	return
+}
+
 // ValidateAccountFullStatementNotAllowedResponseBody runs the validations
 // defined on AccountFullStatement_not_allowed_Response_Body
 func ValidateAccountFullStatementNotAllowedResponseBody(body *AccountFullStatementNotAllowedResponseBody) (err error) {
@@ -3020,6 +3118,30 @@ func ValidateAccountMiniStatementBadRequestResponseBody(body *AccountMiniStateme
 	}
 	if body.MessageDateTime != nil {
 		err = goa.MergeErrors(err, goa.ValidateFormat("body.MessageDateTime", *body.MessageDateTime, goa.FormatDateTime))
+	}
+	return
+}
+
+// ValidateAccountMiniStatementNotFoundResponseBody runs the validations
+// defined on AccountMiniStatement_not_found_Response_Body
+func ValidateAccountMiniStatementNotFoundResponseBody(body *AccountMiniStatementNotFoundResponseBody) (err error) {
+	if body.Name == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("name", "body"))
+	}
+	if body.ID == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("id", "body"))
+	}
+	if body.Message == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("message", "body"))
+	}
+	if body.Temporary == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("temporary", "body"))
+	}
+	if body.Timeout == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("timeout", "body"))
+	}
+	if body.Fault == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("fault", "body"))
 	}
 	return
 }
@@ -3182,6 +3304,30 @@ func ValidateAccountValidationBadRequestResponseBody(body *AccountValidationBadR
 	return
 }
 
+// ValidateAccountValidationNotFoundResponseBody runs the validations defined
+// on AccountValidation_not_found_Response_Body
+func ValidateAccountValidationNotFoundResponseBody(body *AccountValidationNotFoundResponseBody) (err error) {
+	if body.Name == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("name", "body"))
+	}
+	if body.ID == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("id", "body"))
+	}
+	if body.Message == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("message", "body"))
+	}
+	if body.Temporary == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("temporary", "body"))
+	}
+	if body.Timeout == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("timeout", "body"))
+	}
+	if body.Fault == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("fault", "body"))
+	}
+	return
+}
+
 // ValidateAccountValidationNotAllowedResponseBody runs the validations defined
 // on AccountValidation_not_allowed_Response_Body
 func ValidateAccountValidationNotAllowedResponseBody(body *AccountValidationNotAllowedResponseBody) (err error) {
@@ -3257,6 +3403,30 @@ func ValidateExchangeRateBadRequestResponseBody(body *ExchangeRateBadRequestResp
 	}
 	if body.MessageDateTime != nil {
 		err = goa.MergeErrors(err, goa.ValidateFormat("body.MessageDateTime", *body.MessageDateTime, goa.FormatDateTime))
+	}
+	return
+}
+
+// ValidateExchangeRateNotFoundResponseBody runs the validations defined on
+// ExchangeRate_not_found_Response_Body
+func ValidateExchangeRateNotFoundResponseBody(body *ExchangeRateNotFoundResponseBody) (err error) {
+	if body.Name == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("name", "body"))
+	}
+	if body.ID == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("id", "body"))
+	}
+	if body.Message == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("message", "body"))
+	}
+	if body.Temporary == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("temporary", "body"))
+	}
+	if body.Timeout == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("timeout", "body"))
+	}
+	if body.Fault == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("fault", "body"))
 	}
 	return
 }
@@ -3398,6 +3568,30 @@ func ValidateIFTAccountToAccountConflictResponseBody(body *IFTAccountToAccountCo
 	}
 	if body.MessageDateTime != nil {
 		err = goa.MergeErrors(err, goa.ValidateFormat("body.MessageDateTime", *body.MessageDateTime, goa.FormatDateTime))
+	}
+	return
+}
+
+// ValidateIFTAccountToAccountNotFoundResponseBody runs the validations defined
+// on IFTAccountToAccount_not_found_Response_Body
+func ValidateIFTAccountToAccountNotFoundResponseBody(body *IFTAccountToAccountNotFoundResponseBody) (err error) {
+	if body.Name == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("name", "body"))
+	}
+	if body.ID == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("id", "body"))
+	}
+	if body.Message == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("message", "body"))
+	}
+	if body.Temporary == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("temporary", "body"))
+	}
+	if body.Timeout == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("timeout", "body"))
+	}
+	if body.Fault == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("fault", "body"))
 	}
 	return
 }
@@ -3646,6 +3840,30 @@ func ValidatePesaLinkSendToAccountConflictResponseBody(body *PesaLinkSendToAccou
 	return
 }
 
+// ValidatePesaLinkSendToAccountNotFoundResponseBody runs the validations
+// defined on PesaLinkSendToAccount_not_found_Response_Body
+func ValidatePesaLinkSendToAccountNotFoundResponseBody(body *PesaLinkSendToAccountNotFoundResponseBody) (err error) {
+	if body.Name == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("name", "body"))
+	}
+	if body.ID == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("id", "body"))
+	}
+	if body.Message == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("message", "body"))
+	}
+	if body.Temporary == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("temporary", "body"))
+	}
+	if body.Timeout == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("timeout", "body"))
+	}
+	if body.Fault == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("fault", "body"))
+	}
+	return
+}
+
 // ValidatePesaLinkSendToAccountNotAllowedResponseBody runs the validations
 // defined on PesaLinkSendToAccount_not_allowed_Response_Body
 func ValidatePesaLinkSendToAccountNotAllowedResponseBody(body *PesaLinkSendToAccountNotAllowedResponseBody) (err error) {
@@ -3783,6 +4001,30 @@ func ValidatePesaLinkSendToPhoneConflictResponseBody(body *PesaLinkSendToPhoneCo
 	}
 	if body.MessageDateTime != nil {
 		err = goa.MergeErrors(err, goa.ValidateFormat("body.MessageDateTime", *body.MessageDateTime, goa.FormatDateTime))
+	}
+	return
+}
+
+// ValidatePesaLinkSendToPhoneNotFoundResponseBody runs the validations defined
+// on PesaLinkSendToPhone_not_found_Response_Body
+func ValidatePesaLinkSendToPhoneNotFoundResponseBody(body *PesaLinkSendToPhoneNotFoundResponseBody) (err error) {
+	if body.Name == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("name", "body"))
+	}
+	if body.ID == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("id", "body"))
+	}
+	if body.Message == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("message", "body"))
+	}
+	if body.Temporary == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("temporary", "body"))
+	}
+	if body.Timeout == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("timeout", "body"))
+	}
+	if body.Fault == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("fault", "body"))
 	}
 	return
 }
@@ -3928,6 +4170,30 @@ func ValidateSendToMPesaConflictResponseBody(body *SendToMPesaConflictResponseBo
 	return
 }
 
+// ValidateSendToMPesaNotFoundResponseBody runs the validations defined on
+// SendToMPesa_not_found_Response_Body
+func ValidateSendToMPesaNotFoundResponseBody(body *SendToMPesaNotFoundResponseBody) (err error) {
+	if body.Name == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("name", "body"))
+	}
+	if body.ID == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("id", "body"))
+	}
+	if body.Message == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("message", "body"))
+	}
+	if body.Temporary == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("temporary", "body"))
+	}
+	if body.Timeout == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("timeout", "body"))
+	}
+	if body.Fault == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("fault", "body"))
+	}
+	return
+}
+
 // ValidateSendToMPesaNotAllowedResponseBody runs the validations defined on
 // SendToMPesa_not_allowed_Response_Body
 func ValidateSendToMPesaNotAllowedResponseBody(body *SendToMPesaNotAllowedResponseBody) (err error) {
@@ -3979,6 +4245,37 @@ func ValidateSendToMPesaTimeoutResponseBody(body *SendToMPesaTimeoutResponseBody
 // ValidateTransactionStatusBadRequestResponseBody runs the validations defined
 // on TransactionStatus_bad_request_Response_Body
 func ValidateTransactionStatusBadRequestResponseBody(body *TransactionStatusBadRequestResponseBody) (err error) {
+	if body.MessageReference == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("MessageReference", "body"))
+	}
+	if body.MessageDateTime == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("MessageDateTime", "body"))
+	}
+	if body.MessageCode == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("MessageCode", "body"))
+	}
+	if body.MessageDescription == nil {
+		err = goa.MergeErrors(err, goa.MissingFieldError("MessageDescription", "body"))
+	}
+	if body.MessageReference != nil {
+		if utf8.RuneCountInString(*body.MessageReference) < 1 {
+			err = goa.MergeErrors(err, goa.InvalidLengthError("body.MessageReference", *body.MessageReference, utf8.RuneCountInString(*body.MessageReference), 1, true))
+		}
+	}
+	if body.MessageReference != nil {
+		if utf8.RuneCountInString(*body.MessageReference) > 27 {
+			err = goa.MergeErrors(err, goa.InvalidLengthError("body.MessageReference", *body.MessageReference, utf8.RuneCountInString(*body.MessageReference), 27, false))
+		}
+	}
+	if body.MessageDateTime != nil {
+		err = goa.MergeErrors(err, goa.ValidateFormat("body.MessageDateTime", *body.MessageDateTime, goa.FormatDateTime))
+	}
+	return
+}
+
+// ValidateTransactionStatusNotFoundResponseBody runs the validations defined
+// on TransactionStatus_not_found_Response_Body
+func ValidateTransactionStatusNotFoundResponseBody(body *TransactionStatusNotFoundResponseBody) (err error) {
 	if body.MessageReference == nil {
 		err = goa.MergeErrors(err, goa.MissingFieldError("MessageReference", "body"))
 	}

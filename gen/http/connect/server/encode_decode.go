@@ -193,7 +193,7 @@ func EncodeAccountFullStatementError(encoder func(context.Context, http.Response
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.NotFound)
+			res := v.(*goa.ServiceError)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -307,7 +307,7 @@ func EncodeAccountMiniStatementError(encoder func(context.Context, http.Response
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.NotFound)
+			res := v.(*goa.ServiceError)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -523,7 +523,7 @@ func EncodeAccountValidationError(encoder func(context.Context, http.ResponseWri
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.NotFound)
+			res := v.(*goa.ServiceError)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -637,7 +637,7 @@ func EncodeExchangeRateError(encoder func(context.Context, http.ResponseWriter) 
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.NotFound)
+			res := v.(*goa.ServiceError)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -775,7 +775,7 @@ func EncodeIFTAccountToAccountError(encoder func(context.Context, http.ResponseW
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.NotFound)
+			res := v.(*goa.ServiceError)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1015,7 +1015,7 @@ func EncodePesaLinkSendToAccountError(encoder func(context.Context, http.Respons
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.NotFound)
+			res := v.(*goa.ServiceError)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1153,7 +1153,7 @@ func EncodePesaLinkSendToPhoneError(encoder func(context.Context, http.ResponseW
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.NotFound)
+			res := v.(*goa.ServiceError)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1291,7 +1291,7 @@ func EncodeSendToMPesaError(encoder func(context.Context, http.ResponseWriter) g
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.NotFound)
+			res := v.(*goa.ServiceError)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {
@@ -1405,7 +1405,7 @@ func EncodeTransactionStatusError(encoder func(context.Context, http.ResponseWri
 			w.WriteHeader(http.StatusUnauthorized)
 			return enc.Encode(body)
 		case "not_found":
-			res := v.(*connect.NotFound)
+			res := v.(*connect.Notfounderrorresponse)
 			enc := encoder(ctx, w)
 			var body interface{}
 			if formatter != nil {

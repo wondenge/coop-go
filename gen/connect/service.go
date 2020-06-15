@@ -535,15 +535,6 @@ type Missingcredentials struct {
 	}
 }
 
-// Not Found
-type NotFound struct {
-	Timestamp *string
-	Status    *string
-	Error     *string
-	Message   *string
-	Path      *string
-}
-
 // Bad Request Error Response
 type AcknowledgementError400 struct {
 	// Your unique transaction request message identifier
@@ -592,6 +583,18 @@ type ErrorAcknowledgement struct {
 	MessageDescription string
 }
 
+// Not Found Error Response
+type Notfounderrorresponse struct {
+	// Your unique transaction request message identifier
+	MessageReference string
+	// Acknowledgement message creation timestamp
+	MessageDateTime string
+	// Transaction request message code
+	MessageCode string
+	// Transaction request message code description
+	MessageDescription string
+}
+
 // Error returns an error description.
 func (e *ErrorResponse) Error() string {
 	return "Error Response"
@@ -610,16 +613,6 @@ func (e *Missingcredentials) Error() string {
 // ErrorName returns "Missingcredentials".
 func (e *Missingcredentials) ErrorName() string {
 	return "unauthorized"
-}
-
-// Error returns an error description.
-func (e *NotFound) Error() string {
-	return "Not Found"
-}
-
-// ErrorName returns "NotFound".
-func (e *NotFound) ErrorName() string {
-	return "not_found"
 }
 
 // Error returns an error description.
@@ -662,6 +655,16 @@ func (e *ErrorAcknowledgement) ErrorName() string {
 	return "unauthorized"
 }
 
+// Error returns an error description.
+func (e *Notfounderrorresponse) Error() string {
+	return "Not Found Error Response"
+}
+
+// ErrorName returns "Notfounderrorresponse".
+func (e *Notfounderrorresponse) ErrorName() string {
+	return "not_found"
+}
+
 // MakeNotAllowed builds a goa.ServiceError from an error.
 func MakeNotAllowed(err error) *goa.ServiceError {
 	return &goa.ServiceError{
@@ -675,6 +678,15 @@ func MakeNotAllowed(err error) *goa.ServiceError {
 func MakeTimeout(err error) *goa.ServiceError {
 	return &goa.ServiceError{
 		Name:    "timeout",
+		ID:      goa.NewErrorID(),
+		Message: err.Error(),
+	}
+}
+
+// MakeNotFound builds a goa.ServiceError from an error.
+func MakeNotFound(err error) *goa.ServiceError {
+	return &goa.ServiceError{
+		Name:    "not_found",
 		ID:      goa.NewErrorID(),
 		Message: err.Error(),
 	}

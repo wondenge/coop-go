@@ -473,11 +473,19 @@ type AccountFullStatementUnauthorizedResponseBody struct {
 // service "AccountFullStatement" endpoint HTTP response body for the
 // "not_found" error.
 type AccountFullStatementNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name string `form:"name" json:"name" xml:"name"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID string `form:"id" json:"id" xml:"id"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message string `form:"message" json:"message" xml:"message"`
+	// Is the error temporary?
+	Temporary bool `form:"temporary" json:"temporary" xml:"temporary"`
+	// Is the error a timeout?
+	Timeout bool `form:"timeout" json:"timeout" xml:"timeout"`
+	// Is the error a server-side fault?
+	Fault bool `form:"fault" json:"fault" xml:"fault"`
 }
 
 // AccountFullStatementNotAllowedResponseBody is the type of the "connect"
@@ -546,11 +554,19 @@ type AccountMiniStatementUnauthorizedResponseBody struct {
 // service "AccountMiniStatement" endpoint HTTP response body for the
 // "not_found" error.
 type AccountMiniStatementNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name string `form:"name" json:"name" xml:"name"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID string `form:"id" json:"id" xml:"id"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message string `form:"message" json:"message" xml:"message"`
+	// Is the error temporary?
+	Temporary bool `form:"temporary" json:"temporary" xml:"temporary"`
+	// Is the error a timeout?
+	Timeout bool `form:"timeout" json:"timeout" xml:"timeout"`
+	// Is the error a server-side fault?
+	Fault bool `form:"fault" json:"fault" xml:"fault"`
 }
 
 // AccountMiniStatementNotAllowedResponseBody is the type of the "connect"
@@ -679,11 +695,19 @@ type AccountValidationUnauthorizedResponseBody struct {
 // AccountValidationNotFoundResponseBody is the type of the "connect" service
 // "AccountValidation" endpoint HTTP response body for the "not_found" error.
 type AccountValidationNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name string `form:"name" json:"name" xml:"name"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID string `form:"id" json:"id" xml:"id"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message string `form:"message" json:"message" xml:"message"`
+	// Is the error temporary?
+	Temporary bool `form:"temporary" json:"temporary" xml:"temporary"`
+	// Is the error a timeout?
+	Timeout bool `form:"timeout" json:"timeout" xml:"timeout"`
+	// Is the error a server-side fault?
+	Fault bool `form:"fault" json:"fault" xml:"fault"`
 }
 
 // AccountValidationNotAllowedResponseBody is the type of the "connect" service
@@ -748,11 +772,19 @@ type ExchangeRateUnauthorizedResponseBody struct {
 // ExchangeRateNotFoundResponseBody is the type of the "connect" service
 // "ExchangeRate" endpoint HTTP response body for the "not_found" error.
 type ExchangeRateNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name string `form:"name" json:"name" xml:"name"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID string `form:"id" json:"id" xml:"id"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message string `form:"message" json:"message" xml:"message"`
+	// Is the error temporary?
+	Temporary bool `form:"temporary" json:"temporary" xml:"temporary"`
+	// Is the error a timeout?
+	Timeout bool `form:"timeout" json:"timeout" xml:"timeout"`
+	// Is the error a server-side fault?
+	Fault bool `form:"fault" json:"fault" xml:"fault"`
 }
 
 // ExchangeRateNotAllowedResponseBody is the type of the "connect" service
@@ -846,11 +878,19 @@ type IFTAccountToAccountUnauthorizedResponseBody struct {
 // IFTAccountToAccountNotFoundResponseBody is the type of the "connect" service
 // "IFTAccountToAccount" endpoint HTTP response body for the "not_found" error.
 type IFTAccountToAccountNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name string `form:"name" json:"name" xml:"name"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID string `form:"id" json:"id" xml:"id"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message string `form:"message" json:"message" xml:"message"`
+	// Is the error temporary?
+	Temporary bool `form:"temporary" json:"temporary" xml:"temporary"`
+	// Is the error a timeout?
+	Timeout bool `form:"timeout" json:"timeout" xml:"timeout"`
+	// Is the error a server-side fault?
+	Fault bool `form:"fault" json:"fault" xml:"fault"`
 }
 
 // IFTAccountToAccountNotAllowedResponseBody is the type of the "connect"
@@ -1014,11 +1054,19 @@ type PesaLinkSendToAccountUnauthorizedResponseBody struct {
 // service "PesaLinkSendToAccount" endpoint HTTP response body for the
 // "not_found" error.
 type PesaLinkSendToAccountNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name string `form:"name" json:"name" xml:"name"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID string `form:"id" json:"id" xml:"id"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message string `form:"message" json:"message" xml:"message"`
+	// Is the error temporary?
+	Temporary bool `form:"temporary" json:"temporary" xml:"temporary"`
+	// Is the error a timeout?
+	Timeout bool `form:"timeout" json:"timeout" xml:"timeout"`
+	// Is the error a server-side fault?
+	Fault bool `form:"fault" json:"fault" xml:"fault"`
 }
 
 // PesaLinkSendToAccountNotAllowedResponseBody is the type of the "connect"
@@ -1114,11 +1162,19 @@ type PesaLinkSendToPhoneUnauthorizedResponseBody struct {
 // PesaLinkSendToPhoneNotFoundResponseBody is the type of the "connect" service
 // "PesaLinkSendToPhone" endpoint HTTP response body for the "not_found" error.
 type PesaLinkSendToPhoneNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name string `form:"name" json:"name" xml:"name"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID string `form:"id" json:"id" xml:"id"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message string `form:"message" json:"message" xml:"message"`
+	// Is the error temporary?
+	Temporary bool `form:"temporary" json:"temporary" xml:"temporary"`
+	// Is the error a timeout?
+	Timeout bool `form:"timeout" json:"timeout" xml:"timeout"`
+	// Is the error a server-side fault?
+	Fault bool `form:"fault" json:"fault" xml:"fault"`
 }
 
 // PesaLinkSendToPhoneNotAllowedResponseBody is the type of the "connect"
@@ -1210,11 +1266,19 @@ type SendToMPesaUnauthorizedResponseBody struct {
 // SendToMPesaNotFoundResponseBody is the type of the "connect" service
 // "SendToMPesa" endpoint HTTP response body for the "not_found" error.
 type SendToMPesaNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Name is the name of this class of errors.
+	Name string `form:"name" json:"name" xml:"name"`
+	// ID is a unique identifier for this particular occurrence of the problem.
+	ID string `form:"id" json:"id" xml:"id"`
+	// Message is a human-readable explanation specific to this occurrence of the
+	// problem.
+	Message string `form:"message" json:"message" xml:"message"`
+	// Is the error temporary?
+	Temporary bool `form:"temporary" json:"temporary" xml:"temporary"`
+	// Is the error a timeout?
+	Timeout bool `form:"timeout" json:"timeout" xml:"timeout"`
+	// Is the error a server-side fault?
+	Fault bool `form:"fault" json:"fault" xml:"fault"`
 }
 
 // SendToMPesaNotAllowedResponseBody is the type of the "connect" service
@@ -1280,11 +1344,14 @@ type TransactionStatusUnauthorizedResponseBody struct {
 // TransactionStatusNotFoundResponseBody is the type of the "connect" service
 // "TransactionStatus" endpoint HTTP response body for the "not_found" error.
 type TransactionStatusNotFoundResponseBody struct {
-	Timestamp *string `form:"timestamp,omitempty" json:"timestamp,omitempty" xml:"timestamp,omitempty"`
-	Status    *string `form:"status,omitempty" json:"status,omitempty" xml:"status,omitempty"`
-	Error     *string `form:"error,omitempty" json:"error,omitempty" xml:"error,omitempty"`
-	Message   *string `form:"message,omitempty" json:"message,omitempty" xml:"message,omitempty"`
-	Path      *string `form:"path,omitempty" json:"path,omitempty" xml:"path,omitempty"`
+	// Your unique transaction request message identifier
+	MessageReference string `form:"MessageReference" json:"MessageReference" xml:"MessageReference"`
+	// Acknowledgement message creation timestamp
+	MessageDateTime string `form:"MessageDateTime" json:"MessageDateTime" xml:"MessageDateTime"`
+	// Transaction request message code
+	MessageCode string `form:"MessageCode" json:"MessageCode" xml:"MessageCode"`
+	// Transaction request message code description
+	MessageDescription string `form:"MessageDescription" json:"MessageDescription" xml:"MessageDescription"`
 }
 
 // TransactionStatusNotAllowedResponseBody is the type of the "connect" service
@@ -1768,13 +1835,14 @@ func NewAccountFullStatementUnauthorizedResponseBody(res *connect.Missingcredent
 // NewAccountFullStatementNotFoundResponseBody builds the HTTP response body
 // from the result of the "AccountFullStatement" endpoint of the "connect"
 // service.
-func NewAccountFullStatementNotFoundResponseBody(res *connect.NotFound) *AccountFullStatementNotFoundResponseBody {
+func NewAccountFullStatementNotFoundResponseBody(res *goa.ServiceError) *AccountFullStatementNotFoundResponseBody {
 	body := &AccountFullStatementNotFoundResponseBody{
-		Timestamp: res.Timestamp,
-		Status:    res.Status,
-		Error:     res.Error,
+		Name:      res.Name,
+		ID:        res.ID,
 		Message:   res.Message,
-		Path:      res.Path,
+		Temporary: res.Temporary,
+		Timeout:   res.Timeout,
+		Fault:     res.Fault,
 	}
 	return body
 }
@@ -1844,13 +1912,14 @@ func NewAccountMiniStatementUnauthorizedResponseBody(res *connect.Missingcredent
 // NewAccountMiniStatementNotFoundResponseBody builds the HTTP response body
 // from the result of the "AccountMiniStatement" endpoint of the "connect"
 // service.
-func NewAccountMiniStatementNotFoundResponseBody(res *connect.NotFound) *AccountMiniStatementNotFoundResponseBody {
+func NewAccountMiniStatementNotFoundResponseBody(res *goa.ServiceError) *AccountMiniStatementNotFoundResponseBody {
 	body := &AccountMiniStatementNotFoundResponseBody{
-		Timestamp: res.Timestamp,
-		Status:    res.Status,
-		Error:     res.Error,
+		Name:      res.Name,
+		ID:        res.ID,
 		Message:   res.Message,
-		Path:      res.Path,
+		Temporary: res.Temporary,
+		Timeout:   res.Timeout,
+		Fault:     res.Fault,
 	}
 	return body
 }
@@ -1978,13 +2047,14 @@ func NewAccountValidationUnauthorizedResponseBody(res *connect.Missingcredential
 
 // NewAccountValidationNotFoundResponseBody builds the HTTP response body from
 // the result of the "AccountValidation" endpoint of the "connect" service.
-func NewAccountValidationNotFoundResponseBody(res *connect.NotFound) *AccountValidationNotFoundResponseBody {
+func NewAccountValidationNotFoundResponseBody(res *goa.ServiceError) *AccountValidationNotFoundResponseBody {
 	body := &AccountValidationNotFoundResponseBody{
-		Timestamp: res.Timestamp,
-		Status:    res.Status,
-		Error:     res.Error,
+		Name:      res.Name,
+		ID:        res.ID,
 		Message:   res.Message,
-		Path:      res.Path,
+		Temporary: res.Temporary,
+		Timeout:   res.Timeout,
+		Fault:     res.Fault,
 	}
 	return body
 }
@@ -2049,13 +2119,14 @@ func NewExchangeRateUnauthorizedResponseBody(res *connect.Missingcredentials) *E
 
 // NewExchangeRateNotFoundResponseBody builds the HTTP response body from the
 // result of the "ExchangeRate" endpoint of the "connect" service.
-func NewExchangeRateNotFoundResponseBody(res *connect.NotFound) *ExchangeRateNotFoundResponseBody {
+func NewExchangeRateNotFoundResponseBody(res *goa.ServiceError) *ExchangeRateNotFoundResponseBody {
 	body := &ExchangeRateNotFoundResponseBody{
-		Timestamp: res.Timestamp,
-		Status:    res.Status,
-		Error:     res.Error,
+		Name:      res.Name,
+		ID:        res.ID,
 		Message:   res.Message,
-		Path:      res.Path,
+		Temporary: res.Temporary,
+		Timeout:   res.Timeout,
+		Fault:     res.Fault,
 	}
 	return body
 }
@@ -2149,13 +2220,14 @@ func NewIFTAccountToAccountUnauthorizedResponseBody(res *connect.Missingcredenti
 // NewIFTAccountToAccountNotFoundResponseBody builds the HTTP response body
 // from the result of the "IFTAccountToAccount" endpoint of the "connect"
 // service.
-func NewIFTAccountToAccountNotFoundResponseBody(res *connect.NotFound) *IFTAccountToAccountNotFoundResponseBody {
+func NewIFTAccountToAccountNotFoundResponseBody(res *goa.ServiceError) *IFTAccountToAccountNotFoundResponseBody {
 	body := &IFTAccountToAccountNotFoundResponseBody{
-		Timestamp: res.Timestamp,
-		Status:    res.Status,
-		Error:     res.Error,
+		Name:      res.Name,
+		ID:        res.ID,
 		Message:   res.Message,
-		Path:      res.Path,
+		Temporary: res.Temporary,
+		Timeout:   res.Timeout,
+		Fault:     res.Fault,
 	}
 	return body
 }
@@ -2304,13 +2376,14 @@ func NewPesaLinkSendToAccountUnauthorizedResponseBody(res *connect.Missingcreden
 // NewPesaLinkSendToAccountNotFoundResponseBody builds the HTTP response body
 // from the result of the "PesaLinkSendToAccount" endpoint of the "connect"
 // service.
-func NewPesaLinkSendToAccountNotFoundResponseBody(res *connect.NotFound) *PesaLinkSendToAccountNotFoundResponseBody {
+func NewPesaLinkSendToAccountNotFoundResponseBody(res *goa.ServiceError) *PesaLinkSendToAccountNotFoundResponseBody {
 	body := &PesaLinkSendToAccountNotFoundResponseBody{
-		Timestamp: res.Timestamp,
-		Status:    res.Status,
-		Error:     res.Error,
+		Name:      res.Name,
+		ID:        res.ID,
 		Message:   res.Message,
-		Path:      res.Path,
+		Temporary: res.Temporary,
+		Timeout:   res.Timeout,
+		Fault:     res.Fault,
 	}
 	return body
 }
@@ -2406,13 +2479,14 @@ func NewPesaLinkSendToPhoneUnauthorizedResponseBody(res *connect.Missingcredenti
 // NewPesaLinkSendToPhoneNotFoundResponseBody builds the HTTP response body
 // from the result of the "PesaLinkSendToPhone" endpoint of the "connect"
 // service.
-func NewPesaLinkSendToPhoneNotFoundResponseBody(res *connect.NotFound) *PesaLinkSendToPhoneNotFoundResponseBody {
+func NewPesaLinkSendToPhoneNotFoundResponseBody(res *goa.ServiceError) *PesaLinkSendToPhoneNotFoundResponseBody {
 	body := &PesaLinkSendToPhoneNotFoundResponseBody{
-		Timestamp: res.Timestamp,
-		Status:    res.Status,
-		Error:     res.Error,
+		Name:      res.Name,
+		ID:        res.ID,
 		Message:   res.Message,
-		Path:      res.Path,
+		Temporary: res.Temporary,
+		Timeout:   res.Timeout,
+		Fault:     res.Fault,
 	}
 	return body
 }
@@ -2502,13 +2576,14 @@ func NewSendToMPesaUnauthorizedResponseBody(res *connect.Missingcredentials) *Se
 
 // NewSendToMPesaNotFoundResponseBody builds the HTTP response body from the
 // result of the "SendToMPesa" endpoint of the "connect" service.
-func NewSendToMPesaNotFoundResponseBody(res *connect.NotFound) *SendToMPesaNotFoundResponseBody {
+func NewSendToMPesaNotFoundResponseBody(res *goa.ServiceError) *SendToMPesaNotFoundResponseBody {
 	body := &SendToMPesaNotFoundResponseBody{
-		Timestamp: res.Timestamp,
-		Status:    res.Status,
-		Error:     res.Error,
+		Name:      res.Name,
+		ID:        res.ID,
 		Message:   res.Message,
-		Path:      res.Path,
+		Temporary: res.Temporary,
+		Timeout:   res.Timeout,
+		Fault:     res.Fault,
 	}
 	return body
 }
@@ -2573,13 +2648,12 @@ func NewTransactionStatusUnauthorizedResponseBody(res *connect.Missingcredential
 
 // NewTransactionStatusNotFoundResponseBody builds the HTTP response body from
 // the result of the "TransactionStatus" endpoint of the "connect" service.
-func NewTransactionStatusNotFoundResponseBody(res *connect.NotFound) *TransactionStatusNotFoundResponseBody {
+func NewTransactionStatusNotFoundResponseBody(res *connect.Notfounderrorresponse) *TransactionStatusNotFoundResponseBody {
 	body := &TransactionStatusNotFoundResponseBody{
-		Timestamp: res.Timestamp,
-		Status:    res.Status,
-		Error:     res.Error,
-		Message:   res.Message,
-		Path:      res.Path,
+		MessageReference:   res.MessageReference,
+		MessageDateTime:    res.MessageDateTime,
+		MessageCode:        res.MessageCode,
+		MessageDescription: res.MessageDescription,
 	}
 	return body
 }
