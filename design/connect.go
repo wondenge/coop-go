@@ -7,7 +7,7 @@ import (
 	_ "goa.design/plugins/v3/zaplogger" // Enables ZapLogger Plugin
 )
 
-var _ = Service("coop", func() {
+var _ = Service("connect", func() {
 
 	HTTP(func() {
 		Path("/")

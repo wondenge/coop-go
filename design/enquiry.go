@@ -371,11 +371,11 @@ var AccountTransactionsSuccessResponse = ResultType("AccountTransactionsSuccessR
 			Description("No Of Latest Transactions To Be Returned")
 			Example(1)
 		})
-		Attribute("TotalCredits", UInt64, func() {
+		Attribute("TotalCredits", Float64, func() {
 			Description("Total Credits Amount")
 			Example(200.0)
 		})
-		Attribute("TotalDebits", UInt64, func() {
+		Attribute("TotalDebits", Float64, func() {
 			Description("Total Debits Amount")
 			Example(0.0)
 		})
@@ -518,11 +518,11 @@ var ExchangeRateSuccessResponse = ResultType("ExchangeRateSuccessResponse", func
 			Description("Exchange rate type")
 			Example("SPOT")
 		})
-		Attribute("Rate", UInt64, func() {
+		Attribute("Rate", Float64, func() {
 			Description("Exchange rate amount")
 			Example(103.5)
 		})
-		Attribute("Tolerance", UInt64, func() {
+		Attribute("Tolerance", Float64, func() {
 			Description("Exchange rate tolerance")
 			Example(15.0)
 		})
@@ -599,23 +599,23 @@ var AccountTransaction = Type("AccountTransaction", func() {
 		Description("Unique Transaction Reference")
 		Example("911909902484902484")
 	})
-	Attribute("CreditAmount", UInt64, func() {
+	Attribute("CreditAmount", Float64, func() {
 		Description("Transaction Credit Amount")
 		Example(200.0)
 	})
-	Attribute("DebitAmount", UInt64, func() {
+	Attribute("DebitAmount", Float64, func() {
 		Description("Transaction Debit Amount")
 		Example(0.0)
 	})
-	Attribute("RunningClearedBalance", UInt64, func() {
+	Attribute("RunningClearedBalance", Float64, func() {
 		Description("Account Running Cleared Balance")
 		Example(1215.7)
 	})
-	Attribute("RunningBookBalance", UInt64, func() {
+	Attribute("RunningBookBalance", Float64, func() {
 		Description("Account Running Book Balance")
 		Example(1215.7)
 	})
-	Attribute("DebitLimit", UInt64, func() {
+	Attribute("DebitLimit", Float64, func() {
 		Description("Account Debit Limit")
 		Example(0.0)
 	})

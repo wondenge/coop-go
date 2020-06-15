@@ -26,9 +26,9 @@ var _ = API("connect", func() {
 		Description("Library Usage")
 		URL("https://github.com/wondenge/coop-go/blob/master/README.md")
 	})
-	Server("connect", func() {
-		Description("connect hosts Co-op Bank Connect API Services.")
-		Services()
+	Server("coop", func() {
+		Description("coop hosts Co-op Bank Connect API Services.")
+		Services("connect", "health", "swagger")
 		Host("development", func() {
 			Description("Development Hosts")
 			URI("http://developer.co-opbank.co.ke:8280")

@@ -204,8 +204,9 @@ var NotFound = ResultType("NotFound", func() {
 	})
 })
 
-var NotFoundErrorResponse = Type("NotFoundErrorResponse", func() {
-	Description("")
+var NotFoundErrorResponse = ResultType("NotFoundErrorResponse", func() {
+	Description("Not Found Error Response")
+
 	Attributes(func() {
 		Attribute("MessageReference", String, func() {
 			Description("Your unique transaction request message identifier")

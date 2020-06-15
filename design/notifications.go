@@ -43,7 +43,7 @@ var INSTransactionSimulationRequest = Type("INSTransactionSimulationRequest", fu
 		MaxLength(14)
 		Example("54321987654321")
 	})
-	Attribute("Amount", UInt64, func() {
+	Attribute("Amount", Float64, func() {
 		Description("Transaction Amount")
 		Example(120777.45)
 	})
