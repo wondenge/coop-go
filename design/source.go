@@ -2,8 +2,8 @@ package design
 
 import (
 	. "goa.design/goa/v3/dsl"
-	_ "goa.design/plugins/v3/docs"      // Generates documentation
-	_ "goa.design/plugins/v3/goakit"    // Enables goakit
+	_ "goa.design/plugins/v3/docs"   // Generates documentation
+	_ "goa.design/plugins/v3/goakit" // Enables goakit
 
 	_ "goa.design/plugins/v3/zaplogger" // Enables ZapLogger Plugin
 )
@@ -38,9 +38,36 @@ var SourceAccount = Type("SourceAccount", func() {
 })
 
 var SourceAccountTransactionRequest = Type("SourceAccountTransactionRequest", func() {
-	Description("SourceAccountTransactionRequest")
-	Extend(SourceAccountTXNRequest)
-	Required("AccountNumber", "Amount", "TransactionCurrency", "Narration", "ResponseCode", "ResponseDescription")
+	Description("Source Account Transaction Request")
+
+	Attribute("AccountNumber", String, func() {
+		Description("Posting account number")
+		MinLength(14)
+		MaxLength(14)
+		Example("36001873000")
+	})
+	Attribute("Amount", Float64, func() {
+		Description("Transaction Amount")
+		Minimum(0.01)
+		Maximum(999999.99)
+		Example(777)
+	})
+	Attribute("TransactionCurrency", String, func() {
+		Description("Posting account currency in ISO Currency Code")
+		Enum("USD", "KES", "EUR", "GBP", "AUD", "CHF", "CAD", "ZAR")
+		Example("KES")
+	})
+	Attribute("Narration", String, func() {
+		Description("Posting account transaction narration")
+		MinLength(1)
+		MaxLength(25)
+		Example("Supplier Payment")
+	})
+	Attribute("ResponseDescription", String, func() {
+		Description("Posting leg response description")
+		Example("Success")
+	})
+	Required("AccountNumber", "Amount", "TransactionCurrency", "Narration")
 })
 
 var SourceAccountTXNRequest = Type("SourceAccountTXNRequest", func() {
@@ -68,7 +95,6 @@ var SourceAccountTXNRequest = Type("SourceAccountTXNRequest", func() {
 		MinLength(1)
 		MaxLength(25)
 		Example("Supplier Payment")
-		Example("Electricity Payment")
 	})
 	Required("AccountNumber", "Amount", "TransactionCurrency", "Narration")
 })

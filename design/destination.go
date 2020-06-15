@@ -65,12 +65,53 @@ var DestinationAccount = Type("DestinationAccount", func() {
 	Required("ReferenceNumber", "AccountNumber", "Amount", "TransactionCurrency", "Narration")
 })
 
-var DestinationAccountTransactionRequest = Type("DestinationAccountTransactionRequest", func() {
-	Description("Destination Account Transaction Request")
-	Extend(DestinationAccountTXNRequest)
-	Required("ReferenceNumber", "AccountNumber", "Amount", "TransactionCurrency", "Narration")
+var DestinationsTransactionRequest = Type("DestinationsTransactionRequest", func() {
+	Description("Destinations Transaction Request")
+
+	Attribute("DestinationAccountTransactionRequest", ArrayOf(DestinationAccountTransactionRequest), func() {
+		MinLength(1)
+	})
 })
 
+var DestinationAccountTransactionRequest = Type("DestinationAccountTransactionRequest", func() {
+	Description("Destination Account Transaction Request")
+
+	Attribute("ReferenceNumber", String, func() {
+		Description("Unique posting reference for the transaction leg")
+		MinLength(1)
+		MaxLength(30)
+		Example("40ca18c6765086089a1_1")
+	})
+	Attribute("MobileNumber", String, func() {
+
+		// "07xxxxxxxx", "2547xxxxxxxx", "+2547xxxxxxxx"
+		Description("Recipient phone number linked to a bank account in an IPSL participating bank")
+		MinLength(10)
+		MaxLength(13)
+		Example("07xxxxxxxx")
+	})
+	Attribute("Amount", UInt64, func() {
+		Description("Transaction Amount")
+		Minimum(0.01)
+		Maximum(999999.99)
+		Example(777)
+	})
+	Attribute("Narration", String, func() {
+		Description("Posting account transaction narration")
+		MinLength(1)
+		MaxLength(25)
+		Example("Stationary Payment")
+	})
+	Required("ReferenceNumber", "MobileNumber", "Amount", "Narration")
+})
+
+var DestinationsTXNRequest = Type("DestinationsTXNRequest", func() {
+	Description("Destinations TXN Request")
+
+	Attribute("DestinationsTXNRequest", ArrayOf(DestinationAccountTXNRequest), func() {
+		MinLength(1)
+	})
+})
 var DestinationAccountTXNRequest = Type("DestinationAccountTXNRequest", func() {
 	Description("Destination Account Transaction Request")
 
@@ -103,7 +144,6 @@ var DestinationAccountTXNRequest = Type("DestinationAccountTXNRequest", func() {
 		MinLength(1)
 		MaxLength(25)
 		Example("Supplier Payment")
-		Example("Electricity Payment")
 	})
 	Required("ReferenceNumber", "AccountNumber", "Amount", "TransactionCurrency", "Narration")
 })

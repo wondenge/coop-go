@@ -674,13 +674,6 @@ var _ = Service("connect", func() {
 		HTTP(func() {
 			POST("Enquiry/TransactionStatus/2.0.0")
 
-			// Status 102
-			// RFC 2518, 10.1
-			Response(StatusProcessing, func() {
-				Description("Processing In Progress Response-Synchronous: <br>3 - PROCESSING")
-				Body(ProcessingResponse)
-			})
-
 			// Status 200
 			// RFC 7231, 6.3.1
 			Response(StatusOK, func() {

@@ -29,7 +29,7 @@ var IFTAccountToAccountTXNRequest = Type("IFTAccountToAccountTXNRequest", func()
 		Example("https://yourdomain.com/ftresponse")
 	})
 	Attribute("Source", SourceAccountTXNRequest)
-	Attribute("Destinations", ArrayOf(DestinationAccountTXNRequest))
+	Attribute("Destinations", DestinationsTXNRequest)
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
 })
 
@@ -49,9 +49,7 @@ var PesaLinkSendToAccountTransactionRequest = Type("PesaLinkSendToAccountTransac
 		Example("https://yourdomain.com/ft-callback")
 	})
 	Attribute("Source", SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(DestinationAccountTransactionRequest), func() {
-		MinLength(1)
-	})
+	Attribute("Destinations", DestinationsTransactionRequest)
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
 })
 
@@ -70,9 +68,7 @@ var PesaLinkSendToPhoneTransactionRequest = Type("PesaLinkSendToPhoneTransaction
 		Example("https://yourdomain.com/ft-callback")
 	})
 	Attribute("Source", SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(DestinationAccountTransactionRequest), func() {
-		MinLength(1)
-	})
+	Attribute("Destinations", DestinationsTransactionRequest)
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
 })
 
@@ -91,8 +87,6 @@ var SendToMpesaTransactionRequest = Type("SendToMpesaTransactionRequest", func()
 		Example("https://yourdomain.com/ft-callback")
 	})
 	Attribute("Source", SourceAccountTransactionRequest)
-	Attribute("Destinations", ArrayOf(DestinationAccountTransactionRequest), func() {
-		MinLength(1)
-	})
+	Attribute("Destinations", DestinationsTransactionRequest)
 	Required("MessageReference", "CallBackUrl", "Source", "Destinations")
 })
