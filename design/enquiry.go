@@ -68,6 +68,7 @@ var AccountBalanceSuccessResponse = ResultType("AccountBalanceSuccessResponse", 
 		Attribute("Currency", String, func() {
 			Description("Account currency in ISO Currency Code")
 			Enum("KES", "USD", "EUR", "GBP", "AUD", "CHF", "CAD", "ZAR")
+			Example("KES")
 		})
 		Attribute("ProductName", String, func() {
 			Description("Posting account number")
