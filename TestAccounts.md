@@ -1,6 +1,6 @@
-<h1 align="left">1. AccountBalance API</h1>
+Test Accounts & Configuration Statuses
 
-## Test Accounts & Configuration Statuses for AccountBalance API
+<h1 align="left">1. AccountBalance API</h1>
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
@@ -35,8 +35,6 @@
 
 <h2 align="left">3. AccountMiniStatement API</h2>
 
-## Test Accounts & Configuration Statuses for AccountMiniStatement API
-
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
 |  36001873027   |   40200284   | Account is Closed                                                                    |
@@ -68,8 +66,6 @@
 |  36001873000   |      0       | Success                                                                              |
 
 <h2 align="left">4. AccountTransactions API</h2>
-
-## Test Accounts & Configuration Statuses for AccountTransactions API
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
@@ -104,8 +100,6 @@
 
 <h2 align="left"> 6. ExchangeRate API</h2>
 
-## Test Accounts & Configuration Statuses for ExchangeRate API
-
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
 |  36001873027   |   40200284   | Account is Closed                                                                    |
@@ -138,8 +132,6 @@
 |  36001873000   |      0       | Success                                                                              |
 
 <h2 align="left">7. IFTAccountToAccount API</h2>
-
-## Test Accounts & Configuration Statuses for IFTAccountToAccount API
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
@@ -174,8 +166,6 @@
 
 <h2 align="left">9. PesaLinkSendToAccount API</h2>
 
-## Test Accounts & Configuration Statuses for PesaLinkSendToAccount API
-
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
 |  36001873027   |   40200284   | Account is Closed                                                                    |
@@ -209,8 +199,6 @@
 
 <h2 align="left">10. PesaLinkSendToPhone API</h2>
 
-## Test Accounts & Configuration Statuses for PesaLinkSendToPhone API
-
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
 |  36001873027   |   40200284   | Account is Closed                                                                    |
@@ -243,8 +231,6 @@
 |  36001873000   |      0       | Success                                                                              |
 
 <h2 align="left">11. SendToM-Pesa API</h2>
-
-## Test Accounts & Configuration Statuses for SendToM-Pesa API
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
