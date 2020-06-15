@@ -33,7 +33,7 @@ Test Accounts & Configuration Statuses
 | Cr:36001873111 |   40180193   | No credit allowed on the account                                                     |
 |  36001873000   |      0       | Success                                                                              |
 
-<h2 align="left">3. AccountMiniStatement API</h2>
+<h1 align="left">3. AccountMiniStatement API</h1>
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
@@ -65,7 +65,7 @@ Test Accounts & Configuration Statuses
 | Cr:36001873111 |   40180193   | No credit allowed on the account                                                     |
 |  36001873000   |      0       | Success                                                                              |
 
-<h2 align="left">4. AccountTransactions API</h2>
+<h1 align="left">4. AccountTransactions API</h1>
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
@@ -98,7 +98,7 @@ Test Accounts & Configuration Statuses
 | Cr:36001873111 |   40180193   | No credit allowed on the account                                                     |
 |  36001873000   |      0       | Success                                                                              |
 
-<h2 align="left"> 6. ExchangeRate API</h2>
+<h1 align="left"> 6. ExchangeRate API</h1>
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
@@ -131,7 +131,7 @@ Test Accounts & Configuration Statuses
 | Cr:36001873111 |   40180193   | No credit allowed on the account                                                     |
 |  36001873000   |      0       | Success                                                                              |
 
-<h2 align="left">7. IFTAccountToAccount API</h2>
+<h1 align="left">7. IFTAccountToAccount API</h1>
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
@@ -164,7 +164,7 @@ Test Accounts & Configuration Statuses
 | Cr:36001873111 |   40180193   | No credit allowed on the account                                                     |
 |  36001873000   |      0       | Success                                                                              |
 
-<h2 align="left">9. PesaLinkSendToAccount API</h2>
+<h1 align="left">9. PesaLinkSendToAccount API</h1>
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
@@ -197,7 +197,7 @@ Test Accounts & Configuration Statuses
 | Cr:36001873111 |   40180193   | No credit allowed on the account                                                     |
 |  36001873000   |      0       | Success                                                                              |
 
-<h2 align="left">10. PesaLinkSendToPhone API</h2>
+<h1 align="left">10. PesaLinkSendToPhone API</h1>
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
@@ -230,7 +230,7 @@ Test Accounts & Configuration Statuses
 | Cr:36001873111 |   40180193   | No credit allowed on the account                                                     |
 |  36001873000   |      0       | Success                                                                              |
 
-<h2 align="left">11. SendToM-Pesa API</h2>
+<h1 align="left">11. SendToM-Pesa API</h1>
 
 |    Account     | Message Code | Message Description                                                                  |
 | :------------: | :----------: | :----------------------------------------------------------------------------------- |
