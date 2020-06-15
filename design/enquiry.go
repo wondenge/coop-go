@@ -7,10 +7,10 @@ import (
 	_ "goa.design/plugins/v3/zaplogger" // Enables ZapLogger Plugin
 )
 
-// Enquiry API
-// 1. Account Balance Enquiry API:
-// Enables you to enquire about your own Co-operative Bank accounts'
-// balance as at now for the specified account number.
+//                                                   Enquiry API
+//
+// 1. Account Balance Enquiry API: Enables you to enquire about your own
+// Co-operative Bank accounts' balance as at now for the specified account number.
 var AccountBalancePayload = Type("AccountBalancePayload", func() {
 	Description("Account Balance Request")
 
