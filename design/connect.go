@@ -7,11 +7,6 @@ import (
 	_ "goa.design/plugins/v3/zaplogger" // Enables ZapLogger Plugin
 )
 
-// OAuth2Auth defines a security scheme that uses OAuth2 tokens.
-var OAuth2Auth = OAuth2Security("oauth2", func() {
-	Description(`Secures endpoint by requiring a valid OAuth2 token.`)
-})
-
 var _ = Service("connect", func() {
 
 	HTTP(func() {
@@ -823,5 +818,4 @@ var _ = Service("connect", func() {
 
 		})
 	})
-
 })
