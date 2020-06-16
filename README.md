@@ -12,6 +12,8 @@ Coo-operative Bank of Kenya offers simple and RESTful APIs that allow one to qui
 
 This Golang SDK provides an avenue to intergrate with the APIs directly inside your Go application to tap into the continuous innovation at the bank.
 
+
+
 ```go
 package connectapi
 
@@ -35,7 +37,54 @@ func NewConnect(logger log.Logger) connect.Service {
 }
 ```
 
-# Features
+<h1 align="left">Authentication</h1>
+
+```go
+func GetAccessToken(ctx context.Context, ConsumerKey, ConsumerSecret string) (*TokenResponse, error) {
+
+	buf := bytes.NewBuffer([]byte("grant_type=client_credentials"))
+
+	req, err := http.NewRequestWithContext(ctx, "POST", "https://developer.co-opbank.co.ke:8243/token", buf)
+	if err != nil {
+		return &TokenResponse{}, fmt.Errorf("could not make new http request: %w", err)
+	}
+
+	// Set Header Parameters
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.SetBasicAuth(ConsumerKey, ConsumerSecret)
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("could not load default HTTP client: %w", err)
+	}
+
+	//  We're done reading from response body, lets close it.
+	defer func() {
+		err := resp.Body.Close()
+		if err != nil {
+			err := fmt.Errorf("could not close response body: %w", err)
+			fmt.Println(err.Error())
+		}
+	}()
+
+	// Read data from response body.
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		err := fmt.Errorf("oauth2: cannot fetch token: %v", err)
+		fmt.Println(err.Error())
+	}
+
+	var token = TokenResponse{}
+
+	// Parse the JSON-encoded data from response body.
+	// The data is stored in the value pointed by response.
+	if err := json.Unmarshal(body, &token); err != nil {
+		err := fmt.Errorf("could not unmarshal response body: %w", err)
+		fmt.Println(err.Error())
+	}
+
+	return &token, nil
+}
+```
 
 <p align="left">
 <img src="src/assets/img/AccountBalance.png" alt="AccountBalance API"  width="200" />
