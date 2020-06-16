@@ -35,10 +35,10 @@ type (
 
 const (
 	// APIBaseSandBox points to the sandbox (for testing) version of the API
-	APIBaseSandBox = ""
+	APIBaseSandBox = "http://developer.co-opbank.co.ke:8280"
 
 	// APIBaseLive points to the live version of the API
-	APIBaseLive = ""
+	APIBaseLive = "https://developer.co-opbank.co.ke:8243"
 
 	// RequestNewTokenBeforeExpiresIn is used by SendWithAuth and try to get new Token when it's about to expire
 	RequestNewTokenBeforeExpiresIn = time.Duration(60) * time.Second
