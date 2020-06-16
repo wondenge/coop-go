@@ -711,30 +711,4 @@ var _ = Service("connect", func() {
 		})
 	})
 
-	Method("token", func() {
-		Description("Creates a valid JWT")
-
-		// The token endpoint is secured via basic auth
-		Security(BasicAuth)
-
-		Payload(func() {
-			Description("Credentials used to authenticate to retrieve JWT token")
-			Username("username", String, "consumer-key for Username", func() {
-				Example("user")
-			})
-			Password("password", String, "consumer-secret for Password", func() {
-				Example("password")
-			})
-			Required("username", "password")
-		})
-
-		Result(Creds)
-
-		HTTP(func() {
-			POST("/token")
-
-			// Use Authorization header to provide basic auth value.
-			Response(StatusOK)
-		})
-	})
 })
