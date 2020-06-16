@@ -156,15 +156,3 @@ func MountTransactionStatusHandler(mux goahttp.Muxer, h http.Handler) {
 	}
 	mux.Handle("POST", "/Enquiry/TransactionStatus/2.0.0", f)
 }
-
-// MountTokenHandler configures the mux to serve the "connect" service "token"
-// endpoint.
-func MountTokenHandler(mux goahttp.Muxer, h http.Handler) {
-	f, ok := h.(http.HandlerFunc)
-	if !ok {
-		f = func(w http.ResponseWriter, r *http.Request) {
-			h.ServeHTTP(w, r)
-		}
-	}
-	mux.Handle("POST", "/token", f)
-}

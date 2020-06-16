@@ -42,14 +42,12 @@ type Service interface {
 	SendToMPesa(context.Context, *SendToMpesaTransactionRequest) (res *SuccessAcknowledgement, err error)
 	// Post a Transaction Status Enquiry Request
 	TransactionStatus(context.Context, *FTTransactionStatusPayload) (res *SuccessResponse, err error)
-	// Creates a valid JWT
-	Token(context.Context, *TokenPayload) (res *Creds, err error)
 }
 
 // Auther defines the authorization functions to be implemented by the service.
 type Auther interface {
-	// BasicAuth implements the authorization logic for the Basic security scheme.
-	BasicAuth(ctx context.Context, user, pass string, schema *security.BasicScheme) (context.Context, error)
+	// OAuth2Auth implements the authorization logic for the OAuth2 security scheme.
+	OAuth2Auth(ctx context.Context, token string, schema *security.OAuth2Scheme) (context.Context, error)
 }
 
 // ServiceName is the name of the service as defined in the design. This is the
@@ -60,11 +58,12 @@ const ServiceName = "connect"
 // MethodNames lists the service method names as defined in the design. These
 // are the same values that are set in the endpoint request contexts under the
 // MethodKey key.
-var MethodNames = [13]string{"AccountBalance", "AccountFullStatement", "AccountMiniStatement", "AccountTransactions", "AccountValidation", "ExchangeRate", "IFTAccountToAccount", "INSSimulation", "PesaLinkSendToAccount", "PesaLinkSendToPhone", "SendToMPesa", "TransactionStatus", "token"}
+var MethodNames = [12]string{"AccountBalance", "AccountFullStatement", "AccountMiniStatement", "AccountTransactions", "AccountValidation", "ExchangeRate", "IFTAccountToAccount", "INSSimulation", "PesaLinkSendToAccount", "PesaLinkSendToPhone", "SendToMPesa", "TransactionStatus"}
 
 // AccountBalancePayload is the payload type of the connect service
 // AccountBalance method.
 type AccountBalancePayload struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Posting account number
@@ -117,6 +116,7 @@ type AccountBalanceSuccessResponse struct {
 // AccountFullStatementPayload is the payload type of the connect service
 // AccountFullStatement method.
 type AccountFullStatementPayload struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Posting account number
@@ -148,6 +148,7 @@ type AccountFullStatementSuccessResponse struct {
 // AccountMiniStatementPayload is the payload type of the connect service
 // AccountMiniStatement method.
 type AccountMiniStatementPayload struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Posting account number
@@ -175,6 +176,7 @@ type AccountMiniStatementSuccessResponse struct {
 // AccountTransactionsPayload is the payload type of the connect service
 // AccountTransactions method.
 type AccountTransactionsPayload struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Posting account number
@@ -210,6 +212,7 @@ type AccountTransactionsSuccessResponse struct {
 // AccountValidationPayload is the payload type of the connect service
 // AccountValidation method.
 type AccountValidationPayload struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Posting account number
@@ -232,6 +235,7 @@ type AccountValidationSuccessResponse struct {
 // ExchangeRatePayload is the payload type of the connect service ExchangeRate
 // method.
 type ExchangeRatePayload struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// From Currency Code in ISO Currency Code
@@ -268,6 +272,7 @@ type ExchangeRateSuccessResponse struct {
 // IFTAccountToAccountTXNRequest is the payload type of the connect service
 // IFTAccountToAccount method.
 type IFTAccountToAccountTXNRequest struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Your callback URL that will receive transaction processing results
@@ -292,6 +297,7 @@ type SuccessAcknowledgement struct {
 // INSTransactionSimulationRequest is the payload type of the connect service
 // INSSimulation method.
 type INSTransactionSimulationRequest struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Acknowledgement message creation timestamp
@@ -328,6 +334,7 @@ type INSTransactionSimulationRequest struct {
 // PesaLinkSendToAccountTransactionRequest is the payload type of the connect
 // service PesaLinkSendToAccount method.
 type PesaLinkSendToAccountTransactionRequest struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Your callback URL that will receive transaction processing results
@@ -339,6 +346,7 @@ type PesaLinkSendToAccountTransactionRequest struct {
 // PesaLinkSendToPhoneTransactionRequest is the payload type of the connect
 // service PesaLinkSendToPhone method.
 type PesaLinkSendToPhoneTransactionRequest struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Your callback URL that will receive transaction processing results
@@ -350,6 +358,7 @@ type PesaLinkSendToPhoneTransactionRequest struct {
 // SendToMpesaTransactionRequest is the payload type of the connect service
 // SendToMPesa method.
 type SendToMpesaTransactionRequest struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 	// Your callback URL that will receive transaction processing results
@@ -361,6 +370,7 @@ type SendToMpesaTransactionRequest struct {
 // FTTransactionStatusPayload is the payload type of the connect service
 // TransactionStatus method.
 type FTTransactionStatusPayload struct {
+	AccessToken *string
 	// Your unique transaction request message identifier
 	MessageReference string
 }
@@ -378,20 +388,6 @@ type SuccessResponse struct {
 	MessageDescription string
 	Source             *SourceAccount
 	Destinations       []*DestinationAccount
-}
-
-// Credentials used to authenticate to retrieve JWT token
-type TokenPayload struct {
-	// consumer-key for Username
-	Username string
-	// consumer-secret for Password
-	Password string
-}
-
-// Creds is the result type of the connect service token method.
-type Creds struct {
-	// JWT token
-	JWT string
 }
 
 // Account Transaction

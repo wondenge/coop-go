@@ -385,13 +385,6 @@ type TransactionStatusOKResponseBody struct {
 	Destinations       []*DestinationAccountResponseBody `form:"Destinations" json:"Destinations" xml:"Destinations"`
 }
 
-// TokenResponseBody is the type of the "connect" service "token" endpoint HTTP
-// response body.
-type TokenResponseBody struct {
-	// JWT token
-	JWT string `form:"jwt" json:"jwt" xml:"jwt"`
-}
-
 // AccountBalanceBadRequestResponseBody is the type of the "connect" service
 // "AccountBalance" endpoint HTTP response body for the "bad_request" error.
 type AccountBalanceBadRequestResponseBody struct {
@@ -1713,15 +1706,6 @@ func NewTransactionStatusOKResponseBody(res *connectviews.SuccessResponseView) *
 	return body
 }
 
-// NewTokenResponseBody builds the HTTP response body from the result of the
-// "token" endpoint of the "connect" service.
-func NewTokenResponseBody(res *connect.Creds) *TokenResponseBody {
-	body := &TokenResponseBody{
-		JWT: res.JWT,
-	}
-	return body
-}
-
 // NewAccountBalanceBadRequestResponseBody builds the HTTP response body from
 // the result of the "AccountBalance" endpoint of the "connect" service.
 func NewAccountBalanceBadRequestResponseBody(res *connect.ErrorResponse) *AccountBalanceBadRequestResponseBody {
@@ -2580,90 +2564,97 @@ func NewTransactionStatusTimeoutResponseBody(res *goa.ServiceError) *Transaction
 
 // NewAccountBalancePayload builds a connect service AccountBalance endpoint
 // payload.
-func NewAccountBalancePayload(body *AccountBalanceRequestBody) *connect.AccountBalancePayload {
+func NewAccountBalancePayload(body *AccountBalanceRequestBody, accessToken string) *connect.AccountBalancePayload {
 	v := &connect.AccountBalancePayload{
 		MessageReference: *body.MessageReference,
 		AccountNumber:    *body.AccountNumber,
 	}
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewAccountFullStatementPayload builds a connect service AccountFullStatement
 // endpoint payload.
-func NewAccountFullStatementPayload(body *AccountFullStatementRequestBody) *connect.AccountFullStatementPayload {
+func NewAccountFullStatementPayload(body *AccountFullStatementRequestBody, accessToken string) *connect.AccountFullStatementPayload {
 	v := &connect.AccountFullStatementPayload{
 		MessageReference: *body.MessageReference,
 		AccountNumber:    *body.AccountNumber,
 		StartDate:        *body.StartDate,
 		EndDate:          *body.EndDate,
 	}
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewAccountMiniStatementPayload builds a connect service AccountMiniStatement
 // endpoint payload.
-func NewAccountMiniStatementPayload(body *AccountMiniStatementRequestBody) *connect.AccountMiniStatementPayload {
+func NewAccountMiniStatementPayload(body *AccountMiniStatementRequestBody, accessToken string) *connect.AccountMiniStatementPayload {
 	v := &connect.AccountMiniStatementPayload{
 		MessageReference: *body.MessageReference,
 		AccountNumber:    *body.AccountNumber,
 	}
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewAccountTransactionsPayload builds a connect service AccountTransactions
 // endpoint payload.
-func NewAccountTransactionsPayload(body *AccountTransactionsRequestBody) *connect.AccountTransactionsPayload {
+func NewAccountTransactionsPayload(body *AccountTransactionsRequestBody, accessToken string) *connect.AccountTransactionsPayload {
 	v := &connect.AccountTransactionsPayload{
 		MessageReference: *body.MessageReference,
 		AccountNumber:    *body.AccountNumber,
 		NoOfTransactions: *body.NoOfTransactions,
 	}
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewAccountValidationPayload builds a connect service AccountValidation
 // endpoint payload.
-func NewAccountValidationPayload(body *AccountValidationRequestBody) *connect.AccountValidationPayload {
+func NewAccountValidationPayload(body *AccountValidationRequestBody, accessToken string) *connect.AccountValidationPayload {
 	v := &connect.AccountValidationPayload{
 		MessageReference: *body.MessageReference,
 		AccountNumber:    *body.AccountNumber,
 	}
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewExchangeRatePayload builds a connect service ExchangeRate endpoint
 // payload.
-func NewExchangeRatePayload(body *ExchangeRateRequestBody) *connect.ExchangeRatePayload {
+func NewExchangeRatePayload(body *ExchangeRateRequestBody, accessToken string) *connect.ExchangeRatePayload {
 	v := &connect.ExchangeRatePayload{
 		MessageReference: *body.MessageReference,
 		FromCurrencyCode: *body.FromCurrencyCode,
 		ToCurrencyCode:   *body.ToCurrencyCode,
 	}
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewIFTAccountToAccountTXNRequest builds a connect service
 // IFTAccountToAccount endpoint payload.
-func NewIFTAccountToAccountTXNRequest(body *IFTAccountToAccountRequestBody) *connect.IFTAccountToAccountTXNRequest {
+func NewIFTAccountToAccountTXNRequest(body *IFTAccountToAccountRequestBody, accessToken string) *connect.IFTAccountToAccountTXNRequest {
 	v := &connect.IFTAccountToAccountTXNRequest{
 		MessageReference: *body.MessageReference,
 		CallBackURL:      *body.CallBackURL,
 	}
 	v.Source = unmarshalSourceAccountTXNRequestRequestBodyToConnectSourceAccountTXNRequest(body.Source)
 	v.Destinations = unmarshalDestinationsTXNRequestRequestBodyToConnectDestinationsTXNRequest(body.Destinations)
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewINSSimulationINSTransactionSimulationRequest builds a connect service
 // INSSimulation endpoint payload.
-func NewINSSimulationINSTransactionSimulationRequest(body *INSSimulationRequestBody) *connect.INSTransactionSimulationRequest {
+func NewINSSimulationINSTransactionSimulationRequest(body *INSSimulationRequestBody, accessToken string) *connect.INSTransactionSimulationRequest {
 	v := &connect.INSTransactionSimulationRequest{
 		MessageReference: *body.MessageReference,
 		MessageDateTime:  *body.MessageDateTime,
@@ -2682,62 +2673,60 @@ func NewINSSimulationINSTransactionSimulationRequest(body *INSSimulationRequestB
 		TransactionID:    *body.TransactionID,
 	}
 	v.CustMemo = unmarshalCustMemoRequestBodyToConnectCustMemo(body.CustMemo)
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewPesaLinkSendToAccountTransactionRequest builds a connect service
 // PesaLinkSendToAccount endpoint payload.
-func NewPesaLinkSendToAccountTransactionRequest(body *PesaLinkSendToAccountRequestBody) *connect.PesaLinkSendToAccountTransactionRequest {
+func NewPesaLinkSendToAccountTransactionRequest(body *PesaLinkSendToAccountRequestBody, accessToken string) *connect.PesaLinkSendToAccountTransactionRequest {
 	v := &connect.PesaLinkSendToAccountTransactionRequest{
 		MessageReference: *body.MessageReference,
 		CallBackURL:      *body.CallBackURL,
 	}
 	v.Source = unmarshalSourceAccountTransactionRequestRequestBodyToConnectSourceAccountTransactionRequest(body.Source)
 	v.Destinations = unmarshalDestinationsTransactionRequestRequestBodyToConnectDestinationsTransactionRequest(body.Destinations)
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewPesaLinkSendToPhoneTransactionRequest builds a connect service
 // PesaLinkSendToPhone endpoint payload.
-func NewPesaLinkSendToPhoneTransactionRequest(body *PesaLinkSendToPhoneRequestBody) *connect.PesaLinkSendToPhoneTransactionRequest {
+func NewPesaLinkSendToPhoneTransactionRequest(body *PesaLinkSendToPhoneRequestBody, accessToken string) *connect.PesaLinkSendToPhoneTransactionRequest {
 	v := &connect.PesaLinkSendToPhoneTransactionRequest{
 		MessageReference: *body.MessageReference,
 		CallBackURL:      *body.CallBackURL,
 	}
 	v.Source = unmarshalSourceAccountTransactionRequestRequestBodyToConnectSourceAccountTransactionRequest(body.Source)
 	v.Destinations = unmarshalDestinationsTransactionRequestRequestBodyToConnectDestinationsTransactionRequest(body.Destinations)
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewSendToMPesaSendToMpesaTransactionRequest builds a connect service
 // SendToMPesa endpoint payload.
-func NewSendToMPesaSendToMpesaTransactionRequest(body *SendToMPesaRequestBody) *connect.SendToMpesaTransactionRequest {
+func NewSendToMPesaSendToMpesaTransactionRequest(body *SendToMPesaRequestBody, accessToken string) *connect.SendToMpesaTransactionRequest {
 	v := &connect.SendToMpesaTransactionRequest{
 		MessageReference: *body.MessageReference,
 		CallBackURL:      *body.CallBackURL,
 	}
 	v.Source = unmarshalSourceAccountTransactionRequestRequestBodyToConnectSourceAccountTransactionRequest(body.Source)
 	v.Destinations = unmarshalDestinationsTransactionRequestRequestBodyToConnectDestinationsTransactionRequest(body.Destinations)
+	v.AccessToken = &accessToken
 
 	return v
 }
 
 // NewTransactionStatusFTTransactionStatusPayload builds a connect service
 // TransactionStatus endpoint payload.
-func NewTransactionStatusFTTransactionStatusPayload(body *TransactionStatusRequestBody) *connect.FTTransactionStatusPayload {
+func NewTransactionStatusFTTransactionStatusPayload(body *TransactionStatusRequestBody, accessToken string) *connect.FTTransactionStatusPayload {
 	v := &connect.FTTransactionStatusPayload{
 		MessageReference: *body.MessageReference,
 	}
-
-	return v
-}
-
-// NewTokenPayload builds a connect service token endpoint payload.
-func NewTokenPayload() *connect.TokenPayload {
-	v := &connect.TokenPayload{}
+	v.AccessToken = &accessToken
 
 	return v
 }

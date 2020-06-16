@@ -25,7 +25,7 @@ import (
 //
 func UsageCommands() string {
 	return `health show
-connect (account-balance|account-full-statement|account-mini-statement|account-transactions|account-validation|exchange-rate|ift-account-to-account|ins-simulation|pesa-link-send-to-account|pesa-link-send-to-phone|send-to-m-pesa|transaction-status|token)
+connect (account-balance|account-full-statement|account-mini-statement|account-transactions|account-validation|exchange-rate|ift-account-to-account|ins-simulation|pesa-link-send-to-account|pesa-link-send-to-phone|send-to-m-pesa|transaction-status)
 `
 }
 
@@ -35,7 +35,7 @@ func UsageExamples() string {
 		os.Args[0] + ` connect account-balance --body '{
       "AccountNumber": "36001873000",
       "MessageReference": "40ca18c6765086089a1"
-   }'` + "\n" +
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"` + "\n" +
 		""
 }
 
@@ -55,45 +55,53 @@ func ParseEndpoint(
 
 		connectFlags = flag.NewFlagSet("connect", flag.ContinueOnError)
 
-		connectAccountBalanceFlags    = flag.NewFlagSet("account-balance", flag.ExitOnError)
-		connectAccountBalanceBodyFlag = connectAccountBalanceFlags.String("body", "REQUIRED", "")
+		connectAccountBalanceFlags           = flag.NewFlagSet("account-balance", flag.ExitOnError)
+		connectAccountBalanceBodyFlag        = connectAccountBalanceFlags.String("body", "REQUIRED", "")
+		connectAccountBalanceAccessTokenFlag = connectAccountBalanceFlags.String("access-token", "REQUIRED", "")
 
-		connectAccountFullStatementFlags    = flag.NewFlagSet("account-full-statement", flag.ExitOnError)
-		connectAccountFullStatementBodyFlag = connectAccountFullStatementFlags.String("body", "REQUIRED", "")
+		connectAccountFullStatementFlags           = flag.NewFlagSet("account-full-statement", flag.ExitOnError)
+		connectAccountFullStatementBodyFlag        = connectAccountFullStatementFlags.String("body", "REQUIRED", "")
+		connectAccountFullStatementAccessTokenFlag = connectAccountFullStatementFlags.String("access-token", "REQUIRED", "")
 
-		connectAccountMiniStatementFlags    = flag.NewFlagSet("account-mini-statement", flag.ExitOnError)
-		connectAccountMiniStatementBodyFlag = connectAccountMiniStatementFlags.String("body", "REQUIRED", "")
+		connectAccountMiniStatementFlags           = flag.NewFlagSet("account-mini-statement", flag.ExitOnError)
+		connectAccountMiniStatementBodyFlag        = connectAccountMiniStatementFlags.String("body", "REQUIRED", "")
+		connectAccountMiniStatementAccessTokenFlag = connectAccountMiniStatementFlags.String("access-token", "REQUIRED", "")
 
-		connectAccountTransactionsFlags    = flag.NewFlagSet("account-transactions", flag.ExitOnError)
-		connectAccountTransactionsBodyFlag = connectAccountTransactionsFlags.String("body", "REQUIRED", "")
+		connectAccountTransactionsFlags           = flag.NewFlagSet("account-transactions", flag.ExitOnError)
+		connectAccountTransactionsBodyFlag        = connectAccountTransactionsFlags.String("body", "REQUIRED", "")
+		connectAccountTransactionsAccessTokenFlag = connectAccountTransactionsFlags.String("access-token", "REQUIRED", "")
 
-		connectAccountValidationFlags    = flag.NewFlagSet("account-validation", flag.ExitOnError)
-		connectAccountValidationBodyFlag = connectAccountValidationFlags.String("body", "REQUIRED", "")
+		connectAccountValidationFlags           = flag.NewFlagSet("account-validation", flag.ExitOnError)
+		connectAccountValidationBodyFlag        = connectAccountValidationFlags.String("body", "REQUIRED", "")
+		connectAccountValidationAccessTokenFlag = connectAccountValidationFlags.String("access-token", "REQUIRED", "")
 
-		connectExchangeRateFlags    = flag.NewFlagSet("exchange-rate", flag.ExitOnError)
-		connectExchangeRateBodyFlag = connectExchangeRateFlags.String("body", "REQUIRED", "")
+		connectExchangeRateFlags           = flag.NewFlagSet("exchange-rate", flag.ExitOnError)
+		connectExchangeRateBodyFlag        = connectExchangeRateFlags.String("body", "REQUIRED", "")
+		connectExchangeRateAccessTokenFlag = connectExchangeRateFlags.String("access-token", "REQUIRED", "")
 
-		connectIFTAccountToAccountFlags    = flag.NewFlagSet("ift-account-to-account", flag.ExitOnError)
-		connectIFTAccountToAccountBodyFlag = connectIFTAccountToAccountFlags.String("body", "REQUIRED", "")
+		connectIFTAccountToAccountFlags           = flag.NewFlagSet("ift-account-to-account", flag.ExitOnError)
+		connectIFTAccountToAccountBodyFlag        = connectIFTAccountToAccountFlags.String("body", "REQUIRED", "")
+		connectIFTAccountToAccountAccessTokenFlag = connectIFTAccountToAccountFlags.String("access-token", "REQUIRED", "")
 
-		connectINSSimulationFlags    = flag.NewFlagSet("ins-simulation", flag.ExitOnError)
-		connectINSSimulationBodyFlag = connectINSSimulationFlags.String("body", "REQUIRED", "")
+		connectINSSimulationFlags           = flag.NewFlagSet("ins-simulation", flag.ExitOnError)
+		connectINSSimulationBodyFlag        = connectINSSimulationFlags.String("body", "REQUIRED", "")
+		connectINSSimulationAccessTokenFlag = connectINSSimulationFlags.String("access-token", "REQUIRED", "")
 
-		connectPesaLinkSendToAccountFlags    = flag.NewFlagSet("pesa-link-send-to-account", flag.ExitOnError)
-		connectPesaLinkSendToAccountBodyFlag = connectPesaLinkSendToAccountFlags.String("body", "REQUIRED", "")
+		connectPesaLinkSendToAccountFlags           = flag.NewFlagSet("pesa-link-send-to-account", flag.ExitOnError)
+		connectPesaLinkSendToAccountBodyFlag        = connectPesaLinkSendToAccountFlags.String("body", "REQUIRED", "")
+		connectPesaLinkSendToAccountAccessTokenFlag = connectPesaLinkSendToAccountFlags.String("access-token", "REQUIRED", "")
 
-		connectPesaLinkSendToPhoneFlags    = flag.NewFlagSet("pesa-link-send-to-phone", flag.ExitOnError)
-		connectPesaLinkSendToPhoneBodyFlag = connectPesaLinkSendToPhoneFlags.String("body", "REQUIRED", "")
+		connectPesaLinkSendToPhoneFlags           = flag.NewFlagSet("pesa-link-send-to-phone", flag.ExitOnError)
+		connectPesaLinkSendToPhoneBodyFlag        = connectPesaLinkSendToPhoneFlags.String("body", "REQUIRED", "")
+		connectPesaLinkSendToPhoneAccessTokenFlag = connectPesaLinkSendToPhoneFlags.String("access-token", "REQUIRED", "")
 
-		connectSendToMPesaFlags    = flag.NewFlagSet("send-to-m-pesa", flag.ExitOnError)
-		connectSendToMPesaBodyFlag = connectSendToMPesaFlags.String("body", "REQUIRED", "")
+		connectSendToMPesaFlags           = flag.NewFlagSet("send-to-m-pesa", flag.ExitOnError)
+		connectSendToMPesaBodyFlag        = connectSendToMPesaFlags.String("body", "REQUIRED", "")
+		connectSendToMPesaAccessTokenFlag = connectSendToMPesaFlags.String("access-token", "REQUIRED", "")
 
-		connectTransactionStatusFlags    = flag.NewFlagSet("transaction-status", flag.ExitOnError)
-		connectTransactionStatusBodyFlag = connectTransactionStatusFlags.String("body", "REQUIRED", "")
-
-		connectTokenFlags        = flag.NewFlagSet("token", flag.ExitOnError)
-		connectTokenUsernameFlag = connectTokenFlags.String("username", "REQUIRED", "consumer-key for Username")
-		connectTokenPasswordFlag = connectTokenFlags.String("password", "REQUIRED", "consumer-secret for Password")
+		connectTransactionStatusFlags           = flag.NewFlagSet("transaction-status", flag.ExitOnError)
+		connectTransactionStatusBodyFlag        = connectTransactionStatusFlags.String("body", "REQUIRED", "")
+		connectTransactionStatusAccessTokenFlag = connectTransactionStatusFlags.String("access-token", "REQUIRED", "")
 	)
 	healthFlags.Usage = healthUsage
 	healthShowFlags.Usage = healthShowUsage
@@ -111,7 +119,6 @@ func ParseEndpoint(
 	connectPesaLinkSendToPhoneFlags.Usage = connectPesaLinkSendToPhoneUsage
 	connectSendToMPesaFlags.Usage = connectSendToMPesaUsage
 	connectTransactionStatusFlags.Usage = connectTransactionStatusUsage
-	connectTokenFlags.Usage = connectTokenUsage
 
 	if err := flag.CommandLine.Parse(os.Args[1:]); err != nil {
 		return nil, nil, err
@@ -192,9 +199,6 @@ func ParseEndpoint(
 			case "transaction-status":
 				epf = connectTransactionStatusFlags
 
-			case "token":
-				epf = connectTokenFlags
-
 			}
 
 		}
@@ -229,43 +233,40 @@ func ParseEndpoint(
 			switch epn {
 			case "account-balance":
 				endpoint = c.AccountBalance()
-				data, err = connectc.BuildAccountBalancePayload(*connectAccountBalanceBodyFlag)
+				data, err = connectc.BuildAccountBalancePayload(*connectAccountBalanceBodyFlag, *connectAccountBalanceAccessTokenFlag)
 			case "account-full-statement":
 				endpoint = c.AccountFullStatement()
-				data, err = connectc.BuildAccountFullStatementPayload(*connectAccountFullStatementBodyFlag)
+				data, err = connectc.BuildAccountFullStatementPayload(*connectAccountFullStatementBodyFlag, *connectAccountFullStatementAccessTokenFlag)
 			case "account-mini-statement":
 				endpoint = c.AccountMiniStatement()
-				data, err = connectc.BuildAccountMiniStatementPayload(*connectAccountMiniStatementBodyFlag)
+				data, err = connectc.BuildAccountMiniStatementPayload(*connectAccountMiniStatementBodyFlag, *connectAccountMiniStatementAccessTokenFlag)
 			case "account-transactions":
 				endpoint = c.AccountTransactions()
-				data, err = connectc.BuildAccountTransactionsPayload(*connectAccountTransactionsBodyFlag)
+				data, err = connectc.BuildAccountTransactionsPayload(*connectAccountTransactionsBodyFlag, *connectAccountTransactionsAccessTokenFlag)
 			case "account-validation":
 				endpoint = c.AccountValidation()
-				data, err = connectc.BuildAccountValidationPayload(*connectAccountValidationBodyFlag)
+				data, err = connectc.BuildAccountValidationPayload(*connectAccountValidationBodyFlag, *connectAccountValidationAccessTokenFlag)
 			case "exchange-rate":
 				endpoint = c.ExchangeRate()
-				data, err = connectc.BuildExchangeRatePayload(*connectExchangeRateBodyFlag)
+				data, err = connectc.BuildExchangeRatePayload(*connectExchangeRateBodyFlag, *connectExchangeRateAccessTokenFlag)
 			case "ift-account-to-account":
 				endpoint = c.IFTAccountToAccount()
-				data, err = connectc.BuildIFTAccountToAccountPayload(*connectIFTAccountToAccountBodyFlag)
+				data, err = connectc.BuildIFTAccountToAccountPayload(*connectIFTAccountToAccountBodyFlag, *connectIFTAccountToAccountAccessTokenFlag)
 			case "ins-simulation":
 				endpoint = c.INSSimulation()
-				data, err = connectc.BuildINSSimulationPayload(*connectINSSimulationBodyFlag)
+				data, err = connectc.BuildINSSimulationPayload(*connectINSSimulationBodyFlag, *connectINSSimulationAccessTokenFlag)
 			case "pesa-link-send-to-account":
 				endpoint = c.PesaLinkSendToAccount()
-				data, err = connectc.BuildPesaLinkSendToAccountPayload(*connectPesaLinkSendToAccountBodyFlag)
+				data, err = connectc.BuildPesaLinkSendToAccountPayload(*connectPesaLinkSendToAccountBodyFlag, *connectPesaLinkSendToAccountAccessTokenFlag)
 			case "pesa-link-send-to-phone":
 				endpoint = c.PesaLinkSendToPhone()
-				data, err = connectc.BuildPesaLinkSendToPhonePayload(*connectPesaLinkSendToPhoneBodyFlag)
+				data, err = connectc.BuildPesaLinkSendToPhonePayload(*connectPesaLinkSendToPhoneBodyFlag, *connectPesaLinkSendToPhoneAccessTokenFlag)
 			case "send-to-m-pesa":
 				endpoint = c.SendToMPesa()
-				data, err = connectc.BuildSendToMPesaPayload(*connectSendToMPesaBodyFlag)
+				data, err = connectc.BuildSendToMPesaPayload(*connectSendToMPesaBodyFlag, *connectSendToMPesaAccessTokenFlag)
 			case "transaction-status":
 				endpoint = c.TransactionStatus()
-				data, err = connectc.BuildTransactionStatusPayload(*connectTransactionStatusBodyFlag)
-			case "token":
-				endpoint = c.Token()
-				data, err = connectc.BuildTokenPayload(*connectTokenUsernameFlag, *connectTokenPasswordFlag)
+				data, err = connectc.BuildTransactionStatusPayload(*connectTransactionStatusBodyFlag, *connectTransactionStatusAccessTokenFlag)
 			}
 		}
 	}
@@ -318,31 +319,32 @@ COMMAND:
     pesa-link-send-to-phone: Post a PesaLink Funds Transfer Send to Phone Transaction
     send-to-m-pesa: Post a Send To M-Pesa Funds Transfer Transaction
     transaction-status: Post a Transaction Status Enquiry Request
-    token: Creates a valid JWT
 
 Additional help:
     %s connect COMMAND --help
 `, os.Args[0], os.Args[0])
 }
 func connectAccountBalanceUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect account-balance -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect account-balance -body JSON -access-token STRING
 
 Post an Account Balance Enquiry Request
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect account-balance --body '{
       "AccountNumber": "36001873000",
       "MessageReference": "40ca18c6765086089a1"
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectAccountFullStatementUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect account-full-statement -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect account-full-statement -body JSON -access-token STRING
 
 Post an Account Full Statement Enquiry Request
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect account-full-statement --body '{
@@ -350,73 +352,78 @@ Example:
       "EndDate": "2019-07-01",
       "MessageReference": "40ca18c6765086089a1",
       "StartDate": "2019-01-01"
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectAccountMiniStatementUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect account-mini-statement -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect account-mini-statement -body JSON -access-token STRING
 
 Post an Account Mini Statement Enquiry Request
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect account-mini-statement --body '{
       "AccountNumber": "36001873000",
       "MessageReference": "40ca18c6765086089a1"
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectAccountTransactionsUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect account-transactions -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect account-transactions -body JSON -access-token STRING
 
 Post an Account Transactions Enquiry Request
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect account-transactions --body '{
       "AccountNumber": "36001873000",
       "MessageReference": "40ca18c6765086089a1",
       "NoOfTransactions": 1
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectAccountValidationUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect account-validation -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect account-validation -body JSON -access-token STRING
 
 Post an Account Validation Enquiry Request
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect account-validation --body '{
       "AccountNumber": "36001873000",
       "MessageReference": "40ca18c6765086089a1"
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectExchangeRateUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect exchange-rate -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect exchange-rate -body JSON -access-token STRING
 
 Post an Exchange Rate Enquiry Request
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect exchange-rate --body '{
       "FromCurrencyCode": "KES",
       "MessageReference": "40ca18c6765086089a1",
       "ToCurrencyCode": "USD"
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectIFTAccountToAccountUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect ift-account-to-account -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect ift-account-to-account -body JSON -access-token STRING
 
 Post an Internal Funds Transfer Account to Account Transaction
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect ift-account-to-account --body '{
@@ -439,15 +446,16 @@ Example:
          "Narration": "Supplier Payment",
          "TransactionCurrency": "KES"
       }
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectINSSimulationUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect ins-simulation -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect ins-simulation -body JSON -access-token STRING
 
 Post a Debit/Credit Account Transaction Event Type Notification Simulation Request
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect ins-simulation --body '{
@@ -471,15 +479,16 @@ Example:
       "TransactionDate": "20190301165420",
       "TransactionId": "1169716b65891lI6",
       "ValueDate": "20190301"
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectPesaLinkSendToAccountUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect pesa-link-send-to-account -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect pesa-link-send-to-account -body JSON -access-token STRING
 
 Post a PesaLink Funds Transfer Send to Account Transaction
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect pesa-link-send-to-account --body '{
@@ -508,15 +517,16 @@ Example:
          "ResponseDescription": "Success",
          "TransactionCurrency": "KES"
       }
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectPesaLinkSendToPhoneUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect pesa-link-send-to-phone -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect pesa-link-send-to-phone -body JSON -access-token STRING
 
 Post a PesaLink Funds Transfer Send to Phone Transaction
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect pesa-link-send-to-phone --body '{
@@ -545,15 +555,16 @@ Example:
          "ResponseDescription": "Success",
          "TransactionCurrency": "KES"
       }
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectSendToMPesaUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect send-to-m-pesa -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect send-to-m-pesa -body JSON -access-token STRING
 
 Post a Send To M-Pesa Funds Transfer Transaction
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect send-to-m-pesa --body '{
@@ -582,31 +593,20 @@ Example:
          "ResponseDescription": "Success",
          "TransactionCurrency": "KES"
       }
-   }'
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }
 
 func connectTransactionStatusUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect transaction-status -body JSON
+	fmt.Fprintf(os.Stderr, `%s [flags] connect transaction-status -body JSON -access-token STRING
 
 Post a Transaction Status Enquiry Request
     -body JSON: 
+    -access-token STRING: 
 
 Example:
     `+os.Args[0]+` connect transaction-status --body '{
       "MessageReference": "40ca18c6765086089a1"
-   }'
-`, os.Args[0])
-}
-
-func connectTokenUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] connect token -username STRING -password STRING
-
-Creates a valid JWT
-    -username STRING: consumer-key for Username
-    -password STRING: consumer-secret for Password
-
-Example:
-    `+os.Args[0]+` connect token --username "user" --password "password"
+   }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"
 `, os.Args[0])
 }

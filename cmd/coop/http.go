@@ -61,7 +61,6 @@ func handleHTTPServer(ctx context.Context, u *url.URL, connectEndpoints *connect
 		connectPesaLinkSendToPhoneHandler   *kithttp.Server
 		connectSendToMPesaHandler           *kithttp.Server
 		connectTransactionStatusHandler     *kithttp.Server
-		connectTokenHandler                 *kithttp.Server
 		connectServer                       *connectsvr.Server
 		healthShowHandler                   *kithttp.Server
 		healthServer                        *healthsvr.Server
@@ -141,11 +140,6 @@ func handleHTTPServer(ctx context.Context, u *url.URL, connectEndpoints *connect
 			connectkitsvr.EncodeTransactionStatusResponse(enc),
 			kithttp.ServerErrorEncoder(connectkitsvr.EncodeTransactionStatusError(enc, nil)),
 		)
-		connectTokenHandler = kithttp.NewServer(
-			endpoint.Endpoint(connectEndpoints.Token),
-			connectkitsvr.DecodeTokenRequest(mux, dec),
-			connectkitsvr.EncodeTokenResponse(enc),
-		)
 		connectServer = connectsvr.New(connectEndpoints, mux, dec, enc, eh, nil)
 		healthShowHandler = kithttp.NewServer(
 			endpoint.Endpoint(healthEndpoints.Show),
@@ -169,7 +163,6 @@ func handleHTTPServer(ctx context.Context, u *url.URL, connectEndpoints *connect
 	connectkitsvr.MountPesaLinkSendToPhoneHandler(mux, connectPesaLinkSendToPhoneHandler)
 	connectkitsvr.MountSendToMPesaHandler(mux, connectSendToMPesaHandler)
 	connectkitsvr.MountTransactionStatusHandler(mux, connectTransactionStatusHandler)
-	connectkitsvr.MountTokenHandler(mux, connectTokenHandler)
 	healthkitsvr.MountShowHandler(mux, healthShowHandler)
 	swaggerkitsvr.MountGenHTTPOpenapiJSON(mux)
 

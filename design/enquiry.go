@@ -14,6 +14,9 @@ import (
 var AccountBalancePayload = Type("AccountBalancePayload", func() {
 	Description("Account Balance Request")
 
+	AccessToken("access_token", String, func() {
+		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
+	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
@@ -157,6 +160,9 @@ var AccountBalanceSuccessResponse = ResultType("AccountBalanceSuccessResponse", 
 var AccountFullStatementPayload = Type("AccountFullStatementPayload", func() {
 	Description("Account Full Statement Request")
 
+	AccessToken("access_token", String, func() {
+		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
+	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
@@ -234,10 +240,12 @@ var AccountFullStatementSuccessResponse = ResultType("AccountFullStatementSucces
 })
 
 // 3. AccountMiniStatement
-
 var AccountMiniStatementPayload = Type("AccountMiniStatementPayload", func() {
 	Description("Account Mini Statement Request")
 
+	AccessToken("access_token", String, func() {
+		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
+	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
@@ -313,6 +321,9 @@ var AccountMiniStatementSuccessResponse = ResultType("AccountMiniStatementSucces
 var AccountTransactionsPayload = Type("AccountTransactionsPayload", func() {
 	Description("Account Transactions Request")
 
+	AccessToken("access_token", String, func() {
+		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
+	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
@@ -404,6 +415,9 @@ var AccountTransactionsSuccessResponse = ResultType("AccountTransactionsSuccessR
 var AccountValidationPayload = Type("AccountValidationPayload", func() {
 	Description("Account Validation Request")
 
+	AccessToken("access_token", String, func() {
+		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
+	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
@@ -460,6 +474,9 @@ var AccountValidationSuccessResponse = ResultType("AccountValidationSuccessRespo
 var ExchangeRatePayload = Type("ExchangeRatePayload", func() {
 	Description("Exchange Rate Request")
 
+	AccessToken("access_token", String, func() {
+		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
+	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
@@ -555,6 +572,9 @@ var ExchangeRateSuccessResponse = ResultType("ExchangeRateSuccessResponse", func
 var FTTransactionStatusPayload = Type("FTTransactionStatusPayload", func() {
 	Description("FT Transaction Status Request")
 
+	AccessToken("access_token", String, func() {
+		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
+	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)

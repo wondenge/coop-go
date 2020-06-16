@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strings"
 
 	connect "github.com/wondenge/coop-go/gen/connect"
 	connectviews "github.com/wondenge/coop-go/gen/connect/views"
@@ -41,6 +42,14 @@ func EncodeAccountBalanceRequest(encoder func(*http.Request) goahttp.Encoder) fu
 		p, ok := v.(*connect.AccountBalancePayload)
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "AccountBalance", "*connect.AccountBalancePayload", v)
+		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
 		}
 		body := NewAccountBalanceRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
@@ -173,6 +182,14 @@ func EncodeAccountFullStatementRequest(encoder func(*http.Request) goahttp.Encod
 		p, ok := v.(*connect.AccountFullStatementPayload)
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "AccountFullStatement", "*connect.AccountFullStatementPayload", v)
+		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
 		}
 		body := NewAccountFullStatementRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
@@ -321,6 +338,14 @@ func EncodeAccountMiniStatementRequest(encoder func(*http.Request) goahttp.Encod
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "AccountMiniStatement", "*connect.AccountMiniStatementPayload", v)
 		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
+		}
 		body := NewAccountMiniStatementRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
 			return goahttp.ErrEncodingError("connect", "AccountMiniStatement", err)
@@ -468,6 +493,14 @@ func EncodeAccountTransactionsRequest(encoder func(*http.Request) goahttp.Encode
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "AccountTransactions", "*connect.AccountTransactionsPayload", v)
 		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
+		}
 		body := NewAccountTransactionsRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
 			return goahttp.ErrEncodingError("connect", "AccountTransactions", err)
@@ -598,6 +631,14 @@ func EncodeAccountValidationRequest(encoder func(*http.Request) goahttp.Encoder)
 		p, ok := v.(*connect.AccountValidationPayload)
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "AccountValidation", "*connect.AccountValidationPayload", v)
+		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
 		}
 		body := NewAccountValidationRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
@@ -745,6 +786,14 @@ func EncodeExchangeRateRequest(encoder func(*http.Request) goahttp.Encoder) func
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "ExchangeRate", "*connect.ExchangeRatePayload", v)
 		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
+		}
 		body := NewExchangeRateRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
 			return goahttp.ErrEncodingError("connect", "ExchangeRate", err)
@@ -891,6 +940,14 @@ func EncodeIFTAccountToAccountRequest(encoder func(*http.Request) goahttp.Encode
 		p, ok := v.(*connect.IFTAccountToAccountTXNRequest)
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "IFTAccountToAccount", "*connect.IFTAccountToAccountTXNRequest", v)
+		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
 		}
 		body := NewIFTAccountToAccountRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
@@ -1068,6 +1125,14 @@ func EncodeINSSimulationRequest(encoder func(*http.Request) goahttp.Encoder) fun
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "INSSimulation", "*connect.INSTransactionSimulationRequest", v)
 		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
+		}
 		body := NewINSSimulationRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
 			return goahttp.ErrEncodingError("connect", "INSSimulation", err)
@@ -1203,6 +1268,14 @@ func EncodePesaLinkSendToAccountRequest(encoder func(*http.Request) goahttp.Enco
 		p, ok := v.(*connect.PesaLinkSendToAccountTransactionRequest)
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "PesaLinkSendToAccount", "*connect.PesaLinkSendToAccountTransactionRequest", v)
+		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
 		}
 		body := NewPesaLinkSendToAccountRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
@@ -1381,6 +1454,14 @@ func EncodePesaLinkSendToPhoneRequest(encoder func(*http.Request) goahttp.Encode
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "PesaLinkSendToPhone", "*connect.PesaLinkSendToPhoneTransactionRequest", v)
 		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
+		}
 		body := NewPesaLinkSendToPhoneRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
 			return goahttp.ErrEncodingError("connect", "PesaLinkSendToPhone", err)
@@ -1556,6 +1637,14 @@ func EncodeSendToMPesaRequest(encoder func(*http.Request) goahttp.Encoder) func(
 		p, ok := v.(*connect.SendToMpesaTransactionRequest)
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "SendToMPesa", "*connect.SendToMpesaTransactionRequest", v)
+		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
 		}
 		body := NewSendToMPesaRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
@@ -1733,6 +1822,14 @@ func EncodeTransactionStatusRequest(encoder func(*http.Request) goahttp.Encoder)
 		if !ok {
 			return goahttp.ErrInvalidType("connect", "TransactionStatus", "*connect.FTTransactionStatusPayload", v)
 		}
+		if p.AccessToken != nil {
+			head := *p.AccessToken
+			if !strings.Contains(head, " ") {
+				req.Header.Set("Authorization", "Bearer "+head)
+			} else {
+				req.Header.Set("Authorization", head)
+			}
+		}
 		body := NewTransactionStatusRequestBody(p)
 		if err := encoder(req).Encode(&body); err != nil {
 			return goahttp.ErrEncodingError("connect", "TransactionStatus", err)
@@ -1852,74 +1949,6 @@ func DecodeTransactionStatusResponse(decoder func(*http.Response) goahttp.Decode
 		default:
 			body, _ := ioutil.ReadAll(resp.Body)
 			return nil, goahttp.ErrInvalidResponse("connect", "TransactionStatus", resp.StatusCode, string(body))
-		}
-	}
-}
-
-// BuildTokenRequest instantiates a HTTP request object with method and path
-// set to call the "connect" service "token" endpoint
-func (c *Client) BuildTokenRequest(ctx context.Context, v interface{}) (*http.Request, error) {
-	u := &url.URL{Scheme: c.scheme, Host: c.host, Path: TokenConnectPath()}
-	req, err := http.NewRequest("POST", u.String(), nil)
-	if err != nil {
-		return nil, goahttp.ErrInvalidURL("connect", "token", u.String(), err)
-	}
-	if ctx != nil {
-		req = req.WithContext(ctx)
-	}
-
-	return req, nil
-}
-
-// EncodeTokenRequest returns an encoder for requests sent to the connect token
-// server.
-func EncodeTokenRequest(encoder func(*http.Request) goahttp.Encoder) func(*http.Request, interface{}) error {
-	return func(req *http.Request, v interface{}) error {
-		p, ok := v.(*connect.TokenPayload)
-		if !ok {
-			return goahttp.ErrInvalidType("connect", "token", "*connect.TokenPayload", v)
-		}
-		req.SetBasicAuth(p.Username, p.Password)
-		return nil
-	}
-}
-
-// DecodeTokenResponse returns a decoder for responses returned by the connect
-// token endpoint. restoreBody controls whether the response body should be
-// restored after having been read.
-func DecodeTokenResponse(decoder func(*http.Response) goahttp.Decoder, restoreBody bool) func(*http.Response) (interface{}, error) {
-	return func(resp *http.Response) (interface{}, error) {
-		if restoreBody {
-			b, err := ioutil.ReadAll(resp.Body)
-			if err != nil {
-				return nil, err
-			}
-			resp.Body = ioutil.NopCloser(bytes.NewBuffer(b))
-			defer func() {
-				resp.Body = ioutil.NopCloser(bytes.NewBuffer(b))
-			}()
-		} else {
-			defer resp.Body.Close()
-		}
-		switch resp.StatusCode {
-		case http.StatusOK:
-			var (
-				body TokenResponseBody
-				err  error
-			)
-			err = decoder(resp).Decode(&body)
-			if err != nil {
-				return nil, goahttp.ErrDecodingError("connect", "token", err)
-			}
-			err = ValidateTokenResponseBody(&body)
-			if err != nil {
-				return nil, goahttp.ErrValidationError("connect", "token", err)
-			}
-			res := NewTokenCredsOK(&body)
-			return res, nil
-		default:
-			body, _ := ioutil.ReadAll(resp.Body)
-			return nil, goahttp.ErrInvalidResponse("connect", "token", resp.StatusCode, string(body))
 		}
 	}
 }

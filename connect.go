@@ -20,9 +20,9 @@ func NewConnect(logger log.Logger) connect.Service {
 	return &connectsrvc{logger}
 }
 
-// BasicAuth implements the authorization logic for service "connect" for the
-// "basic" security scheme.
-func (s *connectsrvc) BasicAuth(ctx context.Context, user, pass string, scheme *security.BasicScheme) (context.Context, error) {
+// OAuth2Auth implements the authorization logic for service "connect" for the
+// "oauth2" security scheme.
+func (s *connectsrvc) OAuth2Auth(ctx context.Context, token string, scheme *security.OAuth2Scheme) (context.Context, error) {
 	//
 	// TBD: add authorization logic.
 	//
@@ -122,12 +122,5 @@ func (s *connectsrvc) SendToMPesa(ctx context.Context, p *connect.SendToMpesaTra
 func (s *connectsrvc) TransactionStatus(ctx context.Context, p *connect.FTTransactionStatusPayload) (res *connect.SuccessResponse, err error) {
 	res = &connect.SuccessResponse{}
 	s.logger.Log("info", fmt.Sprintf("connect.TransactionStatus"))
-	return
-}
-
-// Creates a valid JWT
-func (s *connectsrvc) Token(ctx context.Context, p *connect.TokenPayload) (res *connect.Creds, err error) {
-	res = &connect.Creds{}
-	s.logger.Log("info", fmt.Sprintf("connect.token"))
 	return
 }

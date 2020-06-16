@@ -7,6 +7,11 @@ import (
 	_ "goa.design/plugins/v3/zaplogger" // Enables ZapLogger Plugin
 )
 
+// OAuth2Auth defines a security scheme that uses OAuth2 tokens.
+var OAuth2Auth = OAuth2Security("oauth2", func() {
+	Description(`Secures endpoint by requiring a valid OAuth2 token.`)
+})
+
 var _ = Service("connect", func() {
 
 	HTTP(func() {
@@ -18,6 +23,7 @@ var _ = Service("connect", func() {
 	// the specified account number.
 	Method("AccountBalance", func() {
 		Description("Post an Account Balance Enquiry Request")
+		Security(OAuth2Auth)
 		Payload(AccountBalancePayload)
 		Result(AccountBalanceSuccessResponse)
 
@@ -35,6 +41,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/AccountBalance/1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -66,6 +80,7 @@ var _ = Service("connect", func() {
 	// specified account number, start date and end date.
 	Method("AccountFullStatement", func() {
 		Description("Post an Account Full Statement Enquiry Request")
+		Security(OAuth2Auth)
 		Payload(AccountFullStatementPayload)
 		Result(AccountFullStatementSuccessResponse)
 
@@ -86,6 +101,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/FullStatement/Account/1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -120,6 +143,7 @@ var _ = Service("connect", func() {
 	// specified account number.
 	Method("AccountMiniStatement", func() {
 		Description("Post an Account Mini Statement Enquiry Request")
+		Security(OAuth2Auth)
 		Payload(AccountMiniStatementPayload)
 		Result(AccountMiniStatementSuccessResponse)
 
@@ -140,6 +164,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("MiniStatement/Account/1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -176,6 +208,7 @@ var _ = Service("connect", func() {
 	// be returned.
 	Method("AccountTransactions", func() {
 		Description("Post an Account Transactions Enquiry Request")
+		Security(OAuth2Auth)
 		Payload(AccountTransactionsPayload)
 		Result(AccountTransactionsSuccessResponse)
 
@@ -193,6 +226,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/AccountTransactions/1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -222,6 +263,7 @@ var _ = Service("connect", func() {
 	// a Co-operative Bank account number.
 	Method("AccountValidation", func() {
 		Description("Post an Account Validation Enquiry Request")
+		Security(OAuth2Auth)
 		Payload(AccountValidationPayload)
 		Result(AccountValidationSuccessResponse)
 
@@ -242,6 +284,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/Validation/Account/1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -275,6 +325,7 @@ var _ = Service("connect", func() {
 	// the current SPOT exchange rate for the specified currencies.
 	Method("ExchangeRate", func() {
 		Description("Post an Exchange Rate Enquiry Request")
+		Security(OAuth2Auth)
 		Payload(ExchangeRatePayload)
 		Result(ExchangeRateSuccessResponse)
 
@@ -295,6 +346,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/ExchangeRate/1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -330,6 +389,7 @@ var _ = Service("connect", func() {
 	// to other Co-operative Bank account(s).
 	Method("IFTAccountToAccount", func() {
 		Description("Post an Internal Funds Transfer Account to Account Transaction")
+		Security(OAuth2Auth)
 		Payload(IFTAccountToAccountTXNRequest)
 		Result(SuccessAcknowledgement)
 
@@ -356,6 +416,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("FundsTransfer/Internal/A2A/2.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -399,6 +467,7 @@ var _ = Service("connect", func() {
 	// so that they can reflect this in their accounting backend.
 	Method("INSSimulation", func() {
 		Description("Post a Debit/Credit Account Transaction Event Type Notification Simulation Request")
+		Security(OAuth2Auth)
 		Payload(INSTransactionSimulationRequest)
 		Result(SuccessAcknowledgement)
 
@@ -416,6 +485,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Notifications/INS/Simulation/1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -447,6 +524,7 @@ var _ = Service("connect", func() {
 	// Bank account(s) in IPSL participating banks.
 	Method("PesaLinkSendToAccount", func() {
 		Description("Post a PesaLink Funds Transfer Send to Account Transaction")
+		Security(OAuth2Auth)
 		Payload(PesaLinkSendToAccountTransactionRequest)
 		Result(SuccessAcknowledgement)
 
@@ -473,6 +551,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("FundsTransfer/External/A2A/PesaLink/1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -516,6 +602,7 @@ var _ = Service("connect", func() {
 	// a Phone Number(s) linked to a Bank account in an IPSL participating bank.
 	Method("PesaLinkSendToPhone", func() {
 		Description("Post a PesaLink Funds Transfer Send to Phone Transaction")
+		Security(OAuth2Auth)
 		Payload(PesaLinkSendToPhoneTransactionRequest)
 		Result(SuccessAcknowledgement)
 
@@ -542,6 +629,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("FundsTransfer/External/A2M/PesaLink/1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -584,6 +679,7 @@ var _ = Service("connect", func() {
 	// funds from your own Co-operative Bank account to an M-Pesa account recipient.
 	Method("SendToMPesa", func() {
 		Description("Post a Send To M-Pesa Funds Transfer Transaction")
+		Security(OAuth2Auth)
 		Payload(SendToMpesaTransactionRequest)
 		Result(SuccessAcknowledgement)
 
@@ -610,6 +706,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("FundsTransfer/External/A2M/Mpesa/v1.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -653,6 +757,7 @@ var _ = Service("connect", func() {
 	// specified transaction message reference.
 	Method("TransactionStatus", func() {
 		Description("Post a Transaction Status Enquiry Request")
+		Security(OAuth2Auth)
 		Payload(FTTransactionStatusPayload)
 		Result(SuccessResponse)
 
@@ -673,6 +778,14 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/TransactionStatus/2.0.0")
+
+			Headers(func() {
+				Header("access_token:Authorization", String, func() {
+					Description("Auth token")
+					Pattern("^Basic [^ ]+$")
+				})
+				Required("access_token")
+			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
