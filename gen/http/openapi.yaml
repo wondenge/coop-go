@@ -711,51 +711,6 @@ paths:
       - http
       security:
       - oauth2_header_Authorization: []
-  /health:
-    get:
-      tags:
-      - health
-      summary: show health
-      description: Health check endpoint.
-      operationId: health#show
-      produces:
-      - text/plain
-      responses:
-        "200":
-          description: OK response.
-          schema:
-            type: string
-      schemes:
-      - http
-  /swagger.json:
-    get:
-      tags:
-      - openapi
-      summary: Download ../../gen/http/openapi.json
-      operationId: openapi#/swagger.json
-      responses:
-        "200":
-          description: File downloaded
-          schema:
-            type: file
-      schemes:
-      - http
-      - https
-  /swagger/swagger.json:
-    get:
-      tags:
-      - swagger
-      summary: Download gen/http/openapi.json
-      description: JSON document containing the API swagger definition
-      operationId: swagger#/swagger/swagger.json
-      responses:
-        "200":
-          description: File downloaded
-          schema:
-            type: file
-      schemes:
-      - http
-      - https
 definitions:
   AccountTransactionResponseBody:
     title: AccountTransactionResponseBody
@@ -899,15 +854,15 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: true
+        example: false
     description: Method Not Allowed Error Response-Synchronous (default view)
     example:
       fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
-      timeout: false
+      temporary: false
+      timeout: true
     required:
     - name
     - id
@@ -1079,7 +1034,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -1106,8 +1061,8 @@ definitions:
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: false
-      timeout: true
+      temporary: true
+      timeout: false
     required:
     - name
     - id
@@ -1168,7 +1123,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -1195,8 +1150,8 @@ definitions:
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: false
-      timeout: true
+      temporary: true
+      timeout: false
     required:
     - name
     - id
@@ -1211,7 +1166,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -1231,15 +1186,15 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: Not Found Error Response-Synchronous (default view)
     example:
       fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
-      timeout: false
+      temporary: false
+      timeout: true
     required:
     - name
     - id
@@ -1330,20 +1285,7 @@ definitions:
       MessageDateTime: 2017-12-04T09:27:00
       MessageDescription: Success
       MessageReference: 40ca18c6765086089a1
-      Transactions:
-      - CreditAmount: 200
-        DebitAmount: 0
-        DebitLimit: 0
-        LimitExpiryDate: "2019-04-29T10:05:41.178+03:00"
-        Narration: Electricity Payment
-        RunningBookBalance: 1215.7
-        RunningClearedBalance: 1215.7
-        ServicePoint: ATM
-        TransactionDate: "2019-04-29T10:05:41.178+03:00"
-        TransactionId: 116bdbebcca41aXF
-        TransactionReference: "911909902484902484"
-        TransactionType: C
-        ValueDate: "2019-04-29T10:05:40.751+03:00"
+      Transactions: []
     required:
     - MessageReference
     - MessageDateTime
@@ -1356,7 +1298,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -1372,19 +1314,19 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: false
+        example: true
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: 'Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT (default view)'
     example:
-      fault: true
+      fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
-      timeout: false
+      temporary: false
+      timeout: true
     required:
     - name
     - id
@@ -1461,11 +1403,11 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: true
+        example: false
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: true
+        example: false
     description: Method Not Allowed Error Response-Synchronous (default view)
     example:
       fault: false
@@ -1508,15 +1450,15 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: true
+        example: false
     description: Not Found Error Response-Synchronous (default view)
     example:
-      fault: false
+      fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
       temporary: true
-      timeout: false
+      timeout: true
     required:
     - name
     - id
@@ -1583,33 +1525,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/AccountTransactionResponseBody'
-        example:
-        - CreditAmount: 200
-          DebitAmount: 0
-          DebitLimit: 0
-          LimitExpiryDate: "2019-04-29T10:05:41.178+03:00"
-          Narration: Electricity Payment
-          RunningBookBalance: 1215.7
-          RunningClearedBalance: 1215.7
-          ServicePoint: ATM
-          TransactionDate: "2019-04-29T10:05:41.178+03:00"
-          TransactionId: 116bdbebcca41aXF
-          TransactionReference: "911909902484902484"
-          TransactionType: C
-          ValueDate: "2019-04-29T10:05:40.751+03:00"
-        - CreditAmount: 200
-          DebitAmount: 0
-          DebitLimit: 0
-          LimitExpiryDate: "2019-04-29T10:05:41.178+03:00"
-          Narration: Electricity Payment
-          RunningBookBalance: 1215.7
-          RunningClearedBalance: 1215.7
-          ServicePoint: ATM
-          TransactionDate: "2019-04-29T10:05:41.178+03:00"
-          TransactionId: 116bdbebcca41aXF
-          TransactionReference: "911909902484902484"
-          TransactionType: C
-          ValueDate: "2019-04-29T10:05:40.751+03:00"
+        example: []
         minItems: 0
     description: AccountMiniStatementResponseBody result type (default view)
     example:
@@ -1619,33 +1535,7 @@ definitions:
       MessageDateTime: 2017-12-04T09:27:00
       MessageDescription: Success
       MessageReference: 40ca18c6765086089a1
-      Transactions:
-      - CreditAmount: 200
-        DebitAmount: 0
-        DebitLimit: 0
-        LimitExpiryDate: "2019-04-29T10:05:41.178+03:00"
-        Narration: Electricity Payment
-        RunningBookBalance: 1215.7
-        RunningClearedBalance: 1215.7
-        ServicePoint: ATM
-        TransactionDate: "2019-04-29T10:05:41.178+03:00"
-        TransactionId: 116bdbebcca41aXF
-        TransactionReference: "911909902484902484"
-        TransactionType: C
-        ValueDate: "2019-04-29T10:05:40.751+03:00"
-      - CreditAmount: 200
-        DebitAmount: 0
-        DebitLimit: 0
-        LimitExpiryDate: "2019-04-29T10:05:41.178+03:00"
-        Narration: Electricity Payment
-        RunningBookBalance: 1215.7
-        RunningClearedBalance: 1215.7
-        ServicePoint: ATM
-        TransactionDate: "2019-04-29T10:05:41.178+03:00"
-        TransactionId: 116bdbebcca41aXF
-        TransactionReference: "911909902484902484"
-        TransactionType: C
-        ValueDate: "2019-04-29T10:05:40.751+03:00"
+      Transactions: []
     required:
     - MessageReference
     - MessageDateTime
@@ -1658,7 +1548,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -1674,19 +1564,19 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: true
+        example: false
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: 'Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT (default view)'
     example:
-      fault: false
+      fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
-      timeout: true
+      temporary: false
+      timeout: false
     required:
     - name
     - id
@@ -1747,7 +1637,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -1767,15 +1657,15 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: true
+        example: false
     description: Method Not Allowed Error Response-Synchronous (default view)
     example:
-      fault: true
+      fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
       temporary: false
-      timeout: false
+      timeout: true
     required:
     - name
     - id
@@ -1904,19 +1794,6 @@ definitions:
         TransactionReference: "911909902484902484"
         TransactionType: C
         ValueDate: "2019-04-29T10:05:40.751+03:00"
-      - CreditAmount: 200
-        DebitAmount: 0
-        DebitLimit: 0
-        LimitExpiryDate: "2019-04-29T10:05:41.178+03:00"
-        Narration: Electricity Payment
-        RunningBookBalance: 1215.7
-        RunningClearedBalance: 1215.7
-        ServicePoint: ATM
-        TransactionDate: "2019-04-29T10:05:41.178+03:00"
-        TransactionId: 116bdbebcca41aXF
-        TransactionReference: "911909902484902484"
-        TransactionType: C
-        ValueDate: "2019-04-29T10:05:40.751+03:00"
     required:
     - MessageReference
     - MessageDateTime
@@ -1949,14 +1826,14 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: 'Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT (default view)'
     example:
       fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
+      temporary: false
       timeout: true
     required:
     - name
@@ -2018,7 +1895,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: true
+        example: false
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -2045,7 +1922,7 @@ definitions:
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
+      temporary: false
       timeout: true
     required:
     - name
@@ -2081,15 +1958,15 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: Not Found Error Response-Synchronous (default view)
     example:
-      fault: false
+      fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
-      timeout: true
+      temporary: false
+      timeout: false
     required:
     - name
     - id
@@ -2160,7 +2037,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: true
+        example: false
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -2176,11 +2053,11 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: true
+        example: false
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: true
+        example: false
     description: 'Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT (default view)'
     example:
       fault: false
@@ -2188,7 +2065,7 @@ definitions:
       message: parameter 'p' must be an integer
       name: bad_request
       temporary: false
-      timeout: false
+      timeout: true
     required:
     - name
     - id
@@ -2249,7 +2126,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: true
+        example: false
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -2272,12 +2149,12 @@ definitions:
         example: true
     description: Method Not Allowed Error Response-Synchronous (default view)
     example:
-      fault: false
+      fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
       temporary: false
-      timeout: true
+      timeout: false
     required:
     - name
     - id
@@ -2292,7 +2169,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -2319,7 +2196,7 @@ definitions:
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
+      temporary: false
       timeout: false
     required:
     - name
@@ -2486,14 +2363,14 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: 'Request Timeout Error Response-Synchronous: -4=REQUEST TIMED OUT (default view)'
     example:
       fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
+      temporary: false
       timeout: true
     required:
     - name
@@ -2623,7 +2500,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: true
+        example: false
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -2646,7 +2523,7 @@ definitions:
         example: false
     description: Method Not Allowed Error Response-Synchronous (default view)
     example:
-      fault: true
+      fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
@@ -2682,19 +2559,19 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: false
+        example: true
       timeout:
         type: boolean
         description: Is the error a timeout?
         example: true
     description: 'Not Found Error Response-Synchronous: <br>Wrong API Resource URI (default view)'
     example:
-      fault: false
+      fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: false
-      timeout: false
+      temporary: true
+      timeout: true
     required:
     - name
     - id
@@ -2781,7 +2658,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -2801,14 +2678,14 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: true
+        example: false
     description: 'Request Timeout Error Response-Synchronous: <br>-4 - REQUEST TIMED OUT (default view)'
     example:
-      fault: false
+      fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: false
+      temporary: true
       timeout: true
     required:
     - name
@@ -2836,7 +2713,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: true
+        example: false
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -2856,15 +2733,15 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: Bad Request Error Response-Synchronous (default view)
     example:
-      fault: false
+      fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
       temporary: false
-      timeout: false
+      timeout: true
     required:
     - name
     - id
@@ -2895,7 +2772,7 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: false
+        example: true
       timeout:
         type: boolean
         description: Is the error a timeout?
@@ -2933,7 +2810,7 @@ definitions:
       Currency:
         type: string
         description: Transaction Posting account currency in ISO Currency Code
-        example: KES
+        example: CHF
         enum:
         - KES
         - USD
@@ -2977,7 +2854,7 @@ definitions:
       NotificationCode:
         type: string
         description: Notification Code identifier
-        example: Laboriosam cupiditate ea et dolores.
+        example: Nostrum ea assumenda et et ea.
       PaymentRef:
         type: string
         description: Transaction Payment Reference
@@ -2985,7 +2862,7 @@ definitions:
       ServiceName:
         type: string
         description: Notification Service Name identifier
-        example: Aut non dolorum perspiciatis assumenda aliquid.
+        example: Quis quos aliquam eum.
       TransactionDate:
         type: string
         description: Posting date of the Transaction
@@ -3003,20 +2880,20 @@ definitions:
     example:
       AccountNumber: "54321987654321"
       Amount: 120777.45
-      Currency: CHF
+      Currency: KES
       CustMemo:
         CustMemoLine1: 728210595 ABD01
-        CustMemoLine2: Expedita fuga.
-        CustMemoLine3: Temporibus delectus eius.
+        CustMemoLine2: Quae aperiam.
+        CustMemoLine3: Dolores in officia et itaque et ut.
       EntryDate: "20190301"
       EventType: DEBIT
       ExchangeRate: 1
       MessageDateTime: 2017-12-04T09:27:00
       MessageReference: 40ca18c6765086089a1
       Narration: Supplier Payments
-      NotificationCode: Officiis modi quia sit quia perspiciatis ut.
+      NotificationCode: Aperiam dolores sed minima mollitia velit ea.
       PaymentRef: SFI427E9136D7D3F21C2C89
-      ServiceName: Saepe et qui consectetur accusamus.
+      ServiceName: Autem quia ratione voluptatibus consequuntur.
       TransactionDate: "20190301165420"
       TransactionId: 1169716b65891lI6
       ValueDate: "20190301"
@@ -3076,7 +2953,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: true
+        example: false
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -3099,12 +2976,12 @@ definitions:
         example: false
     description: Request Timeout Error Response-Synchronous (default view)
     example:
-      fault: true
+      fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: false
-      timeout: true
+      temporary: true
+      timeout: false
     required:
     - name
     - id
@@ -3255,7 +3132,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -3275,10 +3152,10 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: Method Not Allowed Error Response-Synchronous (default view)
     example:
-      fault: true
+      fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
@@ -3298,7 +3175,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -3321,12 +3198,12 @@ definitions:
         example: true
     description: 'Not Found Error Response-Synchronous: <br>Wrong API Resource URI (default view)'
     example:
-      fault: true
+      fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: false
-      timeout: true
+      temporary: true
+      timeout: false
     required:
     - name
     - id
@@ -3437,15 +3314,15 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: 'Request Timeout Error Response-Synchronous: <br>-4 - REQUEST TIMED OUT (default view)'
     example:
       fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: false
-      timeout: true
+      temporary: true
+      timeout: false
     required:
     - name
     - id
@@ -3590,18 +3467,18 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: true
+        example: false
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: true
+        example: false
     description: Method Not Allowed Error Response-Synchronous (default view)
     example:
-      fault: false
+      fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
+      temporary: false
       timeout: false
     required:
     - name
@@ -3617,7 +3494,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: true
+        example: false
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -3637,15 +3514,15 @@ definitions:
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: 'Not Found Error Response-Synchronous: <br>Wrong API Resource URI (default view)'
     example:
-      fault: false
+      fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
-      timeout: false
+      temporary: false
+      timeout: true
     required:
     - name
     - id
@@ -3759,11 +3636,11 @@ definitions:
         example: false
     description: 'Request Timeout Error Response-Synchronous: <br>-4 - REQUEST TIMED OUT (default view)'
     example:
-      fault: true
+      fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
+      temporary: false
       timeout: true
     required:
     - name
@@ -3909,19 +3786,19 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: true
+        example: false
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: true
+        example: false
     description: Method Not Allowed Error Response-Synchronous (default view)
     example:
       fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: false
-      timeout: true
+      temporary: true
+      timeout: false
     required:
     - name
     - id
@@ -3936,7 +3813,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -3952,11 +3829,11 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: false
+        example: true
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: 'Not Found Error Response-Synchronous: <br>Wrong API Resource URI (default view)'
     example:
       fault: true
@@ -4055,7 +3932,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -4071,19 +3948,19 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: true
+        example: false
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: true
+        example: false
     description: 'Request Timeout Error Response-Synchronous: <br>-4: REQUEST TIMED OUT (default view)'
     example:
       fault: true
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
-      timeout: false
+      temporary: false
+      timeout: true
     required:
     - name
     - id
@@ -4147,7 +4024,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -4163,18 +4040,18 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: false
+        example: true
       timeout:
         type: boolean
         description: Is the error a timeout?
-        example: false
+        example: true
     description: Method Not Allowed Error Response-Synchronous (default view)
     example:
       fault: false
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
+      temporary: false
       timeout: false
     required:
     - name
@@ -4227,44 +4104,33 @@ definitions:
           $ref: '#/definitions/DestinationAccountResponseBody'
         example:
         - AccountNumber: "12345678912345"
-          Amount: 0.6837473902854402
+          Amount: 0.4661588032557432
           BankCode: "011"
-          MobileNumber: 5gx
+          MobileNumber: 7j2
           Narration: Supplier Payment
-          PhoneNumber: b2q
+          PhoneNumber: 1f2
           ReferenceNumber: 40ca18c6765086089a1_1
           ResponseCode: "0"
           ResponseDescription: Success
           TransactionCurrency: KES
           TransactionID: 1169716b65891lI6
         - AccountNumber: "12345678912345"
-          Amount: 0.6837473902854402
+          Amount: 0.4661588032557432
           BankCode: "011"
-          MobileNumber: 5gx
+          MobileNumber: 7j2
           Narration: Supplier Payment
-          PhoneNumber: b2q
+          PhoneNumber: 1f2
           ReferenceNumber: 40ca18c6765086089a1_1
           ResponseCode: "0"
           ResponseDescription: Success
           TransactionCurrency: KES
           TransactionID: 1169716b65891lI6
         - AccountNumber: "12345678912345"
-          Amount: 0.6837473902854402
+          Amount: 0.4661588032557432
           BankCode: "011"
-          MobileNumber: 5gx
+          MobileNumber: 7j2
           Narration: Supplier Payment
-          PhoneNumber: b2q
-          ReferenceNumber: 40ca18c6765086089a1_1
-          ResponseCode: "0"
-          ResponseDescription: Success
-          TransactionCurrency: KES
-          TransactionID: 1169716b65891lI6
-        - AccountNumber: "12345678912345"
-          Amount: 0.6837473902854402
-          BankCode: "011"
-          MobileNumber: 5gx
-          Narration: Supplier Payment
-          PhoneNumber: b2q
+          PhoneNumber: 1f2
           ReferenceNumber: 40ca18c6765086089a1_1
           ResponseCode: "0"
           ResponseDescription: Success
@@ -4295,22 +4161,33 @@ definitions:
     example:
       Destinations:
       - AccountNumber: "12345678912345"
-        Amount: 0.6837473902854402
+        Amount: 0.4661588032557432
         BankCode: "011"
-        MobileNumber: 5gx
+        MobileNumber: 7j2
         Narration: Supplier Payment
-        PhoneNumber: b2q
+        PhoneNumber: 1f2
         ReferenceNumber: 40ca18c6765086089a1_1
         ResponseCode: "0"
         ResponseDescription: Success
         TransactionCurrency: KES
         TransactionID: 1169716b65891lI6
       - AccountNumber: "12345678912345"
-        Amount: 0.6837473902854402
+        Amount: 0.4661588032557432
         BankCode: "011"
-        MobileNumber: 5gx
+        MobileNumber: 7j2
         Narration: Supplier Payment
-        PhoneNumber: b2q
+        PhoneNumber: 1f2
+        ReferenceNumber: 40ca18c6765086089a1_1
+        ResponseCode: "0"
+        ResponseDescription: Success
+        TransactionCurrency: KES
+        TransactionID: 1169716b65891lI6
+      - AccountNumber: "12345678912345"
+        Amount: 0.4661588032557432
+        BankCode: "011"
+        MobileNumber: 7j2
+        Narration: Supplier Payment
+        PhoneNumber: 1f2
         ReferenceNumber: 40ca18c6765086089a1_1
         ResponseCode: "0"
         ResponseDescription: Success
@@ -4326,7 +4203,7 @@ definitions:
         Narration: Supplier Payment
         ResponseCode: "0"
         ResponseDescription: Success
-        TransactionCurrency: Aut voluptas odio sunt cumque quae error.
+        TransactionCurrency: Dolor quo enim nam ut et unde.
     required:
     - MessageReference
     - MessageDateTime
@@ -4355,7 +4232,7 @@ definitions:
       fault:
         type: boolean
         description: Is the error a server-side fault?
-        example: false
+        example: true
       id:
         type: string
         description: ID is a unique identifier for this particular occurrence of the problem.
@@ -4371,7 +4248,7 @@ definitions:
       temporary:
         type: boolean
         description: Is the error temporary?
-        example: true
+        example: false
       timeout:
         type: boolean
         description: Is the error a timeout?
@@ -4382,8 +4259,8 @@ definitions:
       id: 123abc
       message: parameter 'p' must be an integer
       name: bad_request
-      temporary: true
-      timeout: false
+      temporary: false
+      timeout: true
     required:
     - name
     - id
@@ -4414,16 +4291,16 @@ definitions:
       CustMemoLine2:
         type: string
         description: CustMemo CustMemoLine2
-        example: Ratione voluptatibus consequuntur.
+        example: Quas sint et aspernatur sit.
       CustMemoLine3:
         type: string
         description: CustMemo CustMemoLine2
-        example: Aperiam dolores sed minima mollitia velit ea.
+        example: Sit est et molestias architecto.
     description: Cust Memo
     example:
       CustMemoLine1: 728210595 ABD01
-      CustMemoLine2: Magnam veniam.
-      CustMemoLine3: Necessitatibus animi.
+      CustMemoLine2: Dolor est aut non dolorum perspiciatis assumenda.
+      CustMemoLine3: Nulla laboriosam cupiditate ea et.
   DestinationAccountResponseBody:
     title: DestinationAccountResponseBody
     type: object
@@ -4437,7 +4314,7 @@ definitions:
       Amount:
         type: number
         description: Transaction Amount
-        example: 0.5935104804362322
+        example: 0.17733058213567648
         format: double
       BankCode:
         type: string
@@ -4446,7 +4323,7 @@ definitions:
       MobileNumber:
         type: string
         description: Recipient phone number linked to a bank account in an IPSL participating bank
-        example: k1j
+        example: k02
         enum:
         - 07xxxxxxxx
         - 2547xxxxxxxx
@@ -4460,7 +4337,7 @@ definitions:
       PhoneNumber:
         type: string
         description: Recipient phone number linked to a bank account in an IPSL participating bank
-        example: pbk
+        example: rof
         enum:
         - 07xxxxxxxx
         - 2547xxxxxxxx
@@ -4501,11 +4378,11 @@ definitions:
     description: Destination Account
     example:
       AccountNumber: "12345678912345"
-      Amount: 0.10497119882522091
+      Amount: 0.3079817603867765
       BankCode: "011"
-      MobileNumber: v37
+      MobileNumber: bk1
       Narration: Supplier Payment
-      PhoneNumber: 6nf
+      PhoneNumber: acb
       ReferenceNumber: 40ca18c6765086089a1_1
       ResponseCode: "0"
       ResponseDescription: Success
@@ -4624,11 +4501,6 @@ definitions:
           Narration: Supplier Payment
           ReferenceNumber: 40ca18c6765086089a1_1
           TransactionCurrency: KES
-        - AccountNumber: "54321987654321"
-          Amount: 777
-          Narration: Supplier Payment
-          ReferenceNumber: 40ca18c6765086089a1_1
-          TransactionCurrency: KES
         minItems: 1
     description: Destinations TXN Request
     example:
@@ -4647,10 +4519,6 @@ definitions:
         items:
           $ref: '#/definitions/DestinationAccountTransactionRequestRequestBody'
         example:
-        - Amount: 777
-          MobileNumber: 07xxxxxxxx
-          Narration: Stationary Payment
-          ReferenceNumber: 40ca18c6765086089a1_1
         - Amount: 777
           MobileNumber: 07xxxxxxxx
           Narration: Stationary Payment
@@ -4694,44 +4562,22 @@ definitions:
           $ref: '#/definitions/DestinationAccountResponseBody'
         example:
         - AccountNumber: "12345678912345"
-          Amount: 0.6837473902854402
+          Amount: 0.4661588032557432
           BankCode: "011"
-          MobileNumber: 5gx
+          MobileNumber: 7j2
           Narration: Supplier Payment
-          PhoneNumber: b2q
+          PhoneNumber: 1f2
           ReferenceNumber: 40ca18c6765086089a1_1
           ResponseCode: "0"
           ResponseDescription: Success
           TransactionCurrency: KES
           TransactionID: 1169716b65891lI6
         - AccountNumber: "12345678912345"
-          Amount: 0.6837473902854402
+          Amount: 0.4661588032557432
           BankCode: "011"
-          MobileNumber: 5gx
+          MobileNumber: 7j2
           Narration: Supplier Payment
-          PhoneNumber: b2q
-          ReferenceNumber: 40ca18c6765086089a1_1
-          ResponseCode: "0"
-          ResponseDescription: Success
-          TransactionCurrency: KES
-          TransactionID: 1169716b65891lI6
-        - AccountNumber: "12345678912345"
-          Amount: 0.6837473902854402
-          BankCode: "011"
-          MobileNumber: 5gx
-          Narration: Supplier Payment
-          PhoneNumber: b2q
-          ReferenceNumber: 40ca18c6765086089a1_1
-          ResponseCode: "0"
-          ResponseDescription: Success
-          TransactionCurrency: KES
-          TransactionID: 1169716b65891lI6
-        - AccountNumber: "12345678912345"
-          Amount: 0.6837473902854402
-          BankCode: "011"
-          MobileNumber: 5gx
-          Narration: Supplier Payment
-          PhoneNumber: b2q
+          PhoneNumber: 1f2
           ReferenceNumber: 40ca18c6765086089a1_1
           ResponseCode: "0"
           ResponseDescription: Success
@@ -4762,22 +4608,44 @@ definitions:
     example:
       Destinations:
       - AccountNumber: "12345678912345"
-        Amount: 0.6837473902854402
+        Amount: 0.4661588032557432
         BankCode: "011"
-        MobileNumber: 5gx
+        MobileNumber: 7j2
         Narration: Supplier Payment
-        PhoneNumber: b2q
+        PhoneNumber: 1f2
         ReferenceNumber: 40ca18c6765086089a1_1
         ResponseCode: "0"
         ResponseDescription: Success
         TransactionCurrency: KES
         TransactionID: 1169716b65891lI6
       - AccountNumber: "12345678912345"
-        Amount: 0.6837473902854402
+        Amount: 0.4661588032557432
         BankCode: "011"
-        MobileNumber: 5gx
+        MobileNumber: 7j2
         Narration: Supplier Payment
-        PhoneNumber: b2q
+        PhoneNumber: 1f2
+        ReferenceNumber: 40ca18c6765086089a1_1
+        ResponseCode: "0"
+        ResponseDescription: Success
+        TransactionCurrency: KES
+        TransactionID: 1169716b65891lI6
+      - AccountNumber: "12345678912345"
+        Amount: 0.4661588032557432
+        BankCode: "011"
+        MobileNumber: 7j2
+        Narration: Supplier Payment
+        PhoneNumber: 1f2
+        ReferenceNumber: 40ca18c6765086089a1_1
+        ResponseCode: "0"
+        ResponseDescription: Success
+        TransactionCurrency: KES
+        TransactionID: 1169716b65891lI6
+      - AccountNumber: "12345678912345"
+        Amount: 0.4661588032557432
+        BankCode: "011"
+        MobileNumber: 7j2
+        Narration: Supplier Payment
+        PhoneNumber: 1f2
         ReferenceNumber: 40ca18c6765086089a1_1
         ResponseCode: "0"
         ResponseDescription: Success
@@ -4793,7 +4661,7 @@ definitions:
         Narration: Supplier Payment
         ResponseCode: "0"
         ResponseDescription: Success
-        TransactionCurrency: Aut voluptas odio sunt cumque quae error.
+        TransactionCurrency: Dolor quo enim nam ut et unde.
     required:
     - MessageReference
     - MessageDateTime
@@ -4830,7 +4698,7 @@ definitions:
         example: Success
       TransactionCurrency:
         type: string
-        example: Corrupti repellat recusandae aut consequatur fuga.
+        example: Illo officia cupiditate in repellendus suscipit.
     description: Source Account
     example:
       AccountNumber: "12345678912345"
@@ -4838,7 +4706,7 @@ definitions:
       Narration: Supplier Payment
       ResponseCode: "0"
       ResponseDescription: Success
-      TransactionCurrency: Pariatur rerum saepe reprehenderit ipsa molestiae.
+      TransactionCurrency: Delectus facilis sint.
     required:
     - AccountNumber
     - Amount

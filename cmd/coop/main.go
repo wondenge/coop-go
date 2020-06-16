@@ -13,7 +13,6 @@ import (
 	"github.com/go-kit/kit/log"
 	connectapi "github.com/wondenge/coop-go"
 	connect "github.com/wondenge/coop-go/gen/connect"
-	health "github.com/wondenge/coop-go/gen/health"
 )
 
 func main() {
@@ -41,22 +40,18 @@ func main() {
 	// Initialize the services.
 	var (
 		connectSvc connect.Service
-		healthSvc  health.Service
 	)
 	{
 		connectSvc = connectapi.NewConnect(logger)
-		healthSvc = connectapi.NewHealth(logger)
 	}
 
 	// Wrap the services in endpoints that can be invoked from other services
 	// potentially running in different processes.
 	var (
 		connectEndpoints *connect.Endpoints
-		healthEndpoints  *health.Endpoints
 	)
 	{
 		connectEndpoints = connect.NewEndpoints(connectSvc)
-		healthEndpoints = health.NewEndpoints(healthSvc)
 	}
 
 	// Create channel used by both the signal handler and server goroutines
@@ -96,7 +91,7 @@ func main() {
 			} else if u.Port() == "" {
 				u.Host += ":80"
 			}
-			handleHTTPServer(ctx, u, connectEndpoints, healthEndpoints, &wg, errc, logger, *dbgF)
+			handleHTTPServer(ctx, u, connectEndpoints, &wg, errc, logger, *dbgF)
 		}
 
 	case "production":
@@ -119,7 +114,7 @@ func main() {
 			} else if u.Port() == "" {
 				u.Host += ":443"
 			}
-			handleHTTPServer(ctx, u, connectEndpoints, healthEndpoints, &wg, errc, logger, *dbgF)
+			handleHTTPServer(ctx, u, connectEndpoints, &wg, errc, logger, *dbgF)
 		}
 
 	default:

@@ -15,7 +15,6 @@ import (
 
 	"github.com/go-kit/kit/endpoint"
 	connectc "github.com/wondenge/coop-go/gen/http/connect/client"
-	healthc "github.com/wondenge/coop-go/gen/http/health/client"
 	goahttp "goa.design/goa/v3/http"
 )
 
@@ -24,15 +23,13 @@ import (
 //    command (subcommand1|subcommand2|...)
 //
 func UsageCommands() string {
-	return `health show
-connect (account-balance|account-full-statement|account-mini-statement|account-transactions|account-validation|exchange-rate|ift-account-to-account|ins-simulation|pesa-link-send-to-account|pesa-link-send-to-phone|send-to-m-pesa|transaction-status)
+	return `connect (account-balance|account-full-statement|account-mini-statement|account-transactions|account-validation|exchange-rate|ift-account-to-account|ins-simulation|pesa-link-send-to-account|pesa-link-send-to-phone|send-to-m-pesa|transaction-status)
 `
 }
 
 // UsageExamples produces an example of a valid invocation of the CLI tool.
 func UsageExamples() string {
-	return os.Args[0] + ` health show` + "\n" +
-		os.Args[0] + ` connect account-balance --body '{
+	return os.Args[0] + ` connect account-balance --body '{
       "AccountNumber": "36001873000",
       "MessageReference": "40ca18c6765086089a1"
    }' --access-token "1c9f6c4b-625c-3255-ba1a-026df12ab648"` + "\n" +
@@ -49,10 +46,6 @@ func ParseEndpoint(
 	restore bool,
 ) (endpoint.Endpoint, interface{}, error) {
 	var (
-		healthFlags = flag.NewFlagSet("health", flag.ContinueOnError)
-
-		healthShowFlags = flag.NewFlagSet("show", flag.ExitOnError)
-
 		connectFlags = flag.NewFlagSet("connect", flag.ContinueOnError)
 
 		connectAccountBalanceFlags           = flag.NewFlagSet("account-balance", flag.ExitOnError)
@@ -103,9 +96,6 @@ func ParseEndpoint(
 		connectTransactionStatusBodyFlag        = connectTransactionStatusFlags.String("body", "REQUIRED", "")
 		connectTransactionStatusAccessTokenFlag = connectTransactionStatusFlags.String("access-token", "REQUIRED", "")
 	)
-	healthFlags.Usage = healthUsage
-	healthShowFlags.Usage = healthShowUsage
-
 	connectFlags.Usage = connectUsage
 	connectAccountBalanceFlags.Usage = connectAccountBalanceUsage
 	connectAccountFullStatementFlags.Usage = connectAccountFullStatementUsage
@@ -135,8 +125,6 @@ func ParseEndpoint(
 	{
 		svcn = flag.Arg(0)
 		switch svcn {
-		case "health":
-			svcf = healthFlags
 		case "connect":
 			svcf = connectFlags
 		default:
@@ -154,13 +142,6 @@ func ParseEndpoint(
 	{
 		epn = svcf.Arg(0)
 		switch svcn {
-		case "health":
-			switch epn {
-			case "show":
-				epf = healthShowFlags
-
-			}
-
 		case "connect":
 			switch epn {
 			case "account-balance":
@@ -221,13 +202,6 @@ func ParseEndpoint(
 	)
 	{
 		switch svcn {
-		case "health":
-			c := healthc.NewClient(scheme, host, doer, enc, dec, restore)
-			switch epn {
-			case "show":
-				endpoint = c.Show()
-				data = nil
-			}
 		case "connect":
 			c := connectc.NewClient(scheme, host, doer, enc, dec, restore)
 			switch epn {
@@ -275,29 +249,6 @@ func ParseEndpoint(
 	}
 
 	return endpoint, data, nil
-}
-
-// healthUsage displays the usage of the health command and its subcommands.
-func healthUsage() {
-	fmt.Fprintf(os.Stderr, `Service is the health service interface.
-Usage:
-    %s [globalflags] health COMMAND [flags]
-
-COMMAND:
-    show: Health check endpoint.
-
-Additional help:
-    %s health COMMAND --help
-`, os.Args[0], os.Args[0])
-}
-func healthShowUsage() {
-	fmt.Fprintf(os.Stderr, `%s [flags] health show
-
-Health check endpoint.
-
-Example:
-    `+os.Args[0]+` health show
-`, os.Args[0])
 }
 
 // connectUsage displays the usage of the connect command and its subcommands.
@@ -461,11 +412,11 @@ Example:
     `+os.Args[0]+` connect ins-simulation --body '{
       "AccountNumber": "54321987654321",
       "Amount": 120777.45,
-      "Currency": "USD",
+      "Currency": "ZAR",
       "CustMemo": {
          "CustMemoLine1": "728210595 ABD01",
-         "CustMemoLine2": "Expedita fuga.",
-         "CustMemoLine3": "Temporibus delectus eius."
+         "CustMemoLine2": "Quae aperiam.",
+         "CustMemoLine3": "Dolores in officia et itaque et ut."
       },
       "EntryDate": "20190301",
       "EventType": "DEBIT",
@@ -473,9 +424,9 @@ Example:
       "MessageDateTime": "2017-12-04T09:27:00",
       "MessageReference": "40ca18c6765086089a1",
       "Narration": "Supplier Payments",
-      "NotificationCode": "Quaerat delectus aut dolore minus est.",
+      "NotificationCode": "Itaque vel qui incidunt repellat.",
       "PaymentRef": "SFI427E9136D7D3F21C2C89",
-      "ServiceName": "Voluptatem voluptas culpa sunt natus libero voluptatem.",
+      "ServiceName": "Aliquid maiores.",
       "TransactionDate": "20190301165420",
       "TransactionId": "1169716b65891lI6",
       "ValueDate": "20190301"

@@ -28,7 +28,7 @@ var _ = API("connect", func() {
 	})
 	Server("coop", func() {
 		Description("coop hosts Co-op Bank Connect API Services.")
-		Services("connect", "health", "swagger")
+		Services("connect")
 		Host("development", func() {
 			Description("Development Hosts")
 			URI("http://developer.co-opbank.co.ke:8280")

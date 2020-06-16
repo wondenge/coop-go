@@ -12,13 +12,8 @@ import (
 	"github.com/go-kit/kit/log"
 	kithttp "github.com/go-kit/kit/transport/http"
 	connect "github.com/wondenge/coop-go/gen/connect"
-	health "github.com/wondenge/coop-go/gen/health"
 	connectkitsvr "github.com/wondenge/coop-go/gen/http/connect/kitserver"
 	connectsvr "github.com/wondenge/coop-go/gen/http/connect/server"
-	healthkitsvr "github.com/wondenge/coop-go/gen/http/health/kitserver"
-	healthsvr "github.com/wondenge/coop-go/gen/http/health/server"
-	swaggerkitsvr "github.com/wondenge/coop-go/gen/http/swagger/kitserver"
-	swaggersvr "github.com/wondenge/coop-go/gen/http/swagger/server"
 	goahttp "goa.design/goa/v3/http"
 	httpmdlwr "goa.design/goa/v3/http/middleware"
 	"goa.design/goa/v3/middleware"
@@ -26,7 +21,7 @@ import (
 
 // handleHTTPServer starts configures and starts a HTTP server on the given
 // URL. It shuts down the server if any error is received in the error channel.
-func handleHTTPServer(ctx context.Context, u *url.URL, connectEndpoints *connect.Endpoints, healthEndpoints *health.Endpoints, wg *sync.WaitGroup, errc chan error, logger log.Logger, debug bool) {
+func handleHTTPServer(ctx context.Context, u *url.URL, connectEndpoints *connect.Endpoints, wg *sync.WaitGroup, errc chan error, logger log.Logger, debug bool) {
 
 	// Provide the transport specific request decoder and response encoder.
 	// The goa http package has built-in support for JSON, XML and gob.
@@ -62,9 +57,6 @@ func handleHTTPServer(ctx context.Context, u *url.URL, connectEndpoints *connect
 		connectSendToMPesaHandler           *kithttp.Server
 		connectTransactionStatusHandler     *kithttp.Server
 		connectServer                       *connectsvr.Server
-		healthShowHandler                   *kithttp.Server
-		healthServer                        *healthsvr.Server
-		swaggerServer                       *swaggersvr.Server
 	)
 	{
 		eh := errorHandler(logger)
@@ -141,13 +133,6 @@ func handleHTTPServer(ctx context.Context, u *url.URL, connectEndpoints *connect
 			kithttp.ServerErrorEncoder(connectkitsvr.EncodeTransactionStatusError(enc, nil)),
 		)
 		connectServer = connectsvr.New(connectEndpoints, mux, dec, enc, eh, nil)
-		healthShowHandler = kithttp.NewServer(
-			endpoint.Endpoint(healthEndpoints.Show),
-			func(context.Context, *http.Request) (request interface{}, err error) { return nil, nil },
-			healthkitsvr.EncodeShowResponse(enc),
-		)
-		healthServer = healthsvr.New(healthEndpoints, mux, dec, enc, eh, nil)
-		swaggerServer = swaggersvr.New(nil, mux, dec, enc, eh, nil)
 	}
 
 	// Configure the mux.
@@ -163,8 +148,6 @@ func handleHTTPServer(ctx context.Context, u *url.URL, connectEndpoints *connect
 	connectkitsvr.MountPesaLinkSendToPhoneHandler(mux, connectPesaLinkSendToPhoneHandler)
 	connectkitsvr.MountSendToMPesaHandler(mux, connectSendToMPesaHandler)
 	connectkitsvr.MountTransactionStatusHandler(mux, connectTransactionStatusHandler)
-	healthkitsvr.MountShowHandler(mux, healthShowHandler)
-	swaggerkitsvr.MountGenHTTPOpenapiJSON(mux)
 
 	// Wrap the multiplexer with additional middlewares. Middlewares mounted
 	// here apply to all the service endpoints.
@@ -178,12 +161,6 @@ func handleHTTPServer(ctx context.Context, u *url.URL, connectEndpoints *connect
 	// configure the server as required by your service.
 	srv := &http.Server{Addr: u.Host, Handler: handler}
 	for _, m := range connectServer.Mounts {
-		logger.Log("info", fmt.Sprintf("HTTP %q mounted on %s %s", m.Method, m.Verb, m.Pattern))
-	}
-	for _, m := range healthServer.Mounts {
-		logger.Log("info", fmt.Sprintf("HTTP %q mounted on %s %s", m.Method, m.Verb, m.Pattern))
-	}
-	for _, m := range swaggerServer.Mounts {
 		logger.Log("info", fmt.Sprintf("HTTP %q mounted on %s %s", m.Method, m.Verb, m.Pattern))
 	}
 
