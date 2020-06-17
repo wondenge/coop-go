@@ -2,6 +2,7 @@
 <img src="src/assets/img/CoopSDK.png" alt="Co-op Bank SDK" title="Co-op Bank SDK" />
 </p>
 <h1 align="center">Co-operative Bank of Kenya Golang SDK</h3>
+<a href="https://pkg.go.dev/github.com/wondenge/coop-go?tab=doc"><img src="https://img.shields.io/badge/godoc-reference-blue.svg"></a>
 
 [![Go Report Card](https://goreportcard.com/badge/wondenge/coop-go)](https://goreportcard.com/report/wondenge/coop-go)
 [![License](https://img.shields.io/badge/license-Apache-blue.svg)]
@@ -12,7 +13,13 @@ Coo-operative Bank of Kenya offers simple and RESTful APIs that allow one to qui
 
 This Golang SDK provides an avenue to intergrate with the APIs directly inside your Go application to tap into the continuous innovation at the bank.
 
+# Installation
 
+```bash
+$  go get github.com/wondenge/coop-go
+```
+
+# Usage
 
 ```go
 package connectapi
