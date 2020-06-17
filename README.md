@@ -35,7 +35,12 @@ import (
 ```
 
 <h1 align="left">Authentication API</h1>
-An Access Token will be used to access, authorize and authenticate your interactions with the Co-op Bank’s Open Banking APIs. It will be generated using a Consumer Key and a Consumer Secret linked to your account. The Access Token will expire after a specified duration of time, after which regeneration of the Access Token will be required. To generate or re-generate an Access Token, your sign-in username and password will be required. It is very important to keep your API credentials safe, as they can be used to access your account, make changes to your account and carry out transactions. It is also important to note that once you generate a new set of API credentials you must update all your applications with the new API details for your applications to continue working. Note that the Sandbox and Live environments have unique Consumer Key and Consumer Secret which are NOT be interchangeable.
+
+- An Access Token will be used to access, authorize and authenticate your interactions with the Co-op Bank’s Open Banking APIs.
+- It will be generated using a Consumer Key and a Consumer Secret linked to your account. The Access Token will expire after a specified duration of time, after which regeneration of the Access Token will be required.
+- To generate or re-generate an Access Token, your sign-in username and password will be required. It is very important to keep your API credentials safe, as they can be used to access your account, make changes to your account and carry out transactions.
+- It is also important to note that once you generate a new set of API credentials you must update all your applications with the new API details for your applications to continue working.
+- Note that the Sandbox and Live environments have unique Consumer Key and Consumer Secret which are NOT be interchangeable.
 
 <p align="left">
 <img src="src/assets/img/AccountBalance.png" alt="AccountBalance API"  width="200" />
