@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/wondenge/coop-go/gen/connect"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -14,7 +15,7 @@ import (
 // and number of transactions to be returned.
 //
 // Post an Account Transactions Enquiry Request
-func (s *connectsrvc) AccountTransactions(ctx context.Context, p *connect.AccountTransactionsPayload) (res *connect.AccountTransactionsSuccessResponse, err error) {
+func (c *APIClient) AccountTransactions(ctx context.Context, p *connect.AccountTransactionsPayload) (res *connect.AccountTransactionsSuccessResponse, err error) {
 
 	// Encode JSON from our instance, using marshall.
 	b, err := json.Marshal(p)
@@ -23,12 +24,50 @@ func (s *connectsrvc) AccountTransactions(ctx context.Context, p *connect.Accoun
 		fmt.Println(err.Error())
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s", "/Enquiry/AccountTransactions/1.0.0"), bytes.NewReader(b))
-	res = &connect.AccountTransactionsSuccessResponse{}
-	s.logger.Log("info", fmt.Sprintf("connect.AccountTransactions"))
+	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s%s", c.APIBase, "/Enquiry/AccountTransactions/1.0.0"), bytes.NewReader(b))
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("could not make new http request: %w", err)
 	}
-	err = c.SendWithAuth(req, res)
+
+	// Set Header Parameters
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Basic "+c.Token.AccessToken)
+
+	resp, err := c.Client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("could not load default HTTP client: %w", err)
+	}
+
+	if err := c.logger.Log("info", fmt.Sprintf("connect.AccountTransactions")); err != nil {
+		err := fmt.Errorf("could not log to stdout: %w", err)
+		fmt.Println(err.Error())
+	}
+
+	//  We're done reading from response body, lets close it.
+	defer func() {
+		err := resp.Body.Close()
+		if err != nil {
+			err := fmt.Errorf("could not close response body: %w", err)
+			fmt.Println(err.Error())
+		}
+	}()
+
+	// Read data from response body.
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		err := fmt.Errorf("oauth2: cannot fetch token: %v", err)
+		fmt.Println(err.Error())
+	}
+
+	res = &connect.AccountTransactionsSuccessResponse{}
+
+	// Parse the JSON-encoded data from response body.
+	// The data is stored in the value pointed by response.
+	if err := json.Unmarshal(body, &res); err != nil {
+		err := fmt.Errorf("could not unmarshal response body: %w", err)
+		fmt.Println(err.Error())
+	}
+
 	return res, err
+
 }
