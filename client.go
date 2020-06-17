@@ -63,7 +63,9 @@ func NewClient(key string, secret string, APIBase string) (*Client, error) {
 // No need to call SetAccessToken to apply new access token for current Client
 // Endpoint: POST /v1/oauth2/token
 func (c *Client) GetAccessToken() (*TokenResponse, error) {
+
 	buf := bytes.NewBuffer([]byte("grant_type=client_credentials"))
+
 	req, err := http.NewRequest("POST", fmt.Sprintf("%s%s", c.APIBase, "/token"), buf)
 	if err != nil {
 		return &TokenResponse{}, err
@@ -182,21 +184,6 @@ func (c *Client) SendWithBasicAuth(req *http.Request, v interface{}) error {
 	req.SetBasicAuth(c.ConsumerKey, c.ConsumerSecret)
 
 	return c.Send(req, v)
-}
-
-// NewRequest constructs a request
-// Convert payload to a JSON
-func (c *Client) NewRequest(method, url string, payload interface{}) (*http.Request, error) {
-	var buf io.Reader
-	if payload != nil {
-		var b []byte
-		b, err := json.Marshal(&payload)
-		if err != nil {
-			return nil, err
-		}
-		buf = bytes.NewBuffer(b)
-	}
-	return http.NewRequest(method, url, buf)
 }
 
 // log will dump request and response to the log file
