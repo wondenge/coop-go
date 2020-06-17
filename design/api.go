@@ -69,14 +69,6 @@ var _ = Service("connect", func() {
 		HTTP(func() {
 			POST("Enquiry/AccountBalance/1.0.0")
 
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
-
 			// Status 200
 			// RFC 7231, 6.3.1
 			Response(StatusOK, func() {
@@ -127,14 +119,6 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/FullStatement/Account/1.0.0")
-
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -190,14 +174,6 @@ var _ = Service("connect", func() {
 		HTTP(func() {
 			POST("MiniStatement/Account/1.0.0")
 
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
-
 			// Status 200
 			// RFC 7231, 6.3.1
 			Response(StatusOK, func() {
@@ -251,14 +227,6 @@ var _ = Service("connect", func() {
 		HTTP(func() {
 			POST("Enquiry/AccountTransactions/1.0.0")
 
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
-
 			// Status 200
 			// RFC 7231, 6.3.1
 			Response(StatusOK, func() {
@@ -307,14 +275,6 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/Validation/Account/1.0.0")
-
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -368,14 +328,6 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/ExchangeRate/1.0.0")
-
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -438,14 +390,6 @@ var _ = Service("connect", func() {
 		HTTP(func() {
 			POST("FundsTransfer/Internal/A2A/2.0.0")
 
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
-
 			// Status 200
 			// RFC 7231, 6.3.1
 			Response(StatusOK, func() {
@@ -506,14 +450,6 @@ var _ = Service("connect", func() {
 		HTTP(func() {
 			POST("Notifications/INS/Simulation/1.0.0")
 
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
-
 			// Status 200
 			// RFC 7231, 6.3.1
 			Response(StatusOK, func() {
@@ -570,14 +506,6 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("FundsTransfer/External/A2A/PesaLink/1.0.0")
-
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
 
 			// Status 200
 			// RFC 7231, 6.3.1
@@ -648,14 +576,6 @@ var _ = Service("connect", func() {
 		HTTP(func() {
 			POST("FundsTransfer/External/A2M/PesaLink/1.0.0")
 
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
-
 			// Status 200
 			// RFC 7231, 6.3.1
 			Response(StatusOK, func() {
@@ -724,14 +644,6 @@ var _ = Service("connect", func() {
 		HTTP(func() {
 			POST("FundsTransfer/External/A2M/Mpesa/v1.0.0")
 
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
-
 			// Status 200
 			// RFC 7231, 6.3.1
 			Response(StatusOK, func() {
@@ -794,14 +706,6 @@ var _ = Service("connect", func() {
 
 		HTTP(func() {
 			POST("Enquiry/TransactionStatus/2.0.0")
-
-			Headers(func() {
-				Header("access_token:Authorization", String, func() {
-					Description("Auth token")
-					Pattern("^Basic [^ ]+$")
-				})
-				Required("access_token")
-			})
 
 			// Status 200
 			// RFC 7231, 6.3.1

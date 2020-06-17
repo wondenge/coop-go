@@ -18,9 +18,6 @@ import (
 var IFTAccountToAccountTXNRequest = Type("IFTAccountToAccountTXNRequest", func() {
 	Description("IFT Account To Account Transaction Request")
 
-	AccessToken("access_token", String, func() {
-		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
-	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
@@ -41,9 +38,6 @@ var IFTAccountToAccountTXNRequest = Type("IFTAccountToAccountTXNRequest", func()
 var PesaLinkSendToAccountTransactionRequest = Type("PesaLinkSendToAccountTransactionRequest", func() {
 	Description("Pesalink send to account transaction request")
 
-	AccessToken("access_token", String, func() {
-		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
-	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
@@ -63,9 +57,6 @@ var PesaLinkSendToAccountTransactionRequest = Type("PesaLinkSendToAccountTransac
 var PesaLinkSendToPhoneTransactionRequest = Type("PesaLinkSendToPhoneTransactionRequest", func() {
 	Description("Pesalink send to phone transaction request")
 
-	AccessToken("access_token", String, func() {
-		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
-	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
@@ -85,9 +76,6 @@ var PesaLinkSendToPhoneTransactionRequest = Type("PesaLinkSendToPhoneTransaction
 var SendToMpesaTransactionRequest = Type("SendToMpesaTransactionRequest", func() {
 	Description("Send to Mpesa transaction request")
 
-	AccessToken("access_token", String, func() {
-		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
-	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)

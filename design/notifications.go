@@ -16,9 +16,6 @@ import (
 var INSTransactionSimulationRequest = Type("INSTransactionSimulationRequest", func() {
 	Description("INS Transaction Simulation Request")
 
-	AccessToken("access_token", String, func() {
-		Example("1c9f6c4b-625c-3255-ba1a-026df12ab648")
-	})
 	Attribute("MessageReference", String, func() {
 		Description("Your unique transaction request message identifier")
 		MinLength(1)
