@@ -31,12 +31,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: AccountBalanceRequestBody
         in: body
         required: true
@@ -68,8 +62,6 @@ paths:
             $ref: '#/definitions/ConnectAccountBalanceTimeoutResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /Enquiry/AccountTransactions/1.0.0:
     post:
       tags:
@@ -80,12 +72,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: AccountTransactionsRequestBody
         in: body
         required: true
@@ -118,8 +104,6 @@ paths:
             $ref: '#/definitions/ConnectAccountTransactionsTimeoutResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /Enquiry/ExchangeRate/1.0.0:
     post:
       tags:
@@ -130,12 +114,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: ExchangeRateRequestBody
         in: body
         required: true
@@ -172,8 +150,6 @@ paths:
             $ref: '#/definitions/ConnectExchangeRateTimeoutResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /Enquiry/FullStatement/Account/1.0.0:
     post:
       tags:
@@ -184,12 +160,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: AccountFullStatementRequestBody
         in: body
         required: true
@@ -227,8 +197,6 @@ paths:
             $ref: '#/definitions/ConnectAccountFullStatementTimeoutResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /Enquiry/TransactionStatus/2.0.0:
     post:
       tags:
@@ -239,12 +207,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: TransactionStatusRequestBody
         in: body
         required: true
@@ -290,8 +252,6 @@ paths:
             $ref: '#/definitions/ConnectTransactionStatusTimeoutResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /Enquiry/Validation/Account/1.0.0:
     post:
       tags:
@@ -302,12 +262,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: AccountValidationRequestBody
         in: body
         required: true
@@ -343,8 +297,6 @@ paths:
             $ref: '#/definitions/ConnectAccountValidationTimeoutResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /FundsTransfer/External/A2A/PesaLink/1.0.0:
     post:
       tags:
@@ -355,12 +307,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: PesaLinkSendToAccountRequestBody
         in: body
         required: true
@@ -406,8 +352,6 @@ paths:
             $ref: '#/definitions/ConnectPesaLinkSendToAccountConflictResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /FundsTransfer/External/A2M/Mpesa/v1.0.0:
     post:
       tags:
@@ -418,12 +362,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: SendToMPesaRequestBody
         in: body
         required: true
@@ -469,8 +407,6 @@ paths:
             $ref: '#/definitions/ConnectSendToMPesaConflictResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /FundsTransfer/External/A2M/PesaLink/1.0.0:
     post:
       tags:
@@ -481,12 +417,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: PesaLinkSendToPhoneRequestBody
         in: body
         required: true
@@ -532,8 +462,6 @@ paths:
             $ref: '#/definitions/ConnectPesaLinkSendToPhoneConflictResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /FundsTransfer/Internal/A2A/2.0.0:
     post:
       tags:
@@ -544,12 +472,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: IFTAccountToAccountRequestBody
         in: body
         required: true
@@ -595,8 +517,6 @@ paths:
             $ref: '#/definitions/ConnectIFTAccountToAccountConflictResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /MiniStatement/Account/1.0.0:
     post:
       tags:
@@ -607,12 +527,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: AccountMiniStatementRequestBody
         in: body
         required: true
@@ -648,8 +562,6 @@ paths:
             $ref: '#/definitions/ConnectAccountMiniStatementTimeoutResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
   /Notifications/INS/Simulation/1.0.0:
     post:
       tags:
@@ -660,12 +572,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: Authorization
-        in: header
-        description: Auth token
-        required: true
-        type: string
-        pattern: ^Basic [^ ]+$
       - name: INSSimulationRequestBody
         in: body
         required: true
@@ -709,8 +615,6 @@ paths:
             $ref: '#/definitions/ConnectINSSimulationTimeoutResponseBody'
       schemes:
       - http
-      security:
-      - oauth2_header_Authorization: []
 definitions:
   AccountTransactionResponseBody:
     title: AccountTransactionResponseBody
@@ -4809,10 +4713,6 @@ definitions:
     - Amount
     - TransactionCurrency
     - Narration
-securityDefinitions:
-  oauth2_header_Authorization:
-    type: oauth2
-    description: Secures endpoint by requiring a valid OAuth2 token.
 externalDocs:
   description: Library Usage
   url: https://github.com/wondenge/coop-go/blob/master/README.md

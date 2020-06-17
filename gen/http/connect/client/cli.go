@@ -18,7 +18,7 @@ import (
 
 // BuildAccountBalancePayload builds the payload for the connect AccountBalance
 // endpoint from CLI flags.
-func BuildAccountBalancePayload(connectAccountBalanceBody string, connectAccountBalanceAccessToken string) (*connect.AccountBalancePayload, error) {
+func BuildAccountBalancePayload(connectAccountBalanceBody string) (*connect.AccountBalancePayload, error) {
 	var err error
 	var body AccountBalanceRequestBody
 	{
@@ -42,22 +42,17 @@ func BuildAccountBalancePayload(connectAccountBalanceBody string, connectAccount
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectAccountBalanceAccessToken
-	}
 	v := &connect.AccountBalancePayload{
 		MessageReference: body.MessageReference,
 		AccountNumber:    body.AccountNumber,
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildAccountFullStatementPayload builds the payload for the connect
 // AccountFullStatement endpoint from CLI flags.
-func BuildAccountFullStatementPayload(connectAccountFullStatementBody string, connectAccountFullStatementAccessToken string) (*connect.AccountFullStatementPayload, error) {
+func BuildAccountFullStatementPayload(connectAccountFullStatementBody string) (*connect.AccountFullStatementPayload, error) {
 	var err error
 	var body AccountFullStatementRequestBody
 	{
@@ -85,24 +80,19 @@ func BuildAccountFullStatementPayload(connectAccountFullStatementBody string, co
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectAccountFullStatementAccessToken
-	}
 	v := &connect.AccountFullStatementPayload{
 		MessageReference: body.MessageReference,
 		AccountNumber:    body.AccountNumber,
 		StartDate:        body.StartDate,
 		EndDate:          body.EndDate,
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildAccountMiniStatementPayload builds the payload for the connect
 // AccountMiniStatement endpoint from CLI flags.
-func BuildAccountMiniStatementPayload(connectAccountMiniStatementBody string, connectAccountMiniStatementAccessToken string) (*connect.AccountMiniStatementPayload, error) {
+func BuildAccountMiniStatementPayload(connectAccountMiniStatementBody string) (*connect.AccountMiniStatementPayload, error) {
 	var err error
 	var body AccountMiniStatementRequestBody
 	{
@@ -126,22 +116,17 @@ func BuildAccountMiniStatementPayload(connectAccountMiniStatementBody string, co
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectAccountMiniStatementAccessToken
-	}
 	v := &connect.AccountMiniStatementPayload{
 		MessageReference: body.MessageReference,
 		AccountNumber:    body.AccountNumber,
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildAccountTransactionsPayload builds the payload for the connect
 // AccountTransactions endpoint from CLI flags.
-func BuildAccountTransactionsPayload(connectAccountTransactionsBody string, connectAccountTransactionsAccessToken string) (*connect.AccountTransactionsPayload, error) {
+func BuildAccountTransactionsPayload(connectAccountTransactionsBody string) (*connect.AccountTransactionsPayload, error) {
 	var err error
 	var body AccountTransactionsRequestBody
 	{
@@ -165,23 +150,18 @@ func BuildAccountTransactionsPayload(connectAccountTransactionsBody string, conn
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectAccountTransactionsAccessToken
-	}
 	v := &connect.AccountTransactionsPayload{
 		MessageReference: body.MessageReference,
 		AccountNumber:    body.AccountNumber,
 		NoOfTransactions: body.NoOfTransactions,
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildAccountValidationPayload builds the payload for the connect
 // AccountValidation endpoint from CLI flags.
-func BuildAccountValidationPayload(connectAccountValidationBody string, connectAccountValidationAccessToken string) (*connect.AccountValidationPayload, error) {
+func BuildAccountValidationPayload(connectAccountValidationBody string) (*connect.AccountValidationPayload, error) {
 	var err error
 	var body AccountValidationRequestBody
 	{
@@ -205,22 +185,17 @@ func BuildAccountValidationPayload(connectAccountValidationBody string, connectA
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectAccountValidationAccessToken
-	}
 	v := &connect.AccountValidationPayload{
 		MessageReference: body.MessageReference,
 		AccountNumber:    body.AccountNumber,
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildExchangeRatePayload builds the payload for the connect ExchangeRate
 // endpoint from CLI flags.
-func BuildExchangeRatePayload(connectExchangeRateBody string, connectExchangeRateAccessToken string) (*connect.ExchangeRatePayload, error) {
+func BuildExchangeRatePayload(connectExchangeRateBody string) (*connect.ExchangeRatePayload, error) {
 	var err error
 	var body ExchangeRateRequestBody
 	{
@@ -244,23 +219,18 @@ func BuildExchangeRatePayload(connectExchangeRateBody string, connectExchangeRat
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectExchangeRateAccessToken
-	}
 	v := &connect.ExchangeRatePayload{
 		MessageReference: body.MessageReference,
 		FromCurrencyCode: body.FromCurrencyCode,
 		ToCurrencyCode:   body.ToCurrencyCode,
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildIFTAccountToAccountPayload builds the payload for the connect
 // IFTAccountToAccount endpoint from CLI flags.
-func BuildIFTAccountToAccountPayload(connectIFTAccountToAccountBody string, connectIFTAccountToAccountAccessToken string) (*connect.IFTAccountToAccountTXNRequest, error) {
+func BuildIFTAccountToAccountPayload(connectIFTAccountToAccountBody string) (*connect.IFTAccountToAccountTXNRequest, error) {
 	var err error
 	var body IFTAccountToAccountRequestBody
 	{
@@ -294,10 +264,6 @@ func BuildIFTAccountToAccountPayload(connectIFTAccountToAccountBody string, conn
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectIFTAccountToAccountAccessToken
-	}
 	v := &connect.IFTAccountToAccountTXNRequest{
 		MessageReference: body.MessageReference,
 		CallBackURL:      body.CallBackURL,
@@ -308,14 +274,13 @@ func BuildIFTAccountToAccountPayload(connectIFTAccountToAccountBody string, conn
 	if body.Destinations != nil {
 		v.Destinations = marshalDestinationsTXNRequestRequestBodyToConnectDestinationsTXNRequest(body.Destinations)
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildINSSimulationPayload builds the payload for the connect INSSimulation
 // endpoint from CLI flags.
-func BuildINSSimulationPayload(connectINSSimulationBody string, connectINSSimulationAccessToken string) (*connect.INSTransactionSimulationRequest, error) {
+func BuildINSSimulationPayload(connectINSSimulationBody string) (*connect.INSTransactionSimulationRequest, error) {
 	var err error
 	var body INSSimulationRequestBody
 	{
@@ -353,10 +318,6 @@ func BuildINSSimulationPayload(connectINSSimulationBody string, connectINSSimula
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectINSSimulationAccessToken
-	}
 	v := &connect.INSTransactionSimulationRequest{
 		MessageReference: body.MessageReference,
 		MessageDateTime:  body.MessageDateTime,
@@ -377,14 +338,13 @@ func BuildINSSimulationPayload(connectINSSimulationBody string, connectINSSimula
 	if body.CustMemo != nil {
 		v.CustMemo = marshalCustMemoRequestBodyToConnectCustMemo(body.CustMemo)
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildPesaLinkSendToAccountPayload builds the payload for the connect
 // PesaLinkSendToAccount endpoint from CLI flags.
-func BuildPesaLinkSendToAccountPayload(connectPesaLinkSendToAccountBody string, connectPesaLinkSendToAccountAccessToken string) (*connect.PesaLinkSendToAccountTransactionRequest, error) {
+func BuildPesaLinkSendToAccountPayload(connectPesaLinkSendToAccountBody string) (*connect.PesaLinkSendToAccountTransactionRequest, error) {
 	var err error
 	var body PesaLinkSendToAccountRequestBody
 	{
@@ -418,10 +378,6 @@ func BuildPesaLinkSendToAccountPayload(connectPesaLinkSendToAccountBody string, 
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectPesaLinkSendToAccountAccessToken
-	}
 	v := &connect.PesaLinkSendToAccountTransactionRequest{
 		MessageReference: body.MessageReference,
 		CallBackURL:      body.CallBackURL,
@@ -432,14 +388,13 @@ func BuildPesaLinkSendToAccountPayload(connectPesaLinkSendToAccountBody string, 
 	if body.Destinations != nil {
 		v.Destinations = marshalDestinationsTransactionRequestRequestBodyToConnectDestinationsTransactionRequest(body.Destinations)
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildPesaLinkSendToPhonePayload builds the payload for the connect
 // PesaLinkSendToPhone endpoint from CLI flags.
-func BuildPesaLinkSendToPhonePayload(connectPesaLinkSendToPhoneBody string, connectPesaLinkSendToPhoneAccessToken string) (*connect.PesaLinkSendToPhoneTransactionRequest, error) {
+func BuildPesaLinkSendToPhonePayload(connectPesaLinkSendToPhoneBody string) (*connect.PesaLinkSendToPhoneTransactionRequest, error) {
 	var err error
 	var body PesaLinkSendToPhoneRequestBody
 	{
@@ -473,10 +428,6 @@ func BuildPesaLinkSendToPhonePayload(connectPesaLinkSendToPhoneBody string, conn
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectPesaLinkSendToPhoneAccessToken
-	}
 	v := &connect.PesaLinkSendToPhoneTransactionRequest{
 		MessageReference: body.MessageReference,
 		CallBackURL:      body.CallBackURL,
@@ -487,14 +438,13 @@ func BuildPesaLinkSendToPhonePayload(connectPesaLinkSendToPhoneBody string, conn
 	if body.Destinations != nil {
 		v.Destinations = marshalDestinationsTransactionRequestRequestBodyToConnectDestinationsTransactionRequest(body.Destinations)
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildSendToMPesaPayload builds the payload for the connect SendToMPesa
 // endpoint from CLI flags.
-func BuildSendToMPesaPayload(connectSendToMPesaBody string, connectSendToMPesaAccessToken string) (*connect.SendToMpesaTransactionRequest, error) {
+func BuildSendToMPesaPayload(connectSendToMPesaBody string) (*connect.SendToMpesaTransactionRequest, error) {
 	var err error
 	var body SendToMPesaRequestBody
 	{
@@ -528,10 +478,6 @@ func BuildSendToMPesaPayload(connectSendToMPesaBody string, connectSendToMPesaAc
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectSendToMPesaAccessToken
-	}
 	v := &connect.SendToMpesaTransactionRequest{
 		MessageReference: body.MessageReference,
 		CallBackURL:      body.CallBackURL,
@@ -542,14 +488,13 @@ func BuildSendToMPesaPayload(connectSendToMPesaBody string, connectSendToMPesaAc
 	if body.Destinations != nil {
 		v.Destinations = marshalDestinationsTransactionRequestRequestBodyToConnectDestinationsTransactionRequest(body.Destinations)
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }
 
 // BuildTransactionStatusPayload builds the payload for the connect
 // TransactionStatus endpoint from CLI flags.
-func BuildTransactionStatusPayload(connectTransactionStatusBody string, connectTransactionStatusAccessToken string) (*connect.FTTransactionStatusPayload, error) {
+func BuildTransactionStatusPayload(connectTransactionStatusBody string) (*connect.FTTransactionStatusPayload, error) {
 	var err error
 	var body TransactionStatusRequestBody
 	{
@@ -567,14 +512,9 @@ func BuildTransactionStatusPayload(connectTransactionStatusBody string, connectT
 			return nil, err
 		}
 	}
-	var accessToken string
-	{
-		accessToken = connectTransactionStatusAccessToken
-	}
 	v := &connect.FTTransactionStatusPayload{
 		MessageReference: body.MessageReference,
 	}
-	v.AccessToken = &accessToken
 
 	return v, nil
 }

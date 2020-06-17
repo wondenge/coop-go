@@ -11,7 +11,6 @@ import (
 	"context"
 
 	"github.com/go-kit/kit/endpoint"
-	"goa.design/goa/v3/security"
 )
 
 // Endpoints wraps the "connect" service endpoints.
@@ -32,21 +31,19 @@ type Endpoints struct {
 
 // NewEndpoints wraps the methods of the "connect" service with endpoints.
 func NewEndpoints(s Service) *Endpoints {
-	// Casting service to Auther interface
-	a := s.(Auther)
 	return &Endpoints{
-		AccountBalance:        NewAccountBalanceEndpoint(s, a.OAuth2Auth),
-		AccountFullStatement:  NewAccountFullStatementEndpoint(s, a.OAuth2Auth),
-		AccountMiniStatement:  NewAccountMiniStatementEndpoint(s, a.OAuth2Auth),
-		AccountTransactions:   NewAccountTransactionsEndpoint(s, a.OAuth2Auth),
-		AccountValidation:     NewAccountValidationEndpoint(s, a.OAuth2Auth),
-		ExchangeRate:          NewExchangeRateEndpoint(s, a.OAuth2Auth),
-		IFTAccountToAccount:   NewIFTAccountToAccountEndpoint(s, a.OAuth2Auth),
-		INSSimulation:         NewINSSimulationEndpoint(s, a.OAuth2Auth),
-		PesaLinkSendToAccount: NewPesaLinkSendToAccountEndpoint(s, a.OAuth2Auth),
-		PesaLinkSendToPhone:   NewPesaLinkSendToPhoneEndpoint(s, a.OAuth2Auth),
-		SendToMPesa:           NewSendToMPesaEndpoint(s, a.OAuth2Auth),
-		TransactionStatus:     NewTransactionStatusEndpoint(s, a.OAuth2Auth),
+		AccountBalance:        NewAccountBalanceEndpoint(s),
+		AccountFullStatement:  NewAccountFullStatementEndpoint(s),
+		AccountMiniStatement:  NewAccountMiniStatementEndpoint(s),
+		AccountTransactions:   NewAccountTransactionsEndpoint(s),
+		AccountValidation:     NewAccountValidationEndpoint(s),
+		ExchangeRate:          NewExchangeRateEndpoint(s),
+		IFTAccountToAccount:   NewIFTAccountToAccountEndpoint(s),
+		INSSimulation:         NewINSSimulationEndpoint(s),
+		PesaLinkSendToAccount: NewPesaLinkSendToAccountEndpoint(s),
+		PesaLinkSendToPhone:   NewPesaLinkSendToPhoneEndpoint(s),
+		SendToMPesa:           NewSendToMPesaEndpoint(s),
+		TransactionStatus:     NewTransactionStatusEndpoint(s),
 	}
 }
 
@@ -68,23 +65,9 @@ func (e *Endpoints) Use(m func(endpoint.Endpoint) endpoint.Endpoint) {
 
 // NewAccountBalanceEndpoint returns an endpoint function that calls the method
 // "AccountBalance" of service "connect".
-func NewAccountBalanceEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewAccountBalanceEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*AccountBalancePayload)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.AccountBalance(ctx, p)
 		if err != nil {
 			return nil, err
@@ -96,23 +79,9 @@ func NewAccountBalanceEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) 
 
 // NewAccountFullStatementEndpoint returns an endpoint function that calls the
 // method "AccountFullStatement" of service "connect".
-func NewAccountFullStatementEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewAccountFullStatementEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*AccountFullStatementPayload)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.AccountFullStatement(ctx, p)
 		if err != nil {
 			return nil, err
@@ -124,23 +93,9 @@ func NewAccountFullStatementEndpoint(s Service, authOAuth2Fn security.AuthOAuth2
 
 // NewAccountMiniStatementEndpoint returns an endpoint function that calls the
 // method "AccountMiniStatement" of service "connect".
-func NewAccountMiniStatementEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewAccountMiniStatementEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*AccountMiniStatementPayload)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.AccountMiniStatement(ctx, p)
 		if err != nil {
 			return nil, err
@@ -152,23 +107,9 @@ func NewAccountMiniStatementEndpoint(s Service, authOAuth2Fn security.AuthOAuth2
 
 // NewAccountTransactionsEndpoint returns an endpoint function that calls the
 // method "AccountTransactions" of service "connect".
-func NewAccountTransactionsEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewAccountTransactionsEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*AccountTransactionsPayload)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.AccountTransactions(ctx, p)
 		if err != nil {
 			return nil, err
@@ -180,23 +121,9 @@ func NewAccountTransactionsEndpoint(s Service, authOAuth2Fn security.AuthOAuth2F
 
 // NewAccountValidationEndpoint returns an endpoint function that calls the
 // method "AccountValidation" of service "connect".
-func NewAccountValidationEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewAccountValidationEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*AccountValidationPayload)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.AccountValidation(ctx, p)
 		if err != nil {
 			return nil, err
@@ -208,23 +135,9 @@ func NewAccountValidationEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Fun
 
 // NewExchangeRateEndpoint returns an endpoint function that calls the method
 // "ExchangeRate" of service "connect".
-func NewExchangeRateEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewExchangeRateEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*ExchangeRatePayload)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.ExchangeRate(ctx, p)
 		if err != nil {
 			return nil, err
@@ -236,23 +149,9 @@ func NewExchangeRateEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) en
 
 // NewIFTAccountToAccountEndpoint returns an endpoint function that calls the
 // method "IFTAccountToAccount" of service "connect".
-func NewIFTAccountToAccountEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewIFTAccountToAccountEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*IFTAccountToAccountTXNRequest)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.IFTAccountToAccount(ctx, p)
 		if err != nil {
 			return nil, err
@@ -264,23 +163,9 @@ func NewIFTAccountToAccountEndpoint(s Service, authOAuth2Fn security.AuthOAuth2F
 
 // NewINSSimulationEndpoint returns an endpoint function that calls the method
 // "INSSimulation" of service "connect".
-func NewINSSimulationEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewINSSimulationEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*INSTransactionSimulationRequest)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.INSSimulation(ctx, p)
 		if err != nil {
 			return nil, err
@@ -292,23 +177,9 @@ func NewINSSimulationEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) e
 
 // NewPesaLinkSendToAccountEndpoint returns an endpoint function that calls the
 // method "PesaLinkSendToAccount" of service "connect".
-func NewPesaLinkSendToAccountEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewPesaLinkSendToAccountEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*PesaLinkSendToAccountTransactionRequest)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.PesaLinkSendToAccount(ctx, p)
 		if err != nil {
 			return nil, err
@@ -320,23 +191,9 @@ func NewPesaLinkSendToAccountEndpoint(s Service, authOAuth2Fn security.AuthOAuth
 
 // NewPesaLinkSendToPhoneEndpoint returns an endpoint function that calls the
 // method "PesaLinkSendToPhone" of service "connect".
-func NewPesaLinkSendToPhoneEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewPesaLinkSendToPhoneEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*PesaLinkSendToPhoneTransactionRequest)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.PesaLinkSendToPhone(ctx, p)
 		if err != nil {
 			return nil, err
@@ -348,23 +205,9 @@ func NewPesaLinkSendToPhoneEndpoint(s Service, authOAuth2Fn security.AuthOAuth2F
 
 // NewSendToMPesaEndpoint returns an endpoint function that calls the method
 // "SendToMPesa" of service "connect".
-func NewSendToMPesaEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewSendToMPesaEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*SendToMpesaTransactionRequest)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.SendToMPesa(ctx, p)
 		if err != nil {
 			return nil, err
@@ -376,23 +219,9 @@ func NewSendToMPesaEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) end
 
 // NewTransactionStatusEndpoint returns an endpoint function that calls the
 // method "TransactionStatus" of service "connect".
-func NewTransactionStatusEndpoint(s Service, authOAuth2Fn security.AuthOAuth2Func) endpoint.Endpoint {
+func NewTransactionStatusEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*FTTransactionStatusPayload)
-		var err error
-		sc := security.OAuth2Scheme{
-			Name:           "oauth2",
-			Scopes:         []string{},
-			RequiredScopes: []string{},
-		}
-		var token string
-		if p.AccessToken != nil {
-			token = *p.AccessToken
-		}
-		ctx, err = authOAuth2Fn(ctx, token, &sc)
-		if err != nil {
-			return nil, err
-		}
 		res, err := s.TransactionStatus(ctx, p)
 		if err != nil {
 			return nil, err

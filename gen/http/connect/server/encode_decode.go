@@ -11,7 +11,6 @@ import (
 	"context"
 	"io"
 	"net/http"
-	"strings"
 
 	connect "github.com/wondenge/coop-go/gen/connect"
 	connectviews "github.com/wondenge/coop-go/gen/connect/views"
@@ -51,25 +50,7 @@ func DecodeAccountBalanceRequest(mux goahttp.Muxer, decoder func(*http.Request) 
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewAccountBalancePayload(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewAccountBalancePayload(&body)
 
 		return payload, nil
 	}
@@ -171,25 +152,7 @@ func DecodeAccountFullStatementRequest(mux goahttp.Muxer, decoder func(*http.Req
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewAccountFullStatementPayload(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewAccountFullStatementPayload(&body)
 
 		return payload, nil
 	}
@@ -303,25 +266,7 @@ func DecodeAccountMiniStatementRequest(mux goahttp.Muxer, decoder func(*http.Req
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewAccountMiniStatementPayload(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewAccountMiniStatementPayload(&body)
 
 		return payload, nil
 	}
@@ -435,25 +380,7 @@ func DecodeAccountTransactionsRequest(mux goahttp.Muxer, decoder func(*http.Requ
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewAccountTransactionsPayload(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewAccountTransactionsPayload(&body)
 
 		return payload, nil
 	}
@@ -555,25 +482,7 @@ func DecodeAccountValidationRequest(mux goahttp.Muxer, decoder func(*http.Reques
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewAccountValidationPayload(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewAccountValidationPayload(&body)
 
 		return payload, nil
 	}
@@ -687,25 +596,7 @@ func DecodeExchangeRateRequest(mux goahttp.Muxer, decoder func(*http.Request) go
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewExchangeRatePayload(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewExchangeRatePayload(&body)
 
 		return payload, nil
 	}
@@ -819,25 +710,7 @@ func DecodeIFTAccountToAccountRequest(mux goahttp.Muxer, decoder func(*http.Requ
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewIFTAccountToAccountTXNRequest(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewIFTAccountToAccountTXNRequest(&body)
 
 		return payload, nil
 	}
@@ -975,25 +848,7 @@ func DecodeINSSimulationRequest(mux goahttp.Muxer, decoder func(*http.Request) g
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewINSSimulationINSTransactionSimulationRequest(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewINSSimulationINSTransactionSimulationRequest(&body)
 
 		return payload, nil
 	}
@@ -1095,25 +950,7 @@ func DecodePesaLinkSendToAccountRequest(mux goahttp.Muxer, decoder func(*http.Re
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewPesaLinkSendToAccountTransactionRequest(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewPesaLinkSendToAccountTransactionRequest(&body)
 
 		return payload, nil
 	}
@@ -1251,25 +1088,7 @@ func DecodePesaLinkSendToPhoneRequest(mux goahttp.Muxer, decoder func(*http.Requ
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewPesaLinkSendToPhoneTransactionRequest(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewPesaLinkSendToPhoneTransactionRequest(&body)
 
 		return payload, nil
 	}
@@ -1407,25 +1226,7 @@ func DecodeSendToMPesaRequest(mux goahttp.Muxer, decoder func(*http.Request) goa
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewSendToMPesaSendToMpesaTransactionRequest(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewSendToMPesaSendToMpesaTransactionRequest(&body)
 
 		return payload, nil
 	}
@@ -1563,25 +1364,7 @@ func DecodeTransactionStatusRequest(mux goahttp.Muxer, decoder func(*http.Reques
 		if err != nil {
 			return nil, err
 		}
-
-		var (
-			accessToken string
-		)
-		accessToken = r.Header.Get("Authorization")
-		if accessToken == "" {
-			err = goa.MergeErrors(err, goa.MissingFieldError("Authorization", "header"))
-		}
-		if err != nil {
-			return nil, err
-		}
-		payload := NewTransactionStatusFTTransactionStatusPayload(&body, accessToken)
-		if payload.AccessToken != nil {
-			if strings.Contains(*payload.AccessToken, " ") {
-				// Remove authorization scheme prefix (e.g. "Bearer")
-				cred := strings.SplitN(*payload.AccessToken, " ", 2)[1]
-				payload.AccessToken = &cred
-			}
-		}
+		payload := NewTransactionStatusFTTransactionStatusPayload(&body)
 
 		return payload, nil
 	}
