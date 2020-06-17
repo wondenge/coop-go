@@ -45,7 +45,7 @@ import (
 <p align="left">
 <img src="src/assets/img/AccountBalance.png" alt="AccountBalance API"  width="200" />
 </p>
-<h1 align="left">1. AccountBalance API</h1>
+<h2 align="left">1. AccountBalance API</h2>
 The Account Balance Enquiry API enables you to enquire about your own Co-operative Bank accounts' balance as at now for the specified account number.
 
 <p align="left">
