@@ -34,7 +34,7 @@ import (
 
 ```
 
-<h1 align="left">Authentication API</h1>
+<h2 align="left">Authentication API</h2>
 
 - An Access Token will be used to access, authorize and authenticate your interactions with the Co-op Bank’s Open Banking APIs.
 - It will be generated using a Consumer Key and a Consumer Secret linked to your account. The Access Token will expire after a specified duration of time, after which regeneration of the Access Token will be required.
