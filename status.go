@@ -30,7 +30,7 @@ func (c *APIClient) TransactionStatus(ctx context.Context, p *connect.FTTransact
 
 	// Set Header Parameters
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Basic "+c.Token.AccessToken)
+	req.Header.Set("Authorization", "Bearer "+c.Token.AccessToken)
 
 	resp, err := c.Client.Do(req)
 	if err != nil {

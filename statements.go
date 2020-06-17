@@ -31,7 +31,7 @@ func (c *APIClient) AccountFullStatement(ctx context.Context, p *connect.Account
 
 	// Set Header Parameters
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Basic "+c.Token.AccessToken)
+	req.Header.Set("Authorization", "Bearer "+c.Token.AccessToken)
 
 	resp, err := c.Client.Do(req)
 	if err != nil {
@@ -91,7 +91,7 @@ func (c *APIClient) AccountMiniStatement(ctx context.Context, p *connect.Account
 
 	// Set Header Parameters
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Basic "+c.Token.AccessToken)
+	req.Header.Set("Authorization", "Bearer "+c.Token.AccessToken)
 
 	resp, err := c.Client.Do(req)
 	if err != nil {
