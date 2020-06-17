@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">Co-operative Bank of Kenya Golang SDK</h3>
 <a href="https://pkg.go.dev/github.com/wondenge/coop-go?tab=doc"><img src="https://img.shields.io/badge/godoc-reference-blue.svg"></a>
-
+[![Go Dev]("https://pkg.go.dev/github.com/wondenge/coop-go?tab=doc)]("https://img.shields.io/badge/godoc-reference-blue.svg")
 [![Go Report Card](https://goreportcard.com/badge/wondenge/coop-go)](https://goreportcard.com/report/wondenge/coop-go)
 [![License](https://img.shields.io/badge/license-Apache-blue.svg)]
 
