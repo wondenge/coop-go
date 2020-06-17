@@ -13,7 +13,7 @@ import (
 // funds from your own Co-operative Bank account to other Co-operative Bank account(s).
 //
 // Post an Internal Funds Transfer Account to Account Transaction
-func (c *Client) IFTAccountToAccount(ctx context.Context, p *connect.IFTAccountToAccountTXNRequest) (res *connect.SuccessAcknowledgement, err error) {
+func (s *connectsrvc) IFTAccountToAccount(ctx context.Context, p *connect.IFTAccountToAccountTXNRequest) (res *connect.SuccessAcknowledgement, err error) {
 
 	// Encode JSON from our instance, using marshall.
 	b, err := json.Marshal(p)
@@ -22,8 +22,9 @@ func (c *Client) IFTAccountToAccount(ctx context.Context, p *connect.IFTAccountT
 		fmt.Println(err.Error())
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s%s", c.APIBase, "/FundsTransfer/Internal/A2A/2.0.0"), bytes.NewReader(b))
+	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s", "/FundsTransfer/Internal/A2A/2.0.0"), bytes.NewReader(b))
 	res = &connect.SuccessAcknowledgement{}
+	s.logger.Log("info", fmt.Sprintf("connect.IFTAccountToAccount"))
 	if err != nil {
 		return nil, err
 	}

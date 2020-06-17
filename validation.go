@@ -12,7 +12,7 @@ import (
 // 5. Account Validation Enquiry API will enable you to validate a Co-operative Bank account number.
 //
 // Post an Account Validation Enquiry Request
-func (c *Client) AccountValidation(ctx context.Context, p *connect.AccountValidationPayload) (res *connect.AccountValidationSuccessResponse, err error) {
+func (s *connectsrvc) AccountValidation(ctx context.Context, p *connect.AccountValidationPayload) (res *connect.AccountValidationSuccessResponse, err error) {
 
 	// Encode JSON from our instance, using marshall.
 	b, err := json.Marshal(p)
@@ -21,8 +21,9 @@ func (c *Client) AccountValidation(ctx context.Context, p *connect.AccountValida
 		fmt.Println(err.Error())
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s%s", c.APIBase, "/Enquiry/Validation/Account/1.0.0"), bytes.NewReader(b))
+	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s", "/Enquiry/Validation/Account/1.0.0"), bytes.NewReader(b))
 	res = &connect.AccountValidationSuccessResponse{}
+	s.logger.Log("info", fmt.Sprintf("connect.AccountValidation"))
 	if err != nil {
 		return nil, err
 	}

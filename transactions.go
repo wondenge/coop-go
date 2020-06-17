@@ -14,7 +14,7 @@ import (
 // and number of transactions to be returned.
 //
 // Post an Account Transactions Enquiry Request
-func (c *Client) AccountTransactions(ctx context.Context, p *connect.AccountTransactionsPayload) (res *connect.AccountTransactionsSuccessResponse, err error) {
+func (s *connectsrvc) AccountTransactions(ctx context.Context, p *connect.AccountTransactionsPayload) (res *connect.AccountTransactionsSuccessResponse, err error) {
 
 	// Encode JSON from our instance, using marshall.
 	b, err := json.Marshal(p)
@@ -23,8 +23,9 @@ func (c *Client) AccountTransactions(ctx context.Context, p *connect.AccountTran
 		fmt.Println(err.Error())
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s%s", c.APIBase, "/Enquiry/AccountTransactions/1.0.0"), bytes.NewReader(b))
+	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s", "/Enquiry/AccountTransactions/1.0.0"), bytes.NewReader(b))
 	res = &connect.AccountTransactionsSuccessResponse{}
+	s.logger.Log("info", fmt.Sprintf("connect.AccountTransactions"))
 	if err != nil {
 		return nil, err
 	}

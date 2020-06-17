@@ -13,7 +13,7 @@ import (
 // of a previously requested transaction for the specified transaction message reference.
 //
 // Post a Transaction Status Enquiry Request
-func (c *Client) TransactionStatus(ctx context.Context, p *connect.FTTransactionStatusPayload) (res *connect.SuccessResponse, err error) {
+func (s *connectsrvc) TransactionStatus(ctx context.Context, p *connect.FTTransactionStatusPayload) (res *connect.SuccessResponse, err error) {
 
 	// Encode JSON from our instance, using marshall.
 	b, err := json.Marshal(p)
@@ -22,8 +22,9 @@ func (c *Client) TransactionStatus(ctx context.Context, p *connect.FTTransaction
 		fmt.Println(err.Error())
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s%s", c.APIBase, "/Enquiry/TransactionStatus/2.0.0"), bytes.NewReader(b))
+	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s", "/Enquiry/TransactionStatus/2.0.0"), bytes.NewReader(b))
 	res = &connect.SuccessResponse{}
+	s.logger.Log("info", fmt.Sprintf("connect.TransactionStatus"))
 	if err != nil {
 		return nil, err
 	}

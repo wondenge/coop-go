@@ -13,7 +13,7 @@ import (
 // SPOT exchange rate for the specified currencies.
 //
 // Post an Exchange Rate Enquiry Request
-func (c *Client) ExchangeRate(ctx context.Context, p *connect.ExchangeRatePayload) (res *connect.ExchangeRateSuccessResponse, err error) {
+func (s *connectsrvc) ExchangeRate(ctx context.Context, p *connect.ExchangeRatePayload) (res *connect.ExchangeRateSuccessResponse, err error) {
 
 	// Encode JSON from our instance, using marshall.
 	b, err := json.Marshal(p)
@@ -22,8 +22,9 @@ func (c *Client) ExchangeRate(ctx context.Context, p *connect.ExchangeRatePayloa
 		fmt.Println(err.Error())
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s%s", c.APIBase, "/Enquiry/ExchangeRate/1.0.0"), bytes.NewReader(b))
+	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s", "/Enquiry/ExchangeRate/1.0.0"), bytes.NewReader(b))
 	res = &connect.ExchangeRateSuccessResponse{}
+	s.logger.Log("info", fmt.Sprintf("connect.ExchangeRate"))
 	if err != nil {
 		return nil, err
 	}

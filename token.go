@@ -7,33 +7,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"time"
 )
 
-// Authentication
-// An Access Token will be used to access, authorize and authenticate your interactions
-// with the Co-op Bank’s Open Banking APIs.
-// It will be generated using a Consumer Key and a Consumer Secret linked to your account.
-// The Access Token will expire after a specified duration of time, after which regeneration
-// of the Access Token will be required.
-// To generate or re-generate an Access Token, your sign-in username and password will be required.
-// It is very important to keep your API credentials safe, as they can be used to access
-// your account, make changes to your account and carry out transactions.
-// It is also important to note that once you generate a new set of API credentials you must
-// update all your applications with the new API details for your applications to continue working.
-// Note that the Sandbox and Live environments have unique Consumer Key and Consumer Secret which
-// are NOT be interchangeable.
-
-// The following headers will be required for each request:
-// AuthenticationToken(String & Required)
-// This is your auth key from the platform
-
-// Generating Access Tokens
-// The following cURL command shows how to generate an access token using the Password Grant type.
-// curl -k -d "grant_type=password&username=Username&password=Password" \
-//	    -H "Authorization: Basic Base64(consumer-key:consumer-secret)" \
-//	     https://developer.co-opbank.co.ke:8243/token
-//
-// In a similar manner, you can generate an access token using the
 // Client Credentials grant type with the following cURL command.
 // curl -k -d "grant_type=client_credentials" \
 //	    -H "Authorization: Basic Base64(consumer-key:consumer-secret)" \
@@ -50,7 +26,10 @@ type (
 	}
 )
 
-func GetAccessToken(ctx context.Context, ConsumerKey, ConsumerSecret string) (*TokenResponse, error) {
+// GetAccessToken returns struct of TokenResponse
+// No need to call SetAccessToken to apply new access token for current Client
+// Endpoint: POST https://developer.co-opbank.co.ke:8243/token
+func (c *APIClient) GetAccessToken(ctx context.Context) (*TokenResponse, error) {
 
 	buf := bytes.NewBuffer([]byte("grant_type=client_credentials"))
 
@@ -61,8 +40,11 @@ func GetAccessToken(ctx context.Context, ConsumerKey, ConsumerSecret string) (*T
 
 	// Set Header Parameters
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.SetBasicAuth(ConsumerKey, ConsumerSecret)
-	resp, err := http.DefaultClient.Do(req)
+
+	// Makes a request to the API using key:secret basic auth
+	req.SetBasicAuth(c.ConsumerKey, c.ConsumerSecret)
+
+	resp, err := c.Client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("could not load default HTTP client: %w", err)
 	}
@@ -90,6 +72,12 @@ func GetAccessToken(ctx context.Context, ConsumerKey, ConsumerSecret string) (*T
 	if err := json.Unmarshal(body, &token); err != nil {
 		err := fmt.Errorf("could not unmarshal response body: %w", err)
 		fmt.Println(err.Error())
+	}
+
+	// Set Token fur current Client
+	if token.AccessToken != "" {
+		c.Token = &token
+		c.tokenExpiresAt = time.Now().Add(time.Duration(token.ExpiresIn) * time.Second)
 	}
 
 	return &token, nil

@@ -13,7 +13,7 @@ import (
 // from your own Co-operative Bank account to Bank account(s) in IPSL participating banks.
 //
 // Post a PesaLink Funds Transfer Send to Account Transaction
-func (c *Client) PesaLinkSendToAccount(ctx context.Context, p *connect.PesaLinkSendToAccountTransactionRequest) (res *connect.SuccessAcknowledgement, err error) {
+func (s *connectsrvc) PesaLinkSendToAccount(ctx context.Context, p *connect.PesaLinkSendToAccountTransactionRequest) (res *connect.SuccessAcknowledgement, err error) {
 
 	// Encode JSON from our instance, using marshall.
 	b, err := json.Marshal(p)
@@ -22,8 +22,9 @@ func (c *Client) PesaLinkSendToAccount(ctx context.Context, p *connect.PesaLinkS
 		fmt.Println(err.Error())
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s%s", c.APIBase, "/FundsTransfer/External/A2A/PesaLink/1.0.0"), bytes.NewReader(b))
+	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s", "/FundsTransfer/External/A2A/PesaLink/1.0.0"), bytes.NewReader(b))
 	res = &connect.SuccessAcknowledgement{}
+	s.logger.Log("info", fmt.Sprintf("connect.PesaLinkSendToAccount"))
 	if err != nil {
 		return nil, err
 	}
@@ -36,7 +37,7 @@ func (c *Client) PesaLinkSendToAccount(ctx context.Context, p *connect.PesaLinkS
 // account in an IPSL participating bank.
 //
 // Post a PesaLink Funds Transfer Send to Phone Transaction
-func (c *Client) PesaLinkSendToPhone(ctx context.Context, p *connect.PesaLinkSendToPhoneTransactionRequest) (res *connect.SuccessAcknowledgement, err error) {
+func (s *connectsrvc) PesaLinkSendToPhone(ctx context.Context, p *connect.PesaLinkSendToPhoneTransactionRequest) (res *connect.SuccessAcknowledgement, err error) {
 
 	// Encode JSON from our instance, using marshall.
 	b, err := json.Marshal(p)
@@ -45,8 +46,9 @@ func (c *Client) PesaLinkSendToPhone(ctx context.Context, p *connect.PesaLinkSen
 		fmt.Println(err.Error())
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s%s", c.APIBase, "/FundsTransfer/External/A2M/PesaLink/1.0.0"), bytes.NewReader(b))
+	req, err := http.NewRequestWithContext(ctx, "POST", fmt.Sprintf("%s", "/FundsTransfer/External/A2M/PesaLink/1.0.0"), bytes.NewReader(b))
 	res = &connect.SuccessAcknowledgement{}
+	s.logger.Log("info", fmt.Sprintf("connect.PesaLinkSendToPhone"))
 	if err != nil {
 		return nil, err
 	}
