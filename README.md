@@ -21,19 +21,6 @@ $  go get github.com/wondenge/coop-go
 
 # Usage
 
-```go
-package connectapi
-
-import (
-	"context"
-	"fmt"
-
-	"github.com/go-kit/kit/log"
-	connect "github.com/wondenge/coop-go/gen/connect"
-)
-
-```
-
 <h2 align="left">Authentication API</h2>
 
 - An Access Token will be used to access, authorize and authenticate your interactions with the Co-op Bank’s Open Banking APIs.
@@ -41,6 +28,32 @@ import (
 - To generate or re-generate an Access Token, your sign-in username and password will be required. It is very important to keep your API credentials safe, as they can be used to access your account, make changes to your account and carry out transactions.
 - It is also important to note that once you generate a new set of API credentials you must update all your applications with the new API details for your applications to continue working.
 - Note that the Sandbox and Live environments have unique Consumer Key and Consumer Secret which are NOT be interchangeable.
+
+## Documentation For Authorization
+
+- **Type**: OAuth
+- **Flow**: implicit
+- **Authorization URL**: https://developer.co-opbank.co.ke:8243/authorize
+- **Scopes**: N/A
+
+Example
+
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAccessToken, "ACCESSTOKENSTRING")
+r, err := client.Service.Operation(auth, args)
+```
+
+Or via OAuth2 module to automatically refresh tokens and perform user authentication.
+
+```golang
+import "golang.org/x/oauth2"
+
+/* Perform OAuth2 round trip request and obtain a token */
+
+tokenSource := oauth2cfg.TokenSource(createContext(httpClient), &token)
+auth := context.WithValue(oauth2.NoContext, sw.ContextOAuth2, tokenSource)
+r, err := client.Service.Operation(auth, args)
+```
 
 <p align="left">
 <img src="src/assets/img/AccountBalance.png" alt="AccountBalance API"  width="200" />
